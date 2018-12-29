@@ -31,6 +31,6 @@ async def on_message(message):
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
             
-client.run(TOKEN)
+client.run(process.env.TOKEN)
 
 
