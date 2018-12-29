@@ -30,7 +30,7 @@ async def on_message(message):
            if not message.author.id in bypass_list:
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
-    if message.content.upper().startswith("~help"):           
+    if message.content.upper().startswith("~HELP"):           
        await client.send_message(message.channel, "Voici les commandes : \n\ ~help : affiche les commandes \n\ ~ping : affiche le ping \n\~say (+text) : dit le text")
                                 
 
