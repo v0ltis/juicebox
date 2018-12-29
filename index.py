@@ -30,6 +30,10 @@ async def on_message(message):
            if not message.author.id in bypass_list:
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
+    if message.content.upper().startswith("~help"):           
+       help = (discord.Embed(title = "Help:", description ="Commandes : \n\ ~help: affiche les commandes \n\ ~ping : affiche le ping \n\ ~say (+ texte) affiche le texte", color =FE0103))      
+       await client.send_message(message.channel, embed=help)    
+
             
 client.run("NTI4MjY4OTg5NTI1MTMxMjc0.DwjLHw.yZ8hppxMYHfNgLxb54x4B-QZiX8")
 
