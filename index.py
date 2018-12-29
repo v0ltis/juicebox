@@ -31,7 +31,7 @@ async def on_message(message):
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
     if message.content.upper().startswith("~help"):           
-       help = (discord.Embed(title = "Help:", description ="Commandes : \n\ ~help: affiche les commandes \n\ ~ping : affiche le ping \n\ ~say (+ texte) affiche le texte", color =FE0103))      
+       help = (discord.Embed(description ="Commandes : \n\ ~help: affiche les commandes \n\ ~ping : affiche le ping \n\ ~say (+ texte) affiche le texte", color =FE0103))      
        await client.send_message(message.channel, embed=help)    
 
             
