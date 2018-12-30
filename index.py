@@ -22,18 +22,19 @@ async def on_message(message):
       ping = "%.2f"%(1000* (time.monotonic() - timePing))
       await client.edit_message(pinger, ":ping_pong: **Pong !**\n\
 `Ping:" + ping + "`")
+        
     if message.content.upper().startswith("~SAY"):
           args = message.content.split(" ")
           await client.send_message(message.channel, (" ".join(args[1:])))
     contents = message.content.split(" ")
     for word in contents:
-        if word.upper() in chat_filter:
+                if word.upper() in chat_filter:
            if not message.author.id in bypass_list:
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
+                
     if message.content.upper().startswith("~HELP"):           
        await client.send_message(message.channel, "Voici les commandes : \n\ ~help : affiche les commandes \n\ ~ping : affiche le ping \n\~say (+text) : dit le text")
-                                
 
              
 
