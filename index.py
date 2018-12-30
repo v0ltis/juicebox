@@ -35,7 +35,7 @@ async def on_message(message):
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
    
     if message.content.upper().startswith("~HELP"):
-      await client.send_message(message.channel, "_**Préfix :**_ ~ \n _**Commandes:**_ \n _~help_ : Affiche les commandes \n _~say_*(+text)*: dit le text \n_~ping_: affiche le ping") 
+      await client.send_message(message.channel, "__**Préfix :**__ ~ \n __**Commandes:**__ \n __~help__ : Affiche les commandes \n __~say__*(+text)*: dit le text \n__~ping__: affiche le ping") 
 
             
 client.run(os.environ['TOKEN_BOT'])
