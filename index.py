@@ -35,10 +35,9 @@ async def on_message(message):
                 
     if message.content.upper().startswith("~HELP"):           
        await client.send_message(message.channel, "Voici les commandes : \n\ ~help : affiche les commandes \n\ ~ping : affiche le ping \n\~say (+text) : dit le text")
-
              
 
             
-client.run(process.env.TOKEN)
+client.run(os.getenv('TOKEN'))
 
 
