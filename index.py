@@ -36,7 +36,7 @@ async def on_message(message):
    
 
  @client.command()
- async def displayembed()
+ async def displayembed():
     if message.content.upper().startswith("~HELP"):
       help = discord.Embed(colour=discord.Colour(0x6f0053), description="Commandes :\n**~Help:**  affiche les commandes\n**~Say** (+text): dit le text\n**~Ping** : affiche le ping\n- - - - - - - - - - - - - - - - - - -\nL**iens** :\n[Chaine YouTube de Silvathor](https://www.youtube.com/channel/UCe_nGFDs5_r1hRbL5l3JcfQ)\n[Inviter des personnes sur notre serveur discord](https://discord.me/https://discord.me/minecraft_tips)")
 
