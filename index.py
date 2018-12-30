@@ -6,7 +6,7 @@ import time
 import os
 
 client = discord.Client()
-chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO"'"GOGOL","COQUIN","BATARDE","FELATION","SEX"]
+chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX"]
 bypass_list = ["362615539773997056","437289213616979968"]
 
 @client.event
