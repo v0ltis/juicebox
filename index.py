@@ -40,7 +40,7 @@ async def on_message(message):
 embed.set_author(name="Juice Box", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 embed.set_footer(text="https://discord.me/minecraft_tips")
 
-await bot.say(embed=help)
+await client.say(embed=help)
              
 
             
