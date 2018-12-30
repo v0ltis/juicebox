@@ -35,12 +35,9 @@ async def on_message(message):
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
    
     if message.content.upper().startswith("~HELP"):
-      embed = discord.Embed(colour=discord.Colour(0x6f0053), description="Commandes :\n**~Help:**  affiche les commandes\n**~Say** (+text): dit le text\n**~Ping** : affiche le ping\n- - - - - - - - - - - - - - - - - - -\nL**iens** :\n[Chaine YouTube de Silvathor](https://www.youtube.com/channel/UCe_nGFDs5_r1hRbL5l3JcfQ)\n[Inviter des personnes sur notre serveur discord](https://discord.me/https://discord.me/minecraft_tips)")
-
-      embed.set_author(name="Juice Box", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
-      embed.set_footer(text="https://discord.me/minecraft_tips")
-    
-      await client.say(embed=embed)
+      embed=discord.Embed(title="Help:", description="Commandes :\n**~Help:**  affiche les commandes\n**~Say** (+text): dit le text\n**~Ping** : affiche le ping\n- - - - - - - - - - - - - - - - - - -\nL**iens** :\n[Chaine YouTube de Silvathor](https://www.youtube.com/channel/UCe_nGFDs5_r1hRbL5l3JcfQ)\n[Inviter des personnes sur notre serveur discord](https://discord.me/https://discord.me/minecraft_tips")
+embed.set_author(name="Juice Box",, icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+await self.bot.say(embed=embed)
              
 
             
