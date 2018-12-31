@@ -37,10 +37,10 @@ async def on_message(message):
    
     @bot.command(pass_context=True)
     async def embed(ctx):
-    embed = discord.Embed(name="help", color=0x542765)
-    embed.add_field(name"Juice Boxé, value=ctx.message.author.name)
-    embed.set_Footer(text="TEST".format(ctx.message.author.name))
-    await bot.say(embed=embed)
+         embed = discord.Embed(name="help", color=0x542765)
+         embed.add_field(name"Juice Boxé, value=ctx.message.author.name)
+         embed.set_Footer(text="TEST".format(ctx.message.author.name))
+         await bot.say(embed=embed)
             
 client.run(os.environ['TOKEN_BOT'])
 
