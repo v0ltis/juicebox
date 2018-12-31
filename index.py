@@ -10,7 +10,7 @@ chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATT
 bypass_list = ["362615539773997056","437289213616979968"]
 
 @client.event
- async def on_ready():
+async def on_ready():
      await client.change_presence(game=discord.Game(name="~help"))
      print("Logged in as:", client.user.name)
      print("ID:", client.user.id)
