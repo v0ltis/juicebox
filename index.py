@@ -8,7 +8,7 @@ import os
 client = discord.Client()
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX"]
 bypass_list = ["362615539773997056","437289213616979968"]
-bot = commands.Bot(command_prefix='~',description='Description'
+bot = commands.Bot(command_prefix='~',description='Description')
 @client.event
 async def on_ready():
     await client.change_presence(game=discord.Game(name="~help"))
