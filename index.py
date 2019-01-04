@@ -37,23 +37,23 @@ async def on_message(message):
     if message.content.upper().startswith("/HELP"):
       await client.send_message(message.channel, "__**Préfix :**__ / \n __**Commandes:**__ \n __/help__ : Affiche les commandes \n __/say__*(+text)*: dit le text \n__/ping__: affiche le ping") 
     
-       if message.content.upper().startswith("XD"):
+    if message.content.upper().startswith("XD"):
             await client.send_message(message.channel,"lol")
 
-       if message.content.startswith(":middle_finger:"):
+    if message.content.startswith(":middle_finger:"):
             await client.send_message(message.channel,":rage:")
 
-       if message.content.upper().startswith("MERDE"):
+    if message.content.upper().startswith("MERDE"):
             await client.delete_message(message)
             await client.send_message(message.channel,":shit:")
 
-       if message.content.upper().startswith("YO"):
+    if message.content.upper().startswith("YO"):
             await client.send_message(message.channel,"plait")
 
-       if message.content.upper().startswith("BONJOUR"):
+    if message.content.upper().startswith("BONJOUR"):
             await client.send_message(message.channel,"Hey!")
 
-      if message.content.upper().startswith("GG"):
+    if message.content.upper().startswith("GG"):
             await client.send_message(message.channel,":clap: :clap: :clap:")
 
             
