@@ -40,7 +40,7 @@ async def on_message(message):
     if message.content.upper().startswith("XD"):
             await client.send_message(message.channel,"lol")
 
-    if message.content.startswith(":middle_finger:"):
+    if message.content.startswith("🖕"):
             await client.send_message(message.channel,":rage:")
 
     if message.content.upper().startswith("MERDE"):
