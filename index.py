@@ -17,14 +17,14 @@ async def on_ready():
 
 @client.event
 async def on_message(message):    
-    if message.content.upper().startswith("~PING"):
+    if message.content.upper().startswith("/PING"):
       timePing = time.monotonic()
       pinger = await client.send_message(message.channel, ":ping_pong: **Pong !**")
       ping = "%.2f"%(1000* (time.monotonic() - timePing))
       await client.edit_message(pinger, ":ping_pong: **Pong !**\n\
 `Ping:" + ping + "`")
         
-    if message.content.upper().startswith("~SAY"):
+    if message.content.upper().startswith("/SAY"):
           args = message.content.split(" ")
           await client.send_message(message.channel, (" ".join(args[1:])))
     contents = message.content.split(" ")
@@ -34,8 +34,27 @@ async def on_message(message):
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
    
-    if message.content.upper().startswith("~HELP"):
-      await client.send_message(message.channel, "__**Préfix :**__ ~ \n __**Commandes:**__ \n __~help__ : Affiche les commandes \n __~say__*(+text)*: dit le text \n__~ping__: affiche le ping") 
+    if message.content.upper().startswith("/HELP"):
+      await client.send_message(message.channel, "__**Préfix :**__ / \n __**Commandes:**__ \n __/help__ : Affiche les commandes \n __/say__*(+text)*: dit le text \n__/ping__: affiche le ping") 
+    
+       if message.content.upper().startswith("XD"):
+            await client.send_message(message.channel,"lol")
+
+       if message.content.startswith(":middle_finger:"):
+            await client.send_message(message.channel,":rage:")
+
+       if message.content.upper().startswith("MERDE"):
+            await client.delete_message(message)
+            await client.send_message(message.channel,":shit:")
+
+       if message.content.upper().startswith("YO"):
+            await client.send_message(message.channel,"plait")
+
+       if message.content.upper().startswith("BONJOUR"):
+            await client.send_message(message.channel,"Hey!")
+
+      if message.content.upper().startswith("GG"):
+            await client.send_message(message.channel,":clap: :clap: :clap:")
 
             
 client.run(os.environ['TOKEN_BOT'])
