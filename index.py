@@ -37,7 +37,7 @@ async def on_message(message):
     if message.content.upper().startswith("/HELP"):
         help = discord.Embed(title='Commandes:', description='Voicis la liste des commandes', colour=0x7a2581)
         help.set_author(name='Juicebox', icon_url=client.user.default_avatar_url)
-   await client.send_message(message.channel, embed=help)
+    await client.send_message(message.channel, embed=help)
 
 
 
