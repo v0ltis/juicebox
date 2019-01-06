@@ -35,7 +35,7 @@ async def on_message(message):
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
    
     if message.content.upper().startswith("/HELP"):
-    embed=discord.Embed(title="Help:", description="Voici les commandes            ", color=0x630c52)
+    embed = discord.Embed(title="Help:", description="Voici les commandes            ", color=0x630c52)
     embed.set_author(name="JuiceBox",, icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
     embed.add_field(name=Préfix :, value=/, inline=False)
     embed.add_field(name=/help, value=affiche les commandes, inline=True)
