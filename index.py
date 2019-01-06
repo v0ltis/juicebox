@@ -37,6 +37,10 @@ async def on_message(message):
     if message.content.upper().startswith("/HELP"):
         help = discord.Embed(title='Commandes:', description='Voicis la liste des commandes', colour=0x7a2581)
         help.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+        help.add_field(name=Prefix:, value=/, inline=False)
+        help.add_field(name=/help, value=Affiche les commandes, inline=True)
+        help.add_field(name=/say (+texte), value=Fait dire au bot le text, inline=True)
+        help.add_field(name=/ping, value=Affiche le ping, inline=True)
     await client.send_message(message.channel, embed=help)
 
 
