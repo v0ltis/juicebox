@@ -35,7 +35,11 @@ async def on_message(message):
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
    
     if message.content.upper().startswith("/HELP"):
-        await client.send_message(message.channel, "__**Préfix :**__ / \n __**Commandes:**__ \n __/help__ : Affiche les commandes \n __/say__*(+text)*: dit le text \n__/ping__: affiche le ping") 
+        help = discord.Embed(title='Commandes:', description='Voicis la liste des commandes', colour=0x7a2581)
+help.set_author(name='Juicebox', icon_url=client.user.default_avatar_url)
+await client.send_message(message.channel, embed=help)
+
+
 
     if message.content.upper().startswith("XD"):
             await client.send_message(message.channel,"lol")
