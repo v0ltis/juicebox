@@ -51,23 +51,23 @@ async def on_message(message):
     
     
     if message.content.upper().startswith("XD")
-            await client.send_message(message.channel,"lol")
+       await client.send_message(message.channel,"lol")
 
     if message.content.startswith("🖕"):
-            await client.send_message(message.channel,":rage:")
+       await client.send_message(message.channel,":rage:")
 
     if message.content.upper().startswith("MERDE"):
-            await client.delete_message(message)
-            await client.send_message(message.channel,":shit:")
+       await client.delete_message(message)
+       await client.send_message(message.channel,":shit:")
 
     if message.content.upper().startswith("YO"):
-            await client.send_message(message.channel,"plait")
+       await client.send_message(message.channel,"plait")
 
     if message.content.upper().startswith("BONJOUR"):
-            await client.send_message(message.channel,"Hey!")
+       await client.send_message(message.channel,"Hey!")
 
     if message.content.upper().startswith("GG"):
-            await client.send_message(message.channel,":clap: :clap: :clap:") 
+       await client.send_message(message.channel,":clap: :clap: :clap:") 
 
 
     
