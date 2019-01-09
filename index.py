@@ -44,12 +44,6 @@ async def on_message(message):
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
         await client.send_message(message.channel, embed=help)
     
-    
-    
-    
-    
-    
-    
     if message.content.upper().startswith("XD")
        await client.send_message(message.channel,"lol")
 
