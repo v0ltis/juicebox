@@ -33,19 +33,9 @@ async def on_message(message):
              if not message.author.id in bypass_list:
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
-   
-    if message.content.upper().startswith("/HELP"):
-        help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
-        help.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
-        help.add_field(name="Prefix:", value="/", inline=False)
-        help.add_field(name="/help", value="Affiche les commandes", inline=True)
-        help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
-        help.add_field(name="/ping", value="Affiche le ping", inline=True)
-    await client.send_message(message.channel, embed=help)
-
-
-
-    if message.content.upper().startswith("XD"):
+                
+                
+   if message.content.upper().startswith("XD"):
             await client.send_message(message.channel,"lol")
 
     if message.content.startswith("🖕"):
@@ -62,7 +52,20 @@ async def on_message(message):
             await client.send_message(message.channel,"Hey!")
 
     if message.content.upper().startswith("GG"):
-            await client.send_message(message.channel,":clap: :clap: :clap:")
+            await client.send_message(message.channel,":clap: :clap: :clap:") 
+   
+    if message.content.upper().startswith("/HELP"):
+        help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
+        help.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+        help.add_field(name="Prefix:", value="/", inline=False)
+        help.add_field(name="/help", value="Affiche les commandes", inline=True)
+        help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
+        help.add_field(name="/ping", value="Affiche le ping", inline=True)
+    await client.send_message(message.channel, embed=help)
+
+
+
+    
 
             
 client.run(os.environ['TOKEN_BOT'])
