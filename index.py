@@ -15,7 +15,7 @@ async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
    
-    if message.content.upper().startswith("XD")
+    if message.content.upper().startswith("XD"):
        await client.send_message(message.channel,"lol")
 
     if message.content.startswith("🖕"):
