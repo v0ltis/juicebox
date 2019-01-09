@@ -1,6 +1,6 @@
 import discord
 from discord.ext.commands import Bot
-from discord.ext.commands import commands,has_permissions, MissingPermissions
+from discord.ext.commands import has_permissions, MissingPermissions
 from discord.ext import commands
 import asyncio
 import time
