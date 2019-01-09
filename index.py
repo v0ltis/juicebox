@@ -6,6 +6,14 @@ import time
 import os
 
 client = discord.Client()
+with open('reports.json', encoding='utf-8') as f:
+  try:
+    report = json.load(f)
+  except ValueError:
+    report = {}
+    report['users'] = []
+
+client = discord.ext.commands.Bot(command_prefix = '/')
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
 bypass_list = ["362615539773997056","437289213616979968"]
 
@@ -69,8 +77,37 @@ async def on_message(message):
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
         
 
+@client.command(pass_context = True)
+@has_permissions(manage_roles=True, ban_members=True)
+async def warn(ctx,user:discord.User,*reason:str):
+  if not reason:
+    await client.say("Je vais avoir besoin d'une raison boss !")
+    return
+  reason = ' '.join(reason)
+  for current_user in report['users']:
+    if current_user['name'] == user.name:
+      current_user['reasons'].append(reason)
+      break
+  else:
+    report['users'].append({
+      'name':user.name,
+      'reasons': [reason,]
+    })
+  with open('reports.json','w+') as f:
+    json.dump(report,f)
 
-    
+@client.command(pass_context = True)
+async def warnings(ctx,user:discord.User):
+  for current_user in report['users']:
+    if user.name == current_user['name']:
+      await client.say(f"{user.name} a été warn pour: {len(current_user['reasons'])} times : {','.join(current_user['reasons'])}")
+      break
+  else:
+    await client.say(f"{user.name} n'a jamais été warn boss !")  
 
-            
+@warn.error
+async def kick_error(error, ctx):
+  if isinstance(error, MissingPermissions):
+      text = "Hé {}! Tu n'a pas le droit de faire ça !".format(ctx.message.author)
+      await client.send_message(ctx.message.channel, text)              
 client.run(os.environ['TOKEN_BOT'])
