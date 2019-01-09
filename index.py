@@ -64,8 +64,10 @@ async def on_message(message):
     if message.content.upper().startswith("GG"):
        await client.send_message(message.channel,":clap: :clap: :clap:") 
 
+    if message.content.upper().startswith("/botAdmin")
+        await client.delete_message(message)
+        await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
         
-   
 
 
     
