@@ -14,6 +14,25 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name="/help"))
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
+   
+    if message.content.upper().startswith("XD")
+       await client.send_message(message.channel,"lol")
+
+    if message.content.startswith("🖕"):
+       await client.send_message(message.channel,":rage:")
+
+    if message.content.upper().startswith("MERDE"):
+       await client.delete_message(message)
+       await client.send_message(message.channel,":shit:")
+
+    if message.content.upper().startswith("YO"):
+       await client.send_message(message.channel,"plait")
+
+    if message.content.upper().startswith("BONJOUR"):
+       await client.send_message(message.channel,"Hey!")
+
+    if message.content.upper().startswith("GG"):
+       await client.send_message(message.channel,":clap: :clap: :clap:") 
 
 @client.event
 async def on_message(message):    
@@ -43,25 +62,9 @@ async def on_message(message):
         help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
         await client.send_message(message.channel, embed=help)
-@client.event 
-   if message.content.upper().startswith("XD")
-       await client.send_message(message.channel,"lol")
 
-   if message.content.startswith("🖕"):
-       await client.send_message(message.channel,":rage:")
-
-   if message.content.upper().startswith("MERDE"):
-       await client.delete_message(message)
-       await client.send_message(message.channel,":shit:")
-
-   if message.content.upper().startswith("YO"):
-       await client.send_message(message.channel,"plait")
-
-   if message.content.upper().startswith("BONJOUR"):
-       await client.send_message(message.channel,"Hey!")
-
-   if message.content.upper().startswith("GG"):
-       await client.send_message(message.channel,":clap: :clap: :clap:") 
+        
+   
 
 
     
