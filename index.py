@@ -4,6 +4,7 @@ from discord.ext import commands
 import asyncio
 import time
 import os
+import json
 
 client = discord.Client()
 with open('reports.json', encoding='utf-8') as f:
