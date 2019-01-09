@@ -78,7 +78,7 @@ async def on_message(message):
         await client.delete_message(message)
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
         
-
+#Don't work !
 @client.command(pass_context = True)
 @has_permissions(manage_roles=True, ban_members=True)
 async def warn(ctx,user:discord.User,*reason:str):
