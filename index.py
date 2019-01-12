@@ -18,6 +18,9 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name="/help"))
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
+    
+    
+players = {}
 
 @client.event
 async def on_message(message):    
@@ -72,4 +75,14 @@ async def on_message(message):
         await client.delete_message(message)
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
        
+    
+@client.command(pass_context=True)
+async def Play(ctx, url):
+    server = ctx.message.server
+    voice_client = client.voice_client_in(server)
+    player = await voice_client.create_ytdl_player(url)
+    players[server.id] = player
+    player.start()
+
+
 client.run(os.environ['TOKEN_BOT'])
