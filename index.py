@@ -1,6 +1,5 @@
 import discord
 from discord.ext.commands import Bot
-from discord.ext.commands import has_permissions
 from discord.ext import commands
 import asyncio
 import time
@@ -77,39 +76,5 @@ async def on_message(message):
     if message.content.upper().startswith("/BOTADMIN"):
         await client.delete_message(message)
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
-        
-#Don't work !
-@client.command(pass_context = True)
-@has_permissions(manage_roles=True, ban_members=True)
-async def warn(ctx,user:discord.User,*reason:str):
-  if not reason:
-    await client.say("Je vais avoir besoin d'une raison boss !")
-    return
-  reason = ' '.join(reason)
-  for current_user in report['users']:
-    if current_user['name'] == user.name:
-      current_user['reasons'].append(reason)
-      break
-  else:
-    report['users'].append({
-      'name':user.name,
-      'reasons': [reason,]
-    })
-  with open('reports.json','w+') as f:
-    json.dump(report,f)
-
-@client.command(pass_context = True)
-async def warnings(ctx,user:discord.User):
-  for current_user in report['users']:
-    if user.name == current_user['name']:
-      await client.say(f"{user.name} a été warn pour: {len(current_user['reasons'])} times : {','.join(current_user['reasons'])}")
-      break
-  else:
-    await client.say(f"{user.name} n'a jamais été warn boss !")  
-
-@warn.error
-async def kick_error(error, ctx):
-  if isinstance(error, MissingPermissions):
-      text = "Hé {}! Tu n'a pas le droit de faire ça !".format(ctx.message.author)
-      await client.send_message(ctx.message.channel, text)              
+       
 client.run(os.environ['TOKEN_BOT'])
