@@ -1,2 +1,5 @@
-discord.py
-youtube.dll
+discord
+asyncio
+youtube-dl
+PyNaCl
+requests
