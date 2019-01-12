@@ -5,7 +5,6 @@ from discord.ext import commands
 import asyncio
 import time
 import os
-import json
 
 client = discord.Client()
 client = commands.Bot(command_prefix = '/')
