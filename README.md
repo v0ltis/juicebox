@@ -14,6 +14,7 @@ JuiceBox is free , always conected and there is no lags !
     We want to devlop JuiceBox a lot of time for give the best bot ever
     
 [Test it now](https://discordapp.com/oauth2/authorize?client_id=528268989525131274&scope=bot&permissions=2146958847)
+
 [github](https://github.com/v0ltis/juicebox)
 
 command list :
