@@ -18,6 +18,7 @@ JuiceBox is free , always conected and there is no lags !
 [github](https://github.com/v0ltis/juicebox)
 
 command list :
+
 |Command|Reply|
 |---|---|
 |/help|Give all commands|
