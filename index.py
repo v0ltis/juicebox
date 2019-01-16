@@ -135,7 +135,7 @@ async def leave(ctx):
 		print("Error ...")
 		message_channel = ctx.message.channel
 		message_content = ("Error ...Please wait and try again.Or try '//join'.")
- await client.send_message(message_channel,message_content)
+           await client.send_message(message_channel,message_content)
 
 
 
