@@ -138,4 +138,5 @@ async def leave(ctx):
 		message_content = "Error ...Please wait and try again.Or try '//join'."
 		await client.send_message(message_channel,message_content)
 
-client.run("TOKEN")
+
+client.run(os.environ['TOKEN_BOT'])
