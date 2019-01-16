@@ -75,14 +75,69 @@ async def on_message(message):
         await client.delete_message(message)
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
        
-    
 @client.command(pass_context=True)
-async def Play(ctx, url):
-    server = ctx.message.server
-    voice_client = client.voice_client_in(server)
-    player = await voice_client.create_ytdl_player(url)
-    players[server.id] = player
-    player.start()
+async def join(ctx):
+	channel = ctx.message.author.voice.voice_channel
+	txtch = ctx.message.channel
+	print("I'm connected to : " + str(channel))
+	await client.join_voice_channel(channel)
+
+@client.command(pass_context=True)
+async def play(ctx,url):
+	server = ctx.message.server
+	voice_client = client.voice_client_in(server)
+	player = await voice_client.create_ytdl_player(url)
+	players[server.id] = player
+	try:
+		player.start()
+	except:
+		message_channel = ctx.message.channel
+		message_content = "Error ... It can be an author error.Try with another youtube url.Url : \n" + str(url)
+		await client.send_message(message_channel,message_content)
+	message_channel = ctx.message.channel
+	print("Let's play : " + str(url))
+	message_content = "Let's play : " + str(url)
+	await client.send_message(message_channel,message_content)
+
+@client.command(pass_context=True)
+async def pause(ctx):
+	id = ctx.message.server.id
+	players[id].pause()
+	message_channel = ctx.message.channel
+	message_content = "Paused."
+	await client.send_message(message_channel,message_content)
+
+@client.command(pass_context=True)
+async def resume(ctx):
+	id = ctx.message.server.id
+	players[id].resume()
+	message_channel = ctx.message.channel
+	message_content = "Resumed."
+	await client.send_message(message_channel,message_content)
+
+@client.command(pass_context=True)
+async def stop(ctx):
+	id = ctx.message.server.id
+	players[id].stop()
+	message_channel = ctx.message.channel
+	message_content = "Stoped."
+	await client.send_message(message_channel,message_content)
+
+@client.command(pass_context=True)
+async def leave(ctx):
+	server = ctx.message.server
+	print("I'm disconnected from : " + str(server))
+	voice_client = client.voice_client_in(server)
+	try:
+		for x in range(0,100):
+			await voice_client.disconnect()
+	except:
+		print("Error ...")
+		message_channel = ctx.message.channel
+		message_content = "Error ...Please wait and try again.Or try '//join'."
+await client.send_message(message_channel,message_content)
+
+
 
 
 client.run(os.environ['TOKEN_BOT'])
