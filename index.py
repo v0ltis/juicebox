@@ -1,12 +1,11 @@
 import discord
-from discord.ext import commands
 import youtube_dl
 from discord.ext.commands import Bot
+from discord.ext import commands
 import asyncio
 import time
 import os
 
-client = discord.Client()
 client = commands.Bot(command_prefix = '/')
 
 
@@ -74,11 +73,13 @@ async def on_message(message):
     if message.content.upper().startswith("/BOTADMIN"):
         await client.delete_message(message)
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
-       
+
 @client.command(pass_context=True)
 async def join(ctx):
 	channel = ctx.message.author.voice.voice_channel
-	txtch = ctx.message.channel
+	message_channel = ctx.message.channel
+	message_content = str(channel)
+	await client.send_message(message_channel,message_content)
 	print("I'm connected to : " + str(channel))
 	await client.join_voice_channel(channel)
 
@@ -137,4 +138,4 @@ async def leave(ctx):
 		message_content = "Error ...Please wait and try again.Or try '//join'."
 		await client.send_message(message_channel,message_content)
 
-client.run(os.environ['TOKEN_BOT'])
+client.run("TOKEN")
