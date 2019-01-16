@@ -75,7 +75,7 @@ async def on_message(message):
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
 
 @client.command(pass_context=True)
- if message.content.upper().startswith("/JOIN"):
+    if message.content.upper().startswith("/JOIN"):
 	channel = ctx.message.author.voice.voice_channel
 	message_channel = ctx.message.channel
 	message_content = str(channel)
@@ -84,7 +84,7 @@ async def on_message(message):
 	await client.join_voice_channel(channel)
 
 @client.command(pass_context=True)
- 	if message.content.upper().startswith("/PLAY"):
+    if message.content.upper().startswith("/PLAY"):
 		server = ctx.message.server
 		voice_client = client.voice_client_in(server)
 		player = await voice_client.create_ytdl_player(url)
@@ -101,7 +101,7 @@ async def on_message(message):
 		await client.send_message(message_channel,message_content)
 
 @client.command(pass_context=True)
-	 if message.content.upper().startswith("/PAUSE"):
+     if message.content.upper().startswith("/PAUSE"):
 		id = ctx.message.server.id
 		players[id].pause()
 		message_channel = ctx.message.channel
@@ -109,7 +109,7 @@ async def on_message(message):
 		await client.send_message(message_channel,message_content)
 
 @client.command(pass_context=True)
-	 if message.content.upper().startswith("/RESUME"):
+     if message.content.upper().startswith("/RESUME"):
 		id = ctx.message.server.id
 		players[id].resume()
 		message_channel = ctx.message.channel
@@ -117,7 +117,7 @@ async def on_message(message):
 		await client.send_message(message_channel,message_content)
 
 @client.command(pass_context=True)
-	 if message.content.upper().startswith("/STOP"):
+     if message.content.upper().startswith("/STOP"):
 		id = ctx.message.server.id
 		players[id].stop()
 		message_channel = ctx.message.channel
