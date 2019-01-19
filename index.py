@@ -8,7 +8,7 @@ import os
 
 client = commands.Bot(command_prefix = '/')
 
-
+merde = ["MERDE"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
 bypass_list = ["362615539773997056","437289213616979968"]
 
@@ -62,10 +62,11 @@ async def on_message(message):
     if message.content.startswith("🖕"):
        await client.send_message(message.channel,":rage:")
 
-    if message.content.upper().startswith("MERDE"):
-       await client.delete_message(message)
-       await client.send_message(message.channel,":shit:")
-
+    for word in contents:
+           if word.upper() in merde:
+                await client.delete_message(message)
+                await client.send_message(message.channel, ":shit:")
+                
     if message.content.upper().startswith("YO"):
        await client.send_message(message.channel,"plait")
 
