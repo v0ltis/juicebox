@@ -90,7 +90,7 @@ async def on_message(message):
       url = message_url.split(" ")[1]
       if len(message_url.split(" ")) == 1:
         message_channel = message.channel
-        message_content = "Please enter a url."
+        message_content = "Je vais avoir besoin d'un url !"
         await client.send_message(message_channel,message_content)
       if len(message_url.split(" ")) == 2:
         print(url)
@@ -102,16 +102,16 @@ async def on_message(message):
           player.start()
         except:
           message_channel = message.channel
-          message_content = "Error ... It can be an author error.Try with another youtube url.Url : \n" + str(url)
+          message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
           await client.send_message(message_channel,message_content)
         message_channel = message.channel
 
         print("Let's play : " + str(url))
-        message_content = "Let's play : " + str(url)
+        message_content = "C'est parti pour : " + str(url)
         await client.send_message(message_channel,message_content)
       if len(message_url.split(" ")) == 3:
         message_channel = message.channel
-        message_content = "Please enter one url."
+        message_content = "Heu ... je peut avoir un URL s'il vous plait ?"
         await client.send_message(message_channel,message_content)
     
 
@@ -120,7 +120,7 @@ async def on_message(message):
       id = message.server.id
       players[id].pause()
       message_channel = message.channel
-      message_content = "Paused."
+      message_content = "Pause :+1:"
       await client.send_message(message_channel,message_content)
 
     
@@ -129,7 +129,7 @@ async def on_message(message):
       id = message.server.id
       players[id].resume()
       message_channel = message.channel
-      message_content = "Resumed."
+      message_content = "Je recomence"
       await client.send_message(message_channel,message_content)
 
 
@@ -138,7 +138,7 @@ async def on_message(message):
       id = message.server.id
       players[id].stop()
       message_channel = message.channel
-      message_content = "Stoped."
+      message_content = "Ok , ok , j'arrete"
       await client.send_message(message_channel,message_content)
 
 
@@ -153,7 +153,7 @@ async def on_message(message):
       except:
         print("Error ...")
         message_channel = message.channel
-        message_content = "Error ...Please wait and try again.Or try '//join'."
+        message_content = "Buuuuuug... attend un peut ou essaye avec /join'."
         await client.send_message(message_channel,message_content)
 
 client.run(os.environ['TOKEN_BOT'])
