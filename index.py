@@ -77,112 +77,83 @@ async def on_message(message):
     
 
     #join
-  @bot.command(pass_context=True)
-async def skip(con):
-    if con.message.channel.is_private == True:
-        await bot.send_message(con.message.channel, "**You must be in a `server text channel` to use this command**")
+    if message.content.upper().startswith("/JOIN"):
+        channel = message.author.voice.voice_channel
+        print("I'm connected to : " + str(channel))
+        await client.join_voice_channel(channel)
+    
 
-    # COMMAND NOT IN DM
-    if con.message.channel.is_private == False:
-        if servers_songs[con.message.server.id] == None or len(song_names[con.message.server.id]) == 0 or player_status[con.message.server.id] == False:
-            await bot.send_message(con.message.channel, "**No songs in queue to skip**")
-        if servers_songs[con.message.server.id] != None:
-            bot.loop.create_task(queue_songs(con, True, False))
+    #play + url
+    if message.content.upper().startswith("/PLAY"):
+      print(message.content)
+      message_url = message.content
+      url = message_url.split(" ")[1]
+      if len(message_url.split(" ")) == 1:
+        message_channel = message.channel
+        message_content = "Please enter a url."
+        await client.send_message(message_channel,message_content)
+      if len(message_url.split(" ")) == 2:
+        print(url)
+        server = message.server
+        voice_client = client.voice_client_in(server)
+        player = await voice_client.create_ytdl_player(url)
+        players[server.id] = player
+        try:
+          player.start()
+        except:
+          message_channel = message.channel
+          message_content = "Error ... It can be an author error.Try with another youtube url.Url : \n" + str(url)
+          await client.send_message(message_channel,message_content)
+        message_channel = message.channel
 
-@bot.command(pass_context=True)
-async def join(con,*,channel=None):
-    """JOIN A VOICE CHANNEL THAT THE USR IS IN OR MOVE TO A VOICE CHANNEL IF THE BOT IS ALREADY IN A VOICE CHANNEL"""
+        print("Let's play : " + str(url))
+        message_content = "Let's play : " + str(url)
+        await client.send_message(message_channel,message_content)
+      if len(message_url.split(" ")) == 3:
+        message_channel = message.channel
+        message_content = "Please enter one url."
+        await client.send_message(message_channel,message_content)
+    
 
+    #pause
+    if message.content.upper().startswith("/PAUSE"):
+      id = message.server.id
+      players[id].pause()
+      message_channel = message.channel
+      message_content = "Paused."
+      await client.send_message(message_channel,message_content)
 
-    # COMMAND IS IN DM
-    if con.message.channel.is_private == True:
-        await bot.send_message(con.message.channel, "**You must be in a `server text channel` to use this command**")
-
-    # COMMAND NOT IN DM
-    if con.message.channel.is_private == False:
-        voice_status = bot.is_voice_connected(con.message.server)
-
-        voice=find(lambda m:m.name == channel,con.message.server.channels)
-
-        if voice_status == False and channel == None:  # VOICE NOT CONNECTED
-            if con.message.author.voice_channel == None:
-                await bot.send_message(con.message.channel,"**You must be in a voice channel or give a voice channel name to join**")
-            if con.message.author.voice_channel != None:
-                await bot.join_voice_channel(con.message.author.voice.voice_channel)
-
-        if voice_status == False and channel != None:  # PICKING A VOICE CHANNEL
-            await bot.join_voice_channel(voice)
-
-        if voice_status == True:  # VOICE ALREADY CONNECTED
-            if voice == None:
-                await bot.send_message(con.message.channel, "**Bot is already connected to a voice channel**")
-
-
-            if voice != None:            
-                if voice.type == discord.ChannelType.voice:
-                     await bot.voice_client_in(con.message.server).move_to(voice)
-
-
-@bot.command(pass_context=True)
-async def leave(con):
-    """LEAVE THE VOICE CHANNEL AND STOP ALL SONGS AND CLEAR QUEUE"""
-    # COMMAND USED IN DM
-    if con.message.channel.is_private == True:
-        await bot.send_message(con.message.channel, "**You must be in a `server text channel` to use this command**")
-
-    # COMMAND NOT IN DM
-    if con.message.channel.is_private == False:
-
-        # IF VOICE IS NOT CONNECTED
-        if bot.is_voice_connected(con.message.server) == False:
-            await bot.send_message(con.message.channel, "**Bot is not connected to a voice channel**")
-
-        # VOICE ALREADY CONNECTED
-        if bot.is_voice_connected(con.message.server) == True:
-            bot.loop.create_task(queue_songs(con, False, True))
-
-@bot.command(pass_context=True)
-async def pause(con):
-    # COMMAND IS IN DM
-    if con.message.channel.is_private == True:
-        await bot.send_message(con.message.channel, "**You must be in a `server text channel` to use this command**")
-
-    # COMMAND NOT IN DM
-    if con.message.channel.is_private == False:
-        if servers_songs[con.message.server.id] != None:
-            if paused[con.message.server.id] == True:
-                await bot.send_message(con.message.channel, "**Audio already paused**")
-            if paused[con.message.server.id] == False:
-                servers_songs[con.message.server.id].pause()
-                paused[con.message.server.id] = True
+    
+    #resume
+    if message.content.upper().startswith("/RESUME"):
+      id = message.server.id
+      players[id].resume()
+      message_channel = message.channel
+      message_content = "Resumed."
+      await client.send_message(message_channel,message_content)
 
 
+    #STOP
+    if message.content.upper().startswith("/STOP"):
+      id = message.server.id
+      players[id].stop()
+      message_channel = message.channel
+      message_content = "Stoped."
+      await client.send_message(message_channel,message_content)
 
 
-
-@bot.command(pass_context=True)
-async def resume(con):
-    # COMMAND IS IN DM
-    if con.message.channel.is_private == True:
-        await bot.send_message(con.message.channel, "**You must be in a `server voice channel` to use this command**")
-
-    # COMMAND NOT IN DM
-    if con.message.channel.is_private == False:
-        if servers_songs[con.message.server.id] != None:
-            if paused[con.message.server.id] == False:
-                await bot.send_message(con.message.channel, "**Audio already playing**")
-            if paused[con.message.server.id] == True:
-                servers_songs[con.message.server.id].resume()
-                paused[con.message.server.id] = False
-
-
-
-@bot.command(pass_context=True)
-async def volume(con,vol:float):
-    if player_status[con.message.server.id] == False:
-        await bot.send_message(con.message.channel,"No Audio playing at the moment")
-    if player_status[con.message.server.id] == True:
-        servers_songs[con.message.server.id].volume =vol;
-
+    #leave
+    if message.content.upper().startswith("/LEAVE"):
+      server = message.server
+      print("I'm disconnected from : " + str(server))
+      voice_client = client.voice_client_in(server)
+      try:
+        for x in range(0,100):
+          await voice_client.disconnect()
+      except:
+        print("Error ...")
+        message_channel = message.channel
+        message_content = "Error ...Please wait and try again.Or try '//join'."
+        await client.send_message(message_channel,message_content)
 
 client.run(os.environ['TOKEN_BOT'])
