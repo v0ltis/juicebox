@@ -48,7 +48,7 @@ async def on_message(message):
         help.add_field(name="/help", value="Affiche les commandes", inline=True)
         help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
-        help.add_field(name="/musique", value="donne les commandes musicales d ubot", inline=False)
+        help.add_field(name="/musique", value="donne les commandes musicales du bot", inline=False)
         await client.send_message(message.channel, embed=help)
         
         
