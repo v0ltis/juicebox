@@ -54,6 +54,8 @@ async def on_message(message):
         
         
     if message.content.upper().startswith("/MUSIQUE"):
+        musique = discord.Embed(title='Musique:', description='Voici la liste des commandes de musique', colour=0x7a2581)
+        help.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
         musique.add_field(name="Commandes musiques:", value="", inline=False)
         musique.add_field(name="/join", value="fait rejoindre votre salon vocal", inline=True)
         musique.add_field(name="/play *(+url YouTube)*", value="Joue la musique", inline=True)
