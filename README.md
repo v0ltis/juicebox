@@ -5,6 +5,7 @@ JuiceBox is a free frensh bot with :
   - Moderation
   - Fun
   - Auto-Reply
+  - Music
 
 #### Why us ?
 
