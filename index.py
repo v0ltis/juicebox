@@ -54,16 +54,7 @@ async def on_message(message):
         
         
     if message.content.upper().startswith("/MUSIQUE"):
-        musique = discord.Embed(title='Musique:', description='Voici la liste des commandes de musique', colour=0x7a2581)
-        musique.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
-        musique.add_field(name="Commandes musiques:", value="", inline=False)
-        musique.add_field(name="/join", value="fait rejoindre votre salon vocal", inline=True)
-        musique.add_field(name="/play *(+url YouTube)*", value="Joue la musique", inline=True)
-        musique.add_field(name="/stop", value="Arrete la musique", inline=True)
-        musique.add_field(name="/pause", value="Met en pause la musique", inline=True)
-        musique.add_field(name="/resume", value="Continue la video", inline=True)
-        await client.send_message(message.channel, embed=musique)
-        
+        await client.send_message(message.channel,"Voicis les commandes musicales : \n /join : fait rejoindre juicebox dans votre salon vocal \n /play (url) : lis la video/musique (l'url doit être un URL YouTube) \n /stop : arrete la video \n /pause : met en pause la video \n /resume : reprend la video/musique \n /leave : fait quitter le salon vocal ")         
         
     if message.content.upper().startswith("XD"):
        await client.send_message(message.channel,"lol")
