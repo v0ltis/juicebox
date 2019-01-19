@@ -53,7 +53,7 @@ async def on_message(message):
         
         
         
-    if message.content.upper().startswith("/MUSIQUE")
+    if message.content.upper().startswith("/MUSIQUE"):
         musique.add_field(name="Commandes musiques:", value="", inline=False)
         musique.add_field(name="/join", value="fait rejoindre votre salon vocal", inline=True)
         musique.add_field(name="/play *(+url YouTube)*", value="Joue la musique", inline=True)
