@@ -1,3 +1,5 @@
-discord.py
-youtube_dl
-ffmpeg
+discord
+asyncio
+youtube-dl
+PyNaCl
+requests
