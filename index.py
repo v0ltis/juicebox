@@ -48,13 +48,19 @@ async def on_message(message):
         help.add_field(name="/help", value="Affiche les commandes", inline=True)
         help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
-        help.add_field(name="Commandes musiques:", value="", inline=False)
-        help.add_field(name="/join", value="fait rejoindre votre salon vocal", inline=True)
-        help.add_field(name="/play *(+url YouTube)*", value="Joue la musique", inline=True)
-        help.add_field(name="/stop", value="Arrete la musique", inline=True)
-        help.add_field(name="/pause", value="Met en pause la musique", inline=True)
-        help.add_field(name="/resume", value="Continue la video", inline=True)
+        help.add_field(name="/musique", value="donne les commandes musicales d ubot", inline=False)
         await client.send_message(message.channel, embed=help)
+        
+        
+        
+    if message.content.upper().startswith("/MUSIQUE")
+        musique.add_field(name="Commandes musiques:", value="", inline=False)
+        musique.add_field(name="/join", value="fait rejoindre votre salon vocal", inline=True)
+        musique.add_field(name="/play *(+url YouTube)*", value="Joue la musique", inline=True)
+        musique.add_field(name="/stop", value="Arrete la musique", inline=True)
+        musique.add_field(name="/pause", value="Met en pause la musique", inline=True)
+        musique.add_field(name="/resume", value="Continue la video", inline=True)
+        await client.send_message(message.channel, embed=musique)
         
         
     if message.content.upper().startswith("XD"):
