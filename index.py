@@ -57,7 +57,7 @@ async def on_message(message):
         musique.add_field(name="/play (+URL) :", value=" lis la video/musique (l'URL doit être un URL YouTube) ", inline=True)
         musique.add_field(name=" /stop", value="Arette la video", inline=True)
         musique.add_field(name="/pause", value="Met en pause la video", inline=True)
-        musique.add_field(name="/resume", value="Reprend la video/musique ", inline=True)
+        musique.add_field(name="/resume", value="Reprend la video", inline=True)
         musique.add_field(name="/leave", value="Fait quitter juiceBox de votre salon vocal", inline=True)
         await client.send_message(message.channel, embed=musique)
         
