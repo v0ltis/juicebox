@@ -61,11 +61,7 @@ async def on_message(message):
         musique.add_field(name="/leave", value="Fait quitter juiceBox de votre salon vocal", inline=True)
         await client.send_message(message.channel, embed=musique)
         
-        
-        
-    if message.content.upper().startswith("/MUSIQUE"):
-        await client.send_message(message.channel,"Voicis les commandes musicales : \n /join : fait rejoindre juicebox dans votre salon vocal \n /play (url) : lis la video/musique (l'url doit être un URL YouTube) \n /stop : arrete la video \n /pause : met en pause la video \n /resume : reprend la video/musique \n /leave : fait quitter le salon vocal ")         
-        
+       
     if message.content.upper().startswith("XD"):
        await client.send_message(message.channel,"lol")
 
