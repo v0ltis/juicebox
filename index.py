@@ -196,7 +196,6 @@ async def mute(ctx, member: discord.Member=None):
         return
     role = discord.utils.get(ctx.guild.roles, name="muted")
     await member.add_roles(role)
-	await client.send_message(f"{member.mention} a été mute")
 @mute.error
 async def mute_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
@@ -211,7 +210,6 @@ async def unmute(ctx, member: discord.Member=None):
         return
     role = discord.utils.get(ctx.guild.roles, name="muted")
     await member.remove_roles(role)
-	await client.send_message(f"{member.mention} a été unmute")
 @mute.error
 async def unmute_error(ctx, error):
     if isinstance(error, commands.CheckFailure):
