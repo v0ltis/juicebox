@@ -164,7 +164,7 @@ async def on_message(message):
         
 @client.command()
 @commands.has_permissions(administrator=True)
-async def kick(ctx, member:discord.Member = None):
+if message.content.upper().startswith("/KICK")
     if not member:
         await ctx.send("Veuillez spécifier une personne")
         return
@@ -177,7 +177,7 @@ async def kick_error(ctx, error):
 
 @client.command()
 @commands.has_permissions(administrator=True)
-async def ban(ctx, member:discord.Member = None):
+if message.content.upper().startswith("/BAN")
     if not member:
         await ctx.send("Veuillez spécifier une personne")
         return
@@ -190,7 +190,7 @@ async def kick_error(ctx, error):
 
 @client.command()
 @commands.has_permissions(administrator=True)
-async def mute(ctx, member: discord.Member=None):
+if message.content.upper().startswith("/MUTE")
     if not member:
         await ctx.send("Veuillez spécifier une personne")
         return
@@ -204,7 +204,7 @@ async def mute_error(ctx, error):
 
 @client.command()
 @commands.has_permissions(administrator=True)
-async def unmute(ctx, member: discord.Member=None):
+if message.content.upper().startswith("/UNMUTE")
     if not member:
         await ctx.send("Veuillez spécifier une personne")
         return
