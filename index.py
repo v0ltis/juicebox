@@ -161,5 +161,60 @@ async def on_message(message):
         message_channel = message.channel
         message_content = "Buuuuuug... attend un peut ou essaye avec /join'."
         await client.send_message(message_channel,message_content)
+        
+@client.command()
+@commands.has_permissions(administrator=True)
+async def kick(ctx, member:discord.Member = None):
+    if not member:
+        await ctx.send("Veuillez spécifier une personne")
+        return
+    await member.kick()
+    await ctx.send(f"{member.mention} a été kick")
+@kick.error
+async def kick_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send("Tu n'a pas le droit de kick les gens")
+
+@client.command()
+@commands.has_permissions(administrator=True)
+async def ban(ctx, member:discord.Member = None):
+    if not member:
+        await ctx.send("Veuillez spécifier une personne")
+        return
+    await member.ban()
+    await ctx.send(f"{member.mention} a été bannis")
+@ban.error
+async def kick_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send("Tu ne peut pas bannir les gens !")
+
+@client.command()
+@commands.has_permissions(administrator=True)
+async def mute(ctx, member: discord.Member=None):
+    if not member:
+        await ctx.send("Veuillez spécifier une personne")
+        return
+    role = discord.utils.get(ctx.guild.roles, name="muted")
+    await member.add_roles(role)
+	await client.send_message(f"{member.mention} a été mute")
+@mute.error
+async def mute_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send("Tu n'a pas le droit de mute les personnes")
+
+
+@client.command()
+@commands.has_permissions(administrator=True)
+async def unmute(ctx, member: discord.Member=None):
+    if not member:
+        await ctx.send("Veuillez spécifier une personne")
+        return
+    role = discord.utils.get(ctx.guild.roles, name="muted")
+    await member.remove_roles(role)
+	await client.send_message(f"{member.mention} a été unmute")
+@mute.error
+async def unmute_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send("Tu n'a pas le droit d'unmute les personnes")
 
 client.run(os.environ['TOKEN_BOT'])
