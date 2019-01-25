@@ -205,6 +205,6 @@ async def on_message(message):
         print("Error ...")
         message_channel = message.channel
         message_content = "Buuuuuug... attend un peut ou essaye avec /join'."
-    await client.send_message(message_channel,message_content)
+        await client.send_message(message_channel,message_content)
 
 client.run(os.environ['TOKEN_BOT'])
