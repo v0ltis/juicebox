@@ -16,7 +16,7 @@ bypass_list = ["362615539773997056","437289213616979968"]
 
 @client.event
 async def on_ready():
-    await client.change_presence(game=discord.Game(name="/help"))
+    await client.change_presence(game=discord.Game(name="Mise a jour en cours))
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
     
