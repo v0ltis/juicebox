@@ -145,9 +145,9 @@ async def on_message(message):
           for x in range(len(msg_query)-1):
             msg_query_end = msg_query_end + msg_query[x] + ' '
 
-          msg_query_end = msg_query_end + msg_query[x+1]
-          print(msg_query_end)
-          url =text_to_url.url_find('yt_url_spider.py','quotes.json','https://www.youtube.com',str(msg_query_end)).get_complete_url()
+          msg_query_t = msg_query_end + msg_query[x+1]
+          print(msg_query_t)
+          url =text_to_url.url_find('yt_url_spider.py','quotes.json','https://www.youtube.com',str(msg_query_t)).get_complete_url()
           print(url)
           server = message.server
           voice_client = client.voice_client_in(server)
