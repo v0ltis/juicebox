@@ -49,4 +49,4 @@ class dir_location():
             print(self.me)
             
     def log(self,W=0):
-    self.pr = W
+        self.pr = W
