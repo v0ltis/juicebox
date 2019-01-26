@@ -5,190 +5,6 @@ from discord.ext import commands
 import asyncio
 import time
 import os
-import scrapy
-
-yt_url_spider= '''
-url = ['https://www.youtube.com/results?search_query=overwatch+rap+battle']
-#pywin32
-#scrapy
-
-import scrapy
-
-class yt_url_spider(scrapy.Spider):
-    global url
-    name = 'yt_url'
-    start_urls = url
-    def parse(self, response):
-        for url in response.css("div div div div div div div div div h3 a"):
-yield {'url_text': url.xpath('@href').extract_first()}
-'''
-
-my_directory= '''
-import os
-
-my_folder = ''
-Pr = 1
-
-class dir_location():
-
-    def __init__(self):
-        self.me = my_folder
-        self.pr = Pr
-
-    def search(self):
-        a = str(os.getcwd())
-        a = a.split('\\')
-        #print(a)
-        b = len(a)
-        c = str(a[0]) + str('\\')
-        for x in range(1,b):
-            c = c + str(a[x]) + str('\\')
-        self.me = c
-        if self.pr == 1:
-            print(self.me)
-            
-    def go_to_folder(self,Where):
-        a = self.me + str(Where) + str('\\')
-        self.me = a
-        if self.pr == 1:
-            print(self.me)
-            
-    def go_to_file(self,Where):
-        a = self.me + str(Where)
-        self.me = a
-        if self.pr == 1:
-            print(self.me)
-            
-    def back(self,Nb=1):
-        a = self.me.split('\\')
-        #print(a)
-        b = len(a)
-        #print(b)
-        b -= Nb
-        #print(b)
-        #print(Nb)
-        c = str(a[0]) + str('\\')
-        for x in range(1,(b-1)):
-            c = c + str(a[x]) + str('\\')
-        self.me = c
-        if self.pr == 1:
-            print(self.me)
-            
-    def log(self,W=0):
-        self.pr = W
-'''
-
-text_to_url = '''
-import os
-import json
-
-class url_find():
-
-  def __init__(self,file_py,file_json,main_url,query,att_url='',complete_url='',query_url=''):
-    self.file_py = file_py
-    self.file_json = file_json
-    self.main_url = main_url
-    self.query = query
-    self.att_url = att_url
-    self.me = my_directory.dir_location()
-    self.query_url = query_url
-
-    ytb_query = "https://www.youtube.com/results?search_query="
-    query_splited = query.split(' ')
-
-    query_builted = ''
-    x = 0
-
-    for x in range(0,len(query_splited)-1):
-      query_builted = query_builted + query_splited[x] + '+'
-    query_builted = query_builted + query_splited[x+1]
-    ytb_query = ytb_query + query_builted
-    self.query_url = ytb_query
-
-
-  def read_values_from_json(self,file,key):
-    values = []
-    with open(file) as f:
-      data = json.load(f)
-      for entry in data:
-        values.append(entry[key])
-    return values
-
-  def search(self):
-    results = self.read_values_from_json("quotes.json","url_text")
-    return results
-
-  def reset_file(self,file):
-    self.me.search()
-    self.me.go_to_file(file)
-    file = open(self.me.me ,'w')
-    file.write("")
-    file.close()
-  
-  def query_edit(self):
-    self.me.search()
-    self.me.go_to_file(self.file_py)
-    file = open(self.me.me , 'r')
-    query_edit_read = file.read()
-    file.close()
-
-    #split the first line in query_edit_read_spilted_lines
-    query_edit_read_splited_lines = query_edit_read.splitlines()[0].split("'")
-    query_edit_read_splited_lines[1] = self.query_url
-
-    query_edit_write = []
-    query_edit_write_splited_lines = ''
-
-    #build the new first line
-    for x in range(0,2):
-      query_edit_write_splited_lines = query_edit_write_splited_lines + query_edit_read_splited_lines[x] + "'"
-    query_edit_write_splited_lines = query_edit_write_splited_lines + query_edit_read_splited_lines[x+1]
-
-    query_edit_write.append(query_edit_write_splited_lines)
-    for x in query_edit_read.splitlines():
-      if x != query_edit_read.splitlines()[0]:
-        query_edit_write.append(x)
-    
-    query_edit_write_end = ''
-    for x in query_edit_write:
-      query_edit_write_end = query_edit_write_end + x + '\n'
-
-    file = open(self.me.me, 'w')
-    file.write(query_edit_write_end)
-    file.close()
-
-  def get_complete_url(self):
-    debug = 0
-    for x in self.query.split('.'):
-      if x == 'youtube':
-        debug += 1
-      if x == 'com':
-        debug += 1
-      if x == 'watch':
-        debug += 1
-
-    if debug >= 3:
-      return self.query
-
-    self.reset_file(self.file_json)
-    self.query_edit()
-    os_command = "scrapy runspider " + str(self.file_py) + " -o " + str(self.file_json)
-    os.system(os_command)
-
-    _url = self.search()
-    complete_url = self.main_url + _url[0]
-    
-    self.att_url = _url[0]
-    self.complete_url = complete_url
-
-    return complete_url
-
-'''
-
-exec(my_directory)
-exec(text_to_url)
-
-
 
 client = commands.Bot(command_prefix = '/')
 
@@ -277,72 +93,39 @@ async def on_message(message):
         channel = message.author.voice.voice_channel
         print("I'm connected to : " + str(channel))
         await client.join_voice_channel(channel)
+    
 
-    #play + query
+    #play + url
     if message.content.upper().startswith("/PLAY"):
       print(message.content)
       message_url = message.content
       url = message_url.split(" ")[1]
       if len(message_url.split(" ")) == 1:
         message_channel = message.channel
-        message_content = "Je vais avoir besoin d'un url"
+        message_content = "Je vais avoir besoin d'un url !"
         await client.send_message(message_channel,message_content)
-      if len(message_url.split(" ")) >= 2:
-        debug = 0
-        for x in message_url.split("://"):
-          if x == 'https':
-            debug += 1
-        if debug >= 1:
-          print(url)
-          print("I'm taking the first way !")
-          server = message.server
-          voice_client = client.voice_client_in(server)
-          player = await voice_client.create_ytdl_player(url)
-          players[server.id] = player
+      if len(message_url.split(" ")) == 2:
+        print(url)
+        server = message.server
+        voice_client = client.voice_client_in(server)
+        player = await voice_client.create_ytdl_player(url)
+        players[server.id] = player
+        try:
+          player.start()
+        except:
+          message_channel = message.channel
+          message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
+          await client.send_message(message_channel,message_content)
+        message_channel = message.channel
 
-          try:
-            player.start()
-            message_channel = message.channel
-            print("Let's play : " + str(url))
-            message_content = "C'est parti pour : " + str(url)
-            await client.send_message(message_channel,message_content)
-
-          except:
-            message_channel = message.channel
-            message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
-            await client.send_message(message_channel,message_content)
-
-        else:
-          print("I'm taking the second way !")
-          msg_query = message.content.split(' ')
-          msg_query.pop(0)
-
-          msg_query_end = ''
-          x=0
-
-          for x in range(len(msg_query)-1):
-            msg_query_end = msg_query_end + msg_query[x] + ' '
-            
-          msg_query_end = msg_query_end + msg_query[x+1]
-          print(msg_query_end)
-          url =text_to_url.url_find('yt_url_spider.py','quotes.json','https://www.youtube.com',str(msg_query_end)).get_complete_url()
-          print(url)
-          server = message.server
-          voice_client = client.voice_client_in(server)
-          player = await voice_client.create_ytdl_player(url)
-          players[server.id] = player
-
-          try:
-            player.start()
-            message_channel = message.channel
-            print("Let's play : " + str(url))
-            message_content = "C'est parti pour : " + str(url)
-            await client.send_message(message_channel,message_content)
-
-          except:
-            message_channel = message.channel
-            message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
-            await client.send_message(message_channel,message_content)
+        print("Let's play : " + str(url))
+        message_content = "C'est parti pour : " + str(url)
+        await client.send_message(message_channel,message_content)
+      if len(message_url.split(" ")) == 3:
+        message_channel = message.channel
+        message_content = "Heu ... je peut avoir un URL s'il vous plait ?"
+        await client.send_message(message_channel,message_content)
+    
 
     #pause
     if message.content.upper().startswith("/PAUSE"):
@@ -384,5 +167,7 @@ async def on_message(message):
         message_channel = message.channel
         message_content = "Buuuuuug... attend un peut ou essaye avec /join'."
         await client.send_message(message_channel,message_content)
+        
+        
 
 client.run(os.environ['TOKEN_BOT'])
