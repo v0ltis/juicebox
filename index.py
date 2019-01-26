@@ -93,7 +93,7 @@ class url_find():
     self.me = my_directory.dir_location()
     self.query_url = query_url
 
-    ytb_query = '''https://www.youtube.com/results?search_query='''
+    ytb_query = "https://www.youtube.com/results?search_query="
     query_splited = query.split(' ')
 
     query_builted = ''
