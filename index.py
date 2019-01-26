@@ -5,6 +5,7 @@ from discord.ext import commands
 import asyncio
 import time
 import os
+import scrapy
 import text_to_url
 
 client = commands.Bot(command_prefix = '/')
@@ -143,7 +144,8 @@ async def on_message(message):
 
           for x in range(len(msg_query)-1):
             msg_query_end = msg_query_end + msg_query[x] + ' '
-
+            
+          msg_query_end = msg_query_end + msg_query[x+1]
           print(msg_query_end)
           url =text_to_url.url_find('yt_url_spider.py','quotes.json','https://www.youtube.com',str(msg_query_end)).get_complete_url()
           print(url)
