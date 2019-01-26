@@ -102,7 +102,7 @@ async def on_message(message):
       url = message_url.split(" ")[1]
       if len(message_url.split(" ")) == 1:
         message_channel = message.channel
-        message_content = "Je vais avoir besoin d'un url ou d'un !"
+        message_content = "Je vais avoir besoin d'un url"
         await client.send_message(message_channel,message_content)
       if len(message_url.split(" ")) >= 2:
         debug = 0
@@ -144,7 +144,6 @@ async def on_message(message):
           for x in range(len(msg_query)-1):
             msg_query_end = msg_query_end + msg_query[x] + ' '
 
-          msg_query_end = msg_query_end + msg_query[x+1]
           print(msg_query_end)
           url =text_to_url.url_find('yt_url_spider.py','quotes.json','https://www.youtube.com',str(msg_query_end)).get_complete_url()
           print(url)
