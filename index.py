@@ -67,7 +67,11 @@ async def on_message(message):
 
     if message.content.startswith("🖕"):
        await client.send_message(message.channel,":rage:")
-
+    
+    
+    if message.content.startswith("@JuiceBox"):
+       await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voicis quelques commandes qui pourait vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique : \n /ping : affiche le ping ")      
+    
     for word in contents:
            if word.upper() in merde:
                 await client.delete_message(message)
