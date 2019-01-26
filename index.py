@@ -8,7 +8,7 @@ import os
 
 client = commands.Bot(command_prefix = '/')
 
-merde = ["MERDE"]
+merde = ["MERDE","CHIER"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
 bypass_list = ["362615539773997056","437289213616979968"]
 
@@ -69,7 +69,7 @@ async def on_message(message):
        await client.send_message(message.channel,":rage:")
     
     
-    if message.content.startswith("@JuiceBox"):
+    if message.content.upper().startswith("@JUICE BOX#5545"):
        await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voicis quelques commandes qui pourait vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique : \n /ping : affiche le ping ")      
     
     for word in contents:
