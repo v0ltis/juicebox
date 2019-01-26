@@ -69,7 +69,7 @@ async def on_message(message):
        await client.send_message(message.channel,":rage:")
     
     
-    if message.content.upper().startswith("@JUICE BOX#5545"):
+    if message.content.upper().startswith("<@528268989525131274>")
        await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voicis quelques commandes qui pourait vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique : \n /ping : affiche le ping ")      
     
     for word in contents:
