@@ -22,7 +22,7 @@ async def on_ready():
     
 players = {}
 @client.event
-async def change_status()
+async def change_status():
     await client.wait_until_ready()
     msgs = cycle(status)
     
