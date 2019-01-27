@@ -13,13 +13,6 @@ merde = ["MERDE","CHIER"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
 bypass_list = ["362615539773997056","437289213616979968"]
 
-@client.event
-async def on_ready():
-    print("Logged in as:", client.user.name)
-    print("ID:", client.user.id)
-    
-    
-players = {}
 
 status = ['/help', '/musique', 'JuiceBox V.1.5']
 async def change_status():
@@ -30,6 +23,15 @@ async def change_status():
         current_status = next(msgs)
         await client.change_presence(game=discord.Game(name=current_status))
         await asyncio.sleep(5)
+
+
+@client.event
+async def on_ready():
+    print("Logged in as:", client.user.name)
+    print("ID:", client.user.id)
+    
+    
+players = {}
 
 @client.event
 async def on_message(message):    
