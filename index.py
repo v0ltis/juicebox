@@ -18,7 +18,7 @@ bypass_list = ["362615539773997056","437289213616979968"]
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='"/help" ou https://juicebot.github.io/index.html'))
+    await client.change_presence(game=discord.Game(name='/help - https://juicebot.github.io'))
 
     
     
