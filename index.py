@@ -9,7 +9,6 @@ import os
 
 client = commands.Bot(command_prefix = '/')
 
-status = ['/help', '/musique', 'JuiceBox V.1.5']
 merde = ["MERDE","CHIER"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
 bypass_list = ["362615539773997056","437289213616979968"]
@@ -22,7 +21,7 @@ async def on_ready():
     
 players = {}
 
-
+status = ['/help', '/musique', 'JuiceBox V.1.5']
 async def change_status():
     await client.wait_until_ready()
     msgs = cycle(status)
