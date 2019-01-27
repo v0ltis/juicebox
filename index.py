@@ -2,11 +2,13 @@ import discord
 import youtube_dl
 from discord.ext.commands import Bot
 from discord.ext import commands
+from itertools import cycle
 import asyncio
 import time
 import os
 
 client = commands.Bot(command_prefix = '/')
+status = ["/help", "/musique", "JuiceBox V.1.5"]
 
 merde = ["MERDE","CHIER"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
@@ -20,6 +22,15 @@ async def on_ready():
     
     
 players = {}
+@client.event
+async defchange_status()
+    await client.wait_until_ready()
+    msgs = cycle(status)
+    
+    while not client.is_closed:
+        current_status = next(msgs)
+        await client.change presence(game=discord.Game(name=current status))
+        await asyncio.sleep(5)
 
 @client.event
 async def on_message(message):    
