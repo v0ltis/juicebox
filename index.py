@@ -6,6 +6,7 @@ from itertools import cycle
 import asyncio
 import time
 import os
+import random
 
 client = commands.Bot(command_prefix = '/')
 
@@ -25,15 +26,17 @@ async def on_ready():
 players = {}
 
 @client.event
-async def on_message(message):    
-    if message.content.upper().startswith("/PING"):
+async def on_message(message):   
+    if message.author == clicent.user
+    
+    elif message.content.upper().startswith("/PING"):
       timePing = time.monotonic()
       pinger = await client.send_message(message.channel, ":ping_pong: **Pong !**")
       ping = "%.2f"%(1000* (time.monotonic() - timePing))
       await client.edit_message(pinger, ":ping_pong: **Pong !**\n\
 `Ping:" + ping + "`")
         
-    if message.content.upper().startswith("/SAY"):
+    elif message.content.upper().startswith("/SAY"):
           args = message.content.split(" ")
           await client.send_message(message.channel, (" ".join(args[1:])))
     contents = message.content.split(" ")
@@ -43,7 +46,7 @@ async def on_message(message):
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
               
-    if message.content.upper().startswith("/HELP"):
+    elif message.content.upper().startswith("/HELP"):
         help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
         help.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
         help.add_field(name="Prefix:", value="/", inline=False)
@@ -53,7 +56,7 @@ async def on_message(message):
         help.add_field(name="/musique", value="donne les commandes musicales du bot", inline=False)
         await client.send_message(message.channel, embed=help)
                    
-    if message.content.upper().startswith("/MUSIQUE"):
+    elif message.content.upper().startswith("/MUSIQUE"):
         musique = discord.Embed(title='Commandes musicales:', description='Voici la liste des commandes de la musique', colour=0x7a2581)
         musique.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
         musique.add_field(name=" /join :", value="Fait rejoindre juicebox dans votre salon vocal ", inline=True)
@@ -65,14 +68,14 @@ async def on_message(message):
         await client.send_message(message.channel, embed=musique)
         
        
-    if message.content.upper().startswith("XD"):
+    elif message.content.upper().startswith("XD"):
        await client.send_message(message.channel,"lol")
 
-    if message.content.startswith("🖕"):
+    elif message.content.startswith("🖕"):
        await client.send_message(message.channel,":rage:")
     
     
-    if message.content.upper().startswith("<@528268989525131274>"):
+    elif message.content.upper().startswith("<@528268989525131274>"):
        await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voicis quelques commandes qui pourait vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique : \n /ping : affiche le ping ")      
     
     for word in contents:
@@ -80,30 +83,30 @@ async def on_message(message):
                 await client.delete_message(message)
                 await client.send_message(message.channel, ":shit:")
                 
-    if message.content.upper().startswith("YO"):
+    elif message.content.upper().startswith("YO"):
        await client.send_message(message.channel,"plait")
 
-    if message.content.upper().startswith("BONJOUR"):
+    elif message.content.upper().startswith("BONJOUR"):
        await client.send_message(message.channel,"Hey!")
 
-    if message.content.upper().startswith("GG"):
+    elif message.content.upper().startswith("GG"):
        await client.send_message(message.channel,":clap: :clap: :clap:") 
 
-    if message.content.upper().startswith("/BOTADMIN"):
+    elif message.content.upper().startswith("/BOTADMIN"):
         await client.delete_message(message)
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
     
     
 
     #join
-    if message.content.upper().startswith("/JOIN"):
+    elif message.content.upper().startswith("/JOIN"):
         channel = message.author.voice.voice_channel
         print("I'm connected to : " + str(channel))
         await client.join_voice_channel(channel)
     
 
     #play + url
-    if message.content.upper().startswith("/PLAY"):
+    elif message.content.upper().startswith("/PLAY"):
       print(message.content)
       message_url = message.content
       url = message_url.split(" ")[1]
@@ -135,7 +138,7 @@ async def on_message(message):
     
 
     #pause
-    if message.content.upper().startswith("/PAUSE"):
+    elif message.content.upper().startswith("/PAUSE"):
       id = message.server.id
       players[id].pause()
       message_channel = message.channel
@@ -144,7 +147,7 @@ async def on_message(message):
 
     
     #resume
-    if message.content.upper().startswith("/RESUME"):
+    elif message.content.upper().startswith("/RESUME"):
       id = message.server.id
       players[id].resume()
       message_channel = message.channel
@@ -153,7 +156,7 @@ async def on_message(message):
 
 
     #STOP
-    if message.content.upper().startswith("/STOP"):
+    elif message.content.upper().startswith("/STOP"):
       id = message.server.id
       players[id].stop()
       message_channel = message.channel
@@ -162,7 +165,7 @@ async def on_message(message):
 
 
     #leave
-    if message.content.upper().startswith("/LEAVE"):
+    elif message.content.upper().startswith("/LEAVE"):
       server = message.server
       print("I'm disconnected from : " + str(server))
       voice_client = client.voice_client_in(server)
