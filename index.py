@@ -27,7 +27,7 @@ players = {}
 
 @client.event
 async def on_message(message):   
-    if message.author == clicent.user
+    if message.author == clicent.user:
     
     elif message.content.upper().startswith("/PING"):
       timePing = time.monotonic()
@@ -45,7 +45,13 @@ async def on_message(message):
              if not message.author.id in bypass_list:
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
-              
+                
+    elif message.content.upper.startswith("/MEME"):
+        await client.send_message(message.channel, random.choice(["https://giphy.com/gifs/AuIvUrZpzBl04",
+                                                                  "https://giphy.com/gifs/hello-hey-big-brother-l0MYBbEvqqi1kfuyA",
+                                                                  "https://giphy.com/gifs/wow-amazing-l4FGETcwLzIZ1IaGs",
+                                                                  "https://giphy.com/gifs/trump-donald-eclipse-xUNen16DFqlM6v6DEQ"]))
+
     elif message.content.upper().startswith("/HELP"):
         help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
         help.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
