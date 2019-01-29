@@ -131,9 +131,11 @@ async def on_message(message):
         await client.send_message(message_channel,message_content)
       if len(message_url.split(" ")) >= 2:
         debug = 0
-        for x in message_url.split("://"):
-          if x == 'https':
-            debug += 1
+
+        print(message_url.split("://"))
+        if message_url.split("://")[0] == 'https':
+          debug += 1
+          print(x)
         if debug >= 1:
           print(url)
           print("I'm taking the first way !")
@@ -169,7 +171,7 @@ async def on_message(message):
             await client.join_voice_channel(channel)
           except:
             pass
-        
+
           msg_query = message.content.split(' ')
           msg_query.pop(0)
 
