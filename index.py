@@ -133,7 +133,7 @@ async def on_message(message):
         debug = 0
 
         print(message_url.split("://"))
-        if message_url.split("://")[0] == 'https':
+        if message_url.split("://")[0].split(' ')[1] == 'https':
           debug += 1
           print(x)
         if debug >= 1:
