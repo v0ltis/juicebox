@@ -29,7 +29,7 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    print("Server:",client.server.name)
+    print("Server:",server.name)
     await client.change_presence(game=discord.Game(name='/help - https://juicebot.github.io'))
 
     
@@ -285,7 +285,7 @@ async def on_message(message):
           else:
             queues[server.id] = [player]
           await client.say('Video queued.')
-          
+
           try:
             player.start()
             message_channel = message.channel
