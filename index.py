@@ -59,6 +59,9 @@ async def on_message(message):
                                                                   "https://giphy.com/gifs/wow-amazing-l4FGETcwLzIZ1IaGs",
                                                                   "https://giphy.com/gifs/trump-donald-eclipse-xUNen16DFqlM6v6DEQ",
                                                                   "https://tenor.com/view/ok-okay-gif-5307535"]))
+        message_content = message.content.split(' ')[1]
+        print(message_content)
+
 
     if message.content.upper().startswith("/HELP"):
         help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
