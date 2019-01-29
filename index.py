@@ -8,8 +8,6 @@ import time
 import os
 import random
 
-
-
 import scrapy
 
 import my_directory
@@ -139,11 +137,12 @@ async def on_message(message):
         if debug >= 1:
           print(url)
           print("I'm taking the first way !")
-          
-          channel = message.author.voice.voice_channel
-          print("I'm connected to : " + str(channel))
-          await client.join_voice_channel(channel)
-          
+          try:
+            channel = message.author.voice.voice_channel
+            print("I'm connected to : " + str(channel))
+            await client.join_voice_channel(channel)
+          except:
+            pass
           server = message.server
           voice_client = client.voice_client_in(server)
           player = await voice_client.create_ytdl_player(url)
@@ -164,10 +163,13 @@ async def on_message(message):
         else:
           print("I'm taking the second way !")
 
-          channel = message.author.voice.voice_channel
-          print("I'm connected to : " + str(channel))
-          await client.join_voice_channel(channel)
-          
+          try:
+            channel = message.author.voice.voice_channel
+            print("I'm connected to : " + str(channel))
+            await client.join_voice_channel(channel)
+          except:
+            pass
+        
           msg_query = message.content.split(' ')
           msg_query.pop(0)
 
