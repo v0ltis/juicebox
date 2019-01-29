@@ -29,8 +29,6 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.say("Hello you !")
-    print("Server:",server.name)
     await client.change_presence(game=discord.Game(name='/help - https://juicebot.github.io'))
 
     
@@ -42,7 +40,7 @@ queues = {}
 @client.event
 async def on_message(message):   
 
-    
+  
     if message.content.upper().startswith("/PING"):
       timePing = time.monotonic()
       pinger = await client.send_message(message.channel, ":ping_pong: **Pong !**")
