@@ -57,7 +57,8 @@ async def on_message(message):
         await client.send_message(message.channel, random.choice(["https://giphy.com/gifs/AuIvUrZpzBl04",
                                                                   "https://giphy.com/gifs/hello-hey-big-brother-l0MYBbEvqqi1kfuyA",
                                                                   "https://giphy.com/gifs/wow-amazing-l4FGETcwLzIZ1IaGs",
-                                                                  "https://giphy.com/gifs/trump-donald-eclipse-xUNen16DFqlM6v6DEQ"]))
+                                                                  "https://giphy.com/gifs/trump-donald-eclipse-xUNen16DFqlM6v6DEQ",
+                                                                  "https://tenor.com/view/ok-okay-gif-5307535"]))
 
     if message.content.upper().startswith("/HELP"):
         help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
