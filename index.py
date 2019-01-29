@@ -111,36 +111,71 @@ async def on_message(message):
         await client.join_voice_channel(channel)
     
 
-    #play + url
+    #play + query
     if message.content.upper().startswith("/PLAY"):
       print(message.content)
       message_url = message.content
       url = message_url.split(" ")[1]
       if len(message_url.split(" ")) == 1:
         message_channel = message.channel
-        message_content = "Je vais avoir besoin d'un url !"
+        message_content = "Je vais avoir besoin d'un url"
         await client.send_message(message_channel,message_content)
-      if len(message_url.split(" ")) == 2:
-        print(url)
-        server = message.server
-        voice_client = client.voice_client_in(server)
-        player = await voice_client.create_ytdl_player(url)
-        players[server.id] = player
-        try:
-          player.start()
-        except:
-          message_channel = message.channel
-          message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
-          await client.send_message(message_channel,message_content)
-        message_channel = message.channel
+      if len(message_url.split(" ")) >= 2:
+        debug = 0
+        for x in message_url.split("://"):
+          if x == 'https':
+            debug += 1
+        if debug >= 1:
+          print(url)
+          print("I'm taking the first way !")
+          server = message.server
+          voice_client = client.voice_client_in(server)
+          player = await voice_client.create_ytdl_player(url)
+          players[server.id] = player
 
-        print("Let's play : " + str(url))
-        message_content = "C'est parti pour : " + str(url)
-        await client.send_message(message_channel,message_content)
-      if len(message_url.split(" ")) == 3:
-        message_channel = message.channel
-        message_content = "Heu ... je peut avoir un URL s'il vous plait ?"
-        await client.send_message(message_channel,message_content)
+          try:
+            player.start()
+            message_channel = message.channel
+            print("Let's play : " + str(url))
+            message_content = "C'est parti pour : " + str(url)
+            await client.send_message(message_channel,message_content)
+
+          except:
+            message_channel = message.channel
+            message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
+            await client.send_message(message_channel,message_content)
+
+        else:
+          print("I'm taking the second way !")
+          msg_query = message.content.split(' ')
+          msg_query.pop(0)
+
+          msg_query_end = ''
+          x=0
+
+          for x in range(len(msg_query)-1):
+            msg_query_end = msg_query_end + msg_query[x] + ' '
+            
+          msg_query_end = msg_query_end + msg_query[x+1]
+          print(msg_query_end)
+          url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
+          print(url)
+          server = message.server
+          voice_client = client.voice_client_in(server)
+          player = await voice_client.create_ytdl_player(url)
+          players[server.id] = player
+
+          try:
+            player.start()
+            message_channel = message.channel
+            print("Let's play : " + str(url))
+            message_content = "C'est parti pour : " + str(url)
+            await client.send_message(message_channel,message_content)
+
+          except:
+            message_channel = message.channel
+            message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
+            await client.send_message(message_channel,message_content)
     
 
     #pause
