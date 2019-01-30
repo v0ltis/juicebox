@@ -63,7 +63,8 @@ async def on_message(message):
                                                                   "https://giphy.com/gifs/hello-hey-big-brother-l0MYBbEvqqi1kfuyA",
                                                                   "https://giphy.com/gifs/wow-amazing-l4FGETcwLzIZ1IaGs",
                                                                   "https://giphy.com/gifs/trump-donald-eclipse-xUNen16DFqlM6v6DEQ",
-                                                                  "https://tenor.com/view/ok-okay-gif-5307535"]))
+                                                                  "https://tenor.com/view/ok-okay-gif-5307535",
+                                                                  "https://www.youtube.com/watch?v=ma7TL8jJT0A"]))
         message_content = message.content.split(' ')[1]
         print(message_content)
 
@@ -106,7 +107,8 @@ async def on_message(message):
                 await client.send_message(message.channel, ":shit:")
                 
     if message.content.upper().startswith("YO"):
-       await client.send_message(message.channel,"plait")
+       await client.send_message(message.channel,random.choice(["ga",
+                                                                "plait"]))
 
     if message.content.upper().startswith("BONJOUR"):
        await client.send_message(message.channel,"Hey!")
