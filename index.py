@@ -64,7 +64,9 @@ async def on_message(message):
                                                                   "https://giphy.com/gifs/wow-amazing-l4FGETcwLzIZ1IaGs",
                                                                   "https://giphy.com/gifs/trump-donald-eclipse-xUNen16DFqlM6v6DEQ",
                                                                   "https://tenor.com/view/ok-okay-gif-5307535",
-                                                                  "https://www.youtube.com/watch?v=ma7TL8jJT0A"]))
+                                                                  "https://gph.is/2iUaL8y",
+                                                                  "https://gph.is/19aLnvI",
+                                                                  "https://gph.is/2fiQFj1"]))
         message_content = message.content.split(' ')[1]
         print(message_content)
 
@@ -76,7 +78,11 @@ async def on_message(message):
         help.add_field(name="/help", value="Affiche les commandes", inline=True)
         help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
+        help.add_field(name="/gif ***(BETA)***", value="Donne un GIF aleatoirement!", inline=True)
         help.add_field(name="/musique", value="donne les commandes musicales du bot", inline=False)
+        help.add_field(name="----------------------------------------------",value="",inline=False)
+        help.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``"), inline=True)
+        help.add_field(name="/support", value"Donne notre serveur du support: ``https://discord.gg/Abfvn9y``"), inline=True)
         await client.send_message(message.channel, embed=help)
                    
     if message.content.upper().startswith("/MUSIQUE"):
@@ -90,9 +96,17 @@ async def on_message(message):
         musique.add_field(name="/leave", value="Fait quitter juiceBox de votre salon vocal", inline=True)
         await client.send_message(message.channel, embed=musique)
         
+    if message.content.upper().statswith("/SUPPORT"):
+      await message.send_message(message.channel,"Venez papoter ici: \n https://discord.gg/Abfvn9y")
+      
+    if message.content.upper().startswith("/SITE"):
+      await message.send_message(message.channel,"Ma maison c'est ici: \n https://juicebot.github.io/")
+        
        
     if message.content.upper().startswith("XD"):
-       await client.send_message(message.channel,"lol")
+       await client.send_message(message.channel,random.choice(["lol",
+                                                                "",
+                                                                ""]))
 
     if message.content.startswith("🖕"):
        await client.send_message(message.channel,":rage:")
