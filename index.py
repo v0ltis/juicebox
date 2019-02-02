@@ -80,9 +80,9 @@ async def on_message(message):
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
         help.add_field(name="/gif ***(BETA)***", value="Donne un GIF aleatoirement!", inline=True)
         help.add_field(name="/musique", value="donne les commandes musicales du bot", inline=False)
-        help.add_field(name="----------------------------------------------",value="",inline=False)
-        help.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.",inline=True)
-        help.add_field(name="/support", value"Donne notre serveur du support: ``https://discord.gg/Abfvn9y``.",inline=True)
+        help.add_field(name="----------------------------------------------",value="", inline=False)
+        help.add_field(name="/site", value="Donne le lien de note site: https://juicebot.github.io.", inline=False)
+        help.add_field(name="/support", value"Donne notre serveur du support: https://discord.gg/Abfvn9y.", inline=False)
         await client.send_message(message.channel, embed=help)
                    
     if message.content.upper().startswith("/MUSIQUE"):
