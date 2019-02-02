@@ -15,9 +15,9 @@ import text_to_url
 
 client = commands.Bot(command_prefix = '/')
 
-merde = ["MERDE","CHIER"]
+merde = ["MERDE","CHIER","CHIANT"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
-bypass_list = ["362615539773997056","437289213616979968"]
+bypass_list = ["362615539773997056","437289213616979968","528268989525131274","402896241429577729"]
 
 def check_queue(id):
   if queues[id] != []:
@@ -29,7 +29,7 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='/help - https://juicebot.github.io'))
+    await client.change_presence(game=discord.Game(name='/help-https://juicebot.github.io'))
 
     
     
@@ -66,7 +66,11 @@ async def on_message(message):
                                                                   "https://tenor.com/view/ok-okay-gif-5307535",
                                                                   "https://gph.is/2iUaL8y",
                                                                   "https://gph.is/19aLnvI",
-                                                                  "https://gph.is/2fiQFj1"]))
+                                                                  "https://gph.is/2fiQFj1",
+                                                                  "https://gph.is/1rr0eCj",
+                                                                  "https://media.giphy.com/media/joPQLwo2kbXe8/giphy.gif",
+                                                                  "https://media.giphy.com/media/QGzPdYCcBbbZm/giphy.gif",
+                                                                  "https://media.giphy.com/media/w1XrYq5PsCbyE/giphy.gif"]))
         message_content = message.content.split(' ')[1]
         print(message_content)
 
