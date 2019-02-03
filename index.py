@@ -108,7 +108,7 @@ async def on_message(message):
       await client.send_message(message.channel,"Ma maison c'est ici: \n https://juicebot.github.io/")
         
        
-    if message.content.upper().startswith("XD "):
+    if message.content.upper().startswith("XD"):
        await client.send_message(message.channel,random.choice(["lol",
                                                                 " ",
                                                                 " "]))
@@ -125,14 +125,14 @@ async def on_message(message):
                 await client.delete_message(message)
                 await client.send_message(message.channel, ":shit:")
                 
-    if message.content.upper().startswith("YO "):
+    if message.content.upper().startswith("YO"):
        await client.send_message(message.channel,random.choice(["ga",
                                                                 "plait"]))
 
     if message.content.upper().startswith("BONJOUR"):
        await client.send_message(message.channel,"Hey!")
 
-    if message.content.upper().startswith("GG "):
+    if message.content.upper().startswith("GG"):
        await client.send_message(message.channel,":clap: :clap: :clap:") 
 
     if message.content.upper().startswith("/BOTADMIN"):
