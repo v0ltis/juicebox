@@ -134,6 +134,13 @@ async def on_message(message):
            if word.upper() in merde:
                 await client.delete_message(message)
                 await client.send_message(message.channel, ":shit:")
+              
+              
+    if message.content.upper()("/LOCATE _VOLTIS"):
+       if channel.id == ("459444059556020228"):
+        await message.send_message("voltis est dans ton cul !")
+       else:
+        return
                 
     if message.content.upper().startswith("YO"):
        if message.content.upper().startswith("YOU"):
