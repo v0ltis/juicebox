@@ -25,4 +25,4 @@ command list :
 |/help|Give all commands|
 |/say(+text)|send text|
 |/ping|give the ping|
-|/musique|give music commands|
+|/music|give music commands|
