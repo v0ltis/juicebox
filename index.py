@@ -139,7 +139,7 @@ async def on_message(message):
        if message.content.upper().startswith("YOU"):
           return
        else:
-       await client.send_message(message.channel,random.choice(["ga",
+        await client.send_message(message.channel,random.choice(["ga",
                                                                 "plait"]))
 
     if message.content.upper().startswith("BONJOUR"):
