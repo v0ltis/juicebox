@@ -60,7 +60,7 @@ async def on_message(message):
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
                 
-    if message.content.upper().startswith("/MEME"):
+    if message.content.upper().startswith("/GIF"):
         await client.send_message(message.channel, random.choice(["https://giphy.com/gifs/AuIvUrZpzBl04",
                                                                   "https://giphy.com/gifs/hello-hey-big-brother-l0MYBbEvqqi1kfuyA",
                                                                   "https://giphy.com/gifs/wow-amazing-l4FGETcwLzIZ1IaGs",
@@ -72,7 +72,17 @@ async def on_message(message):
                                                                   "https://gph.is/1rr0eCj",
                                                                   "https://media.giphy.com/media/joPQLwo2kbXe8/giphy.gif",
                                                                   "https://media.giphy.com/media/QGzPdYCcBbbZm/giphy.gif",
-                                                                  "https://media.giphy.com/media/w1XrYq5PsCbyE/giphy.gif"]))
+                                                                  "https://media.giphy.com/media/w1XrYq5PsCbyE/giphy.gif",
+                                                                  "https://gph.is/2tBvKBE",
+                                                                  "https://tenor.com/view/smile-golden-retriever-break-neck-gif-7733809",
+                                                                  "https://tenor.com/view/pinguino-furbo-frozen-excited-gif-13388703",
+                                                                  "https://gph.is/2lnp32Z",
+                                                                  "https://gph.is/2rwmnmy",
+                                                                  "https://tenor.com/4iLj.gif",
+                                                                  "https://tenor.com/4gdR.gif",
+                                                                  "https://tenor.com/yFDW.gif",
+                                                                  "https://tenor.com/4n8e.gif",
+                                                                  "https://tenor.com/yiQN.gif"]))
         message_content = message.content.split(' ')[1]
         print(message_content)
 
