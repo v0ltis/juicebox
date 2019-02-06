@@ -15,9 +15,9 @@ import text_to_url
 
 client = commands.Bot(command_prefix = '/')
 
-merde = ["MERDE","CHIER"]
+merde = ["MERDE","CHIER","CHIANT"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
-bypass_list = ["362615539773997056","437289213616979968"]
+bypass_list = ["362615539773997056","437289213616979968","528268989525131274","402896241429577729"]
 
 def check_queue(id):
   if queues[id] != []:
@@ -29,7 +29,7 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='/help - https://juicebot.github.io'))
+    await client.change_presence(game=discord.Game(name='/help-https://juicebot.github.io'))
 
     
     
@@ -39,6 +39,8 @@ queues = {}
 
 @client.event
 async def on_message(message):   
+    if message.author == client.user:
+        return
 
   
     if message.content.upper().startswith("/PING"):
@@ -58,12 +60,29 @@ async def on_message(message):
                 await client.delete_message(message)
                 await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
                 
-    if message.content.upper().startswith("/MEME"):
+    if message.content.upper().startswith("/GIF"):
         await client.send_message(message.channel, random.choice(["https://giphy.com/gifs/AuIvUrZpzBl04",
                                                                   "https://giphy.com/gifs/hello-hey-big-brother-l0MYBbEvqqi1kfuyA",
                                                                   "https://giphy.com/gifs/wow-amazing-l4FGETcwLzIZ1IaGs",
                                                                   "https://giphy.com/gifs/trump-donald-eclipse-xUNen16DFqlM6v6DEQ",
-                                                                  "https://tenor.com/view/ok-okay-gif-5307535"]))
+                                                                  "https://tenor.com/view/ok-okay-gif-5307535",
+                                                                  "https://gph.is/2iUaL8y",
+                                                                  "https://gph.is/19aLnvI",
+                                                                  "https://gph.is/2fiQFj1",
+                                                                  "https://gph.is/1rr0eCj",
+                                                                  "https://media.giphy.com/media/joPQLwo2kbXe8/giphy.gif",
+                                                                  "https://media.giphy.com/media/QGzPdYCcBbbZm/giphy.gif",
+                                                                  "https://media.giphy.com/media/w1XrYq5PsCbyE/giphy.gif",
+                                                                  "https://gph.is/2tBvKBE",
+                                                                  "https://tenor.com/view/smile-golden-retriever-break-neck-gif-7733809",
+                                                                  "https://tenor.com/view/pinguino-furbo-frozen-excited-gif-13388703",
+                                                                  "https://gph.is/2lnp32Z",
+                                                                  "https://gph.is/2rwmnmy",
+                                                                  "https://tenor.com/4iLj.gif",
+                                                                  "https://tenor.com/4gdR.gif",
+                                                                  "https://tenor.com/yFDW.gif",
+                                                                  "https://tenor.com/4n8e.gif",
+                                                                  "https://tenor.com/yiQN.gif"]))
         message_content = message.content.split(' ')[1]
         print(message_content)
 
@@ -75,23 +94,34 @@ async def on_message(message):
         help.add_field(name="/help", value="Affiche les commandes", inline=True)
         help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
+        help.add_field(name="/gif ***(BETA)***", value="Donne un GIF aleatoirement!", inline=True)
         help.add_field(name="/musique", value="donne les commandes musicales du bot", inline=False)
+        help.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.", inline=True)
+        help.add_field(name="/support", value="Donne notre serveur du support: ``https://discord.gg/Abfvn9y``.", inline=True)
         await client.send_message(message.channel, embed=help)
                    
     if message.content.upper().startswith("/MUSIQUE"):
         musique = discord.Embed(title='Commandes musicales:', description='Voici la liste des commandes de la musique', colour=0x7a2581)
         musique.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
         musique.add_field(name=" /join :", value="Fait rejoindre juicebox dans votre salon vocal ", inline=True)
-        musique.add_field(name="/play (+URL) :", value=" lis la video/musique (l'URL doit être un URL YouTube) ", inline=True)
+        musique.add_field(name="/play:", value=" lis la video/musique (l'URL doit être un URL YouTube) ", inline=True)
         musique.add_field(name=" /stop", value="Arette la video", inline=True)
         musique.add_field(name="/pause", value="Met en pause la video", inline=True)
         musique.add_field(name="/resume", value="Reprend la video", inline=True)
         musique.add_field(name="/leave", value="Fait quitter juiceBox de votre salon vocal", inline=True)
         await client.send_message(message.channel, embed=musique)
         
+    if message.content.upper().startswith("/SUPPORT"):
+      await client.send_message(message.channel,"Venez papoter ici: \n https://discord.gg/Abfvn9y")
+      
+    if message.content.upper().startswith("/SITE"):
+      await client.send_message(message.channel,"Ma maison c'est ici: \n https://juicebot.github.io/")
+        
        
     if message.content.upper().startswith("XD"):
-       await client.send_message(message.channel,"lol")
+       await client.send_message(message.channel,random.choice(["lol",
+                                                                " ",
+                                                                " "]))
 
     if message.content.startswith("🖕"):
        await client.send_message(message.channel,":rage:")
@@ -104,9 +134,20 @@ async def on_message(message):
            if word.upper() in merde:
                 await client.delete_message(message)
                 await client.send_message(message.channel, ":shit:")
+              
+              
+    if message.content.upper().startswith("/LOCATE _VOLTIS"):
+       if message.channel.id == ("459444059556020228"):
+        await client.send_message("voltis est dans ton cul !")
+       else:
+        return
                 
     if message.content.upper().startswith("YO"):
-       await client.send_message(message.channel,"plait")
+       if message.content.upper().startswith("YOU"):
+          return
+       else:
+        await client.send_message(message.channel,random.choice(["ga",
+                                                                "plait"]))
 
     if message.content.upper().startswith("BONJOUR"):
        await client.send_message(message.channel,"Hey!")
