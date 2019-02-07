@@ -139,13 +139,9 @@ async def on_message(message):
     if message.content.upper().startswith("/LOCATE _VOLTIS"):
        if message.channel.id == ("459444059556020228"):
         await client.send_message("voltis est dans ton cul !")
-       else:
-        return
                 
     if message.content.upper().startswith("YO"):
-       if message.content.upper().startswith("YOU"):
-          return
-       else:
+       if not message.content.upper().startswith("YOU"):
         await client.send_message(message.channel,random.choice(["ga",
                                                                 "plait"]))
 
