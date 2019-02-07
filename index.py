@@ -138,7 +138,7 @@ async def on_message(message):
               
     if message.content.upper().startswith("/LOCATE _VOLTIS"):
        if message.channel.id == ("459444059556020228"):
-        await client.send_message("voltis est dans ton cul !")
+        await client.send_message(message.channel, "voltis est dans ton cul !")
                 
     if message.content.upper().startswith("YO"):
        if not message.content.upper().startswith("YOU"):
