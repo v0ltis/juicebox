@@ -30,7 +30,7 @@ async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
     await client.change_presence(game=discord.Game(name='/help-https://juicebot.github.io'))
-    await message.send_message(channel.id == "'543490625773895681","Redémarrage terminé !")
+    await client.send_message(channel.id == "'543490625773895681","Redémarrage terminé !")
 
     
     
