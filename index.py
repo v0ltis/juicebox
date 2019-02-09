@@ -29,7 +29,9 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='/help-https://juicebot.github.io'))
+    await client.change_presence(game=discord.Game(name='/help-https://juicebot.github.io'))     
+    channel = client.get_channel(543490625773895681)
+    await client.send_message(message.channel, 'Redemarage terminé') 
     
     
 players = {}
@@ -40,9 +42,6 @@ queues = {}
 async def on_message(message):   
     if message.author == client.user:
         return
-      
-    channel = client.get_channel(543490625773895681)
-    await client.send_message(message.channel, 'Redemarage terminé') 
 
   
     if message.content.upper().startswith("/PING"):
