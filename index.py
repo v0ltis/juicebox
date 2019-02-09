@@ -30,7 +30,7 @@ async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
     await client.change_presence(game=discord.Game(name='/help-https://juicebot.github.io'))
-    channel = client.get_channel("juice-box-logs")
+      channel = client.get_channel("juice-box-logs")
     await client.send_message(channel, 'Redemarage terminé') 
     
     
