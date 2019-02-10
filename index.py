@@ -163,7 +163,8 @@ async def on_message(message):
         channel = message.author.voice.voice_channel
         print("I'm connected to : " + str(channel))
         await client.join_voice_channel(channel)
-        await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +"\n Nom du channel :" + channel.name)
+        await client.send_message(message.channel, "Je suis pret à chanter !")
+        await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***')
     
 
     #play + query
@@ -189,6 +190,8 @@ async def on_message(message):
             channel = message.author.voice.voice_channel
             print("I'm connected to : " + str(channel))
             await client.join_voice_channel(channel)
+            await client.send_message(message.channel, "Je suis pret à chanter!")
+            await client.send_message(discord.Object(id='543490625773895681'), "Je me suis connecté à" + "\n ID :" + channel.id + '\n Nom du channel : "*** ' + channel.name +'***"')
           except:
             pass
           server = message.server
@@ -202,12 +205,12 @@ async def on_message(message):
             print("Let's play : " + str(url))
             message_content = "C'est parti pour : " + str(url)
             await client.send_message(message_channel,message_content)
-
+           
           except:
             message_channel = message.channel
             message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
             await client.send_message(message_channel,message_content)
-
+            
         else:
           print("I'm taking the second way !")
 
@@ -242,12 +245,12 @@ async def on_message(message):
             print("Let's play : " + str(url))
             message_content = "C'est parti pour : " + str(url)
             await client.send_message(message_channel,message_content)
-
+            
           except:
             message_channel = message.channel
             message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
             await client.send_message(message_channel,message_content)
-    
+            
     #queue + query
     if message.content.upper().startswith("/QUEUE"):
       print(message.content)
@@ -271,6 +274,7 @@ async def on_message(message):
             channel = message.author.voice.voice_channel
             print("I'm connected to : " + str(channel))
             await client.join_voice_channel(channel)
+            
           except:
             pass
           server = message.server
@@ -284,12 +288,12 @@ async def on_message(message):
             print("Let's play : " + str(url))
             message_content = "C'est parti pour : " + str(url)
             await client.send_message(message_channel,message_content)
-
+       
           except:
             message_channel = message.channel
             message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec une autre video YouTube. \n Url: " + str(url)
             await client.send_message(message_channel,message_content)
-
+           
         else:
           print("2eme essaie!")
 
@@ -322,7 +326,7 @@ async def on_message(message):
             queues[server.id].append(player)
           else:
             queues[server.id] = [player]
-          await client.say('Video queued.')
+          await client.say('Video mise dans la playlist !')
 
           try:
             player.start()
@@ -372,11 +376,14 @@ async def on_message(message):
       try:
         for x in range(0,100):
           await voice_client.disconnect()
+          await client.send_message(message.channel, "Bye bye !")
+          await client.send_message(discord.Object(id='543490625773895681'), "Déconection de :" + "\n ID :" + channel.id + '\n Nom du channel : "*** ' + channel.name +'***"')
       except:
         print("Error ...")
         message_channel = message.channel
         message_content = "Buuuuuug... attend un peut ou essaye avec /join'."
         await client.send_message(message_channel,message_content)
+        
     
     if message.content.upper().startswith("/QUEUE"):
       print(message.content)
