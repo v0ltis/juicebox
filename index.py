@@ -229,8 +229,7 @@ async def on_message(message):
 
           for x in range(len(msg_query)-1):
             msg_query_end = msg_query_end + msg_query[x] + ' '
-            
-          msg_query_end = msg_query_end + msg_query[x+1]
+            msg_query_end = msg_query_end + msg_query[x+1]
           print(msg_query_end)
           url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
           print(url)
