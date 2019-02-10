@@ -229,7 +229,9 @@ async def on_message(message):
 
           for x in range(len(msg_query)-1):
             msg_query_end = msg_query_end + msg_query[x] + ' '
-            msg_query_end = msg_query_end + msg_query[x+1]
+            
+            
+          msg_query_end = msg_query_end + msg_query[x+1]
           print(msg_query_end)
           url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
           print(url)
@@ -376,7 +378,6 @@ async def on_message(message):
         for x in range(0,100):
           await voice_client.disconnect()
           await client.send_message(message.channel, "Bye bye !")
-          await client.send_message(discord.Object(id='543490625773895681'), "Déconection de :" + "\n ID :" + channel.id + '\n Nom du channel : "*** ' + channel.name +'***"')
       except:
         print("Error ...")
         message_channel = message.channel
