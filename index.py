@@ -241,6 +241,7 @@ async def on_message(message):
             print("Let's play : " + str(url))
             message_content = "C'est parti pour : " + str(url)
             await client.send_message(message_channel,message_content)
+            await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +"\n Nom du channel :" + channel.name)
 
           except:
             message_channel = message.channel
@@ -286,11 +287,11 @@ async def on_message(message):
 
           except:
             message_channel = message.channel
-            message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
+            message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec une autre video YouTube. \n Url: " + str(url)
             await client.send_message(message_channel,message_content)
 
         else:
-          print("I'm taking the second way !")
+          print("2eme essaie!")
 
           try:
             channel = message.author.voice.voice_channel
