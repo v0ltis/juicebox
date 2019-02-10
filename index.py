@@ -163,6 +163,7 @@ async def on_message(message):
         channel = message.author.voice.voice_channel
         print("I'm connected to : " + str(channel))
         await client.join_voice_channel(channel)
+        await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +"\n Nom du channel :" + channel.name)
     
 
     #play + query
@@ -241,7 +242,6 @@ async def on_message(message):
             print("Let's play : " + str(url))
             message_content = "C'est parti pour : " + str(url)
             await client.send_message(message_channel,message_content)
-            await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +"\n Nom du channel :" + channel.name)
 
           except:
             message_channel = message.channel
