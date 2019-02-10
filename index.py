@@ -30,7 +30,7 @@ async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
     await client.change_presence(game=discord.Game(name='/help-https://juicebot.github.io'))
-    await client.send_message(discord.Object(id='528268989525131274'), 'Redemarage effectué !')
+    await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
     
     
 players = {}
