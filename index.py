@@ -43,15 +43,6 @@ async def on_message(message):
         return
  
 
-    if message.content.upper().startswith("/REPORT"):
-      args = message.content.split(" ")
-      report = discord.Embed(title='Signalement de', description= message.author , colour=0xa4002d)
-      report.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
-      report.add_field(name="Signialé par :", value= message.author, inline=False)
-      report.add_field(name="Utilisateur signialé", value=args[1], inline=False)
-      report.add_field(name="Raison", value=args[2], inline=False)
-      await client.say(embed=report)
-
 
 
     if message.content.upper().startswith("/PING"):
@@ -121,6 +112,17 @@ async def on_message(message):
         musique.add_field(name="/resume", value="Reprend la video", inline=True)
         musique.add_field(name="/leave", value="Fait quitter juiceBox de votre salon vocal", inline=True)
         await client.send_message(message.channel, embed=musique)
+        
+    
+    if message.content.upper().startswith("/REPORT"):
+        args = message.content.split(" ")
+        report = discord.Embed(title='Signalement de', description= message.author , colour=0xa4002d)
+        report.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+        report.add_field(name="Signialé par :", value= message.author, inline=False)
+        report.add_field(name="Utilisateur signialé", value=args[1], inline=False)
+        report.add_field(name="Raison", value=args[2], inline=False)
+        await client.send_message(embed=report)
+
         
     if message.content.upper().startswith("/SUPPORT"):
       await client.send_message(message.channel,"Venez papoter ici: \n https://discord.gg/Abfvn9y")
