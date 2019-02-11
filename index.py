@@ -43,7 +43,7 @@ async def on_message(message):
         return
  
 
-    if message.content.upper.startswith("/REPORT"):
+    if message.content.upper().startswith("/REPORT"):
       args = message.content.split(" ")
       report = discord.Embed(title='Signalement de', description= message.author , colour=0xa4002d)
       report.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
