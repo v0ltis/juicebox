@@ -49,7 +49,7 @@ async def on_message(message):
       report.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
       report.add_field(name="Signialé par :", value= message.author, inline=False)
       report.add_field(name="Utilisateur signialé", value=args[1], inline=False)
-      report.add_field(name="Raison", value=value=.join(args[1]), inline=False)
+      report.add_field(name="Raison", value=.join(args[1]), inline=False)
       await client.send_message(message.channel, embed=report)
 
 
