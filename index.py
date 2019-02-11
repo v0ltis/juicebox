@@ -190,8 +190,6 @@ async def on_message(message):
             channel = message.author.voice.voice_channel
             print("I'm connected to : " + str(channel))
             await client.join_voice_channel(channel)
-            await client.send_message(message.channel, "Je suis pret à chanter!")
-            await client.send_message(discord.Object(id='543490625773895681'), "Je me suis connecté à" + "\n ID :" + channel.id + '\n Nom du channel : "*** ' + channel.name +'***"')
           except:
             pass
           server = message.server
@@ -377,7 +375,6 @@ async def on_message(message):
       try:
         for x in range(0,100):
           await voice_client.disconnect()
-          await client.send_message(message.channel, "Bye bye !")
       except:
         print("Error ...")
         message_channel = message.channel
