@@ -119,8 +119,8 @@ async def on_message(message):
         report = discord.Embed(title='Signalement de', description= message.author , colour=0xa4002d)
         report.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
         report.add_field(name="Signialé par :", value= message.author, inline=False)
-        report.add_field(name="Utilisateur signialé", value=args[1], inline=False)
-        report.add_field(name="Raison", value=args[2], inline=False)
+        report.add_field(name="Utilisateur signialé", value=(" ".join(args[1]), inline=False)
+        report.add_field(name="Raison", value=(" ".join(args[2:]), inline=False)
         await client.send_message(message.channel, embed=report)
 
         
