@@ -29,7 +29,7 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='/help-https://juicebot.github.io'))
+    await client.change_presence(game=discord.Game(name='Test de mise a jour, redémarages !'))
     await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
     
     
@@ -43,6 +43,18 @@ async def on_message(message):
         return
  
 
+    if message.content.upper.sartswith("/REPORT"):
+      args = message.content.split(" ")
+      report = discord.Embed(title='Signalement de', description= message.author , colour=0xa4002d)
+      report.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+      report.add_field(name="Signialé par :", value= message.author, inline=False)
+      report.add_field(name="Utilisateur signialé", value=.join(args[1]), inline=False)
+      report.add_field(name="Raison", value=value=.join(args[1]), inline=False)
+      await client.send_message(message.channel, embed=report)
+
+
+  
+  
   
     if message.content.upper().startswith("/PING"):
       timePing = time.monotonic()
@@ -55,6 +67,7 @@ async def on_message(message):
           args = message.content.split(" ")
           await client.send_message(message.channel, (" ".join(args[1:])))
     contents = message.content.split(" ")
+    
     for word in contents:
            if word.upper() in chat_filter:
              if not message.author.id in bypass_list:
@@ -86,7 +99,6 @@ async def on_message(message):
                                                                   "https://tenor.com/yiQN.gif"]))
         message_content = message.content.split(' ')[1]
         print(message_content)
-
 
     if message.content.upper().startswith("/HELP"):
         help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
