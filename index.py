@@ -121,7 +121,7 @@ async def on_message(message):
         report.add_field(name="Signialé par :", value= message.author, inline=False)
         report.add_field(name="Utilisateur signialé", value=args[1], inline=False)
         report.add_field(name="Raison", value=args[2], inline=False)
-        await client.send_message(embed=report)
+        await client.send_message(message.channel, embed=report)
 
         
     if message.content.upper().startswith("/SUPPORT"):
