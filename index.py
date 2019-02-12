@@ -59,9 +59,9 @@ async def on_message(message):
     if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
         await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
-        ticket = ["Ticket de l'utilisateur: ``", message.author.name, "`` Avec l'ID: ``", message.author.id, "``\nPour la raison suivante: ", args[1:]]
+        ticket_text = ["Ticket de l'utilisateur: ``", message.author.name, "`` Avec l'ID: ``", message.author.id, "``\nPour la raison suivante: ", args[1:]]
         separator = " "
-        ticket_message = separator.join(ticket)
+        ticket_message = separator.join(ticket_text)
         await client.send_message(discord.Object(id="544830498099298324"), ticket_message)
         await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite ! ")
       
