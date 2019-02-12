@@ -55,7 +55,6 @@ async def on_message(message):
     if message.content.upper().startswith("/SAY"):
           args = message.content.split(" ")
           await client.send_message(message.channel, (" ".join(args[1:])))
-    contents = message.content.split(" ")
     
     if messgae.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
