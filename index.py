@@ -29,7 +29,7 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='Publication de la mise a jour'))
+    await client.change_presence(game=discord.Game(name='Mise a jour publiée !'))
     await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
     
     
@@ -94,7 +94,11 @@ async def on_message(message):
                                                                   "https://tenor.com/4gdR.gif",
                                                                   "https://tenor.com/yFDW.gif",
                                                                   "https://tenor.com/4n8e.gif",
-                                                                  "https://tenor.com/yiQN.gif"]))
+                                                                  "https://tenor.com/yiQN.gif",
+                                                                  "https://tenor.com/view/cobie-smulders-sad-crying-wine-upset-gif-3550883",
+                                                                  "https://tenor.com/view/ted-teddy-bear-bear-hump-humping-gif-4762693",
+                                                                  "https://tenor.com/view/shocked-omg-australiasgottalent-noway-gif-5027549",
+                                                                  "https://tenor.com/view/cat-neutered-kitten-what-wtf-gif-10638247"]))
         message_content = message.content.split(' ')[1]
         print(message_content)
 
@@ -105,8 +109,8 @@ async def on_message(message):
         help.add_field(name="/help", value="Affiche les commandes", inline=True)
         help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
-        help.add_field(name="/gif ***(BETA)***", value="Donne un GIF aleatoirement!", inline=True)
-        help.add_field(name="/report", value="Envoie un message dans le channel #report", inline=True)
+        help.add_field(name="/gif", value="Donne un GIF aleatoirement!", inline=True)
+        help.add_field(name="/ticket ***(Nouveau)***", value="Envoie un message aux devlopeurs", inline=True)
         help.add_field(name="/musique ***(Bug)***", value="donne les commandes musicales du bot", inline=False)
         help.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.", inline=True)
         help.add_field(name="/support", value="Donne notre serveur du support: ``https://discord.gg/Abfvn9y``.", inline=True)
