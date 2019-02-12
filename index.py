@@ -106,7 +106,7 @@ async def on_message(message):
         help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
         help.add_field(name="/gif ***(BETA)***", value="Donne un GIF aleatoirement!", inline=True)
-        help.add_field(name="/report", value
+        help.add_field(name="/report", value="Envoie un message dans le channel #report", inline=True)
         help.add_field(name="/musique ***(Bug)***", value="donne les commandes musicales du bot", inline=False)
         help.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.", inline=True)
         help.add_field(name="/support", value="Donne notre serveur du support: ``https://discord.gg/Abfvn9y``.", inline=True)
