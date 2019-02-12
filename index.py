@@ -29,7 +29,7 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='/help'))
+    await client.change_presence(game=discord.Game(name='Publication de la mise a jour'))
     await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
     
     
@@ -59,11 +59,11 @@ async def on_message(message):
     if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
         await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
-        report = ["Ticket de l'utilisateur: ", message.author.name, " Avec l'ID: ", message.author.id, " \n pour la raison suivante: ", args[1]]
+        ticket = ["Ticket de l'utilisateur: ``", message.author.name, "`` Avec l'ID: ``", message.author.id, "``\nPour la raison suivante: ", args[1]]
         separator = " "
-        report_message = separator.join(report)
-        await client.send_message(discord.Object(id="544830498099298324"), report_message)
-        await client.send_message(message.author, "Merci de nous avoir contacté ")
+        ticket_message = separator.join(ticket)
+        await client.send_message(discord.Object(id="544830498099298324"), ticket_message)
+        await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite ! ")
       
     contents = message.content.split(" ")
     for word in contents:
@@ -106,7 +106,8 @@ async def on_message(message):
         help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
         help.add_field(name="/gif ***(BETA)***", value="Donne un GIF aleatoirement!", inline=True)
-        help.add_field(name="/musique", value="donne les commandes musicales du bot", inline=False)
+        help.add_field(name="/report", value
+        help.add_field(name="/musique ***(Bug)***", value="donne les commandes musicales du bot", inline=False)
         help.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.", inline=True)
         help.add_field(name="/support", value="Donne notre serveur du support: ``https://discord.gg/Abfvn9y``.", inline=True)
         await client.send_message(message.channel, embed=help)
@@ -128,8 +129,8 @@ async def on_message(message):
         report = discord.Embed(title='Signalement de', description= message.author , colour=0xa4002d)
         report.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
         report.add_field(name="Signialé par :", value= message.author, inline=False)
-        report.add_field(name="Utilisateur signialé", value=(" ".join(args[1])) + "test", inline=False)
-        report.add_field(name="Raison", value=(" ".join(args[2:])) + "test", inline=False)
+        report.add_field(name="Utilisateur signialé", value=args[1], inline=False)
+        report.add_field(name="Raison:", value=args[2:], inline=False)
         await client.send_message(message.channel, embed=report)
 
         
