@@ -59,8 +59,11 @@ async def on_message(message):
     if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
         await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
-        await client.send_message(discord.Object(id="544830498099298324"), "Ticket de l'utilisateur : \n " + message.author.id + " \n Pour la raiosn suivante :" + args[1:])
-        await client.send_message(message.author, "Merci de nous avoir contacté pour la raison suivante :" + args[1:])
+        report = ["Ticket de l'utilisateur: ", message.author.name, " Avec l'ID: ", message.author.id, " \n pour la raison suivante: ", args[1]]
+        separator = " "
+        report_message = separator.join(report)
+        await client.send_message(discord.Object(id="544830498099298324"), report_message)
+        await client.send_message(message.author, "Merci de nous avoir contacté ")
       
     contents = message.content.split(" ")
     for word in contents:
