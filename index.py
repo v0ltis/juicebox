@@ -56,8 +56,9 @@ async def on_message(message):
           args = message.content.split(" ")
           await client.send_message(message.channel, (" ".join(args[1:])))
     contents = message.content.split(" ")
+    
     if messgae.content.upper().startswith("/TICKET"):
-      args = message.content.split(" ")
+        args = message.content.split(" ")
         await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !)
         await client.send_message(discord.Object(id="544830498099298324"), "Ticket de:" + message.author + "\n dans le serveur " + guild.name +"avec l'ID " + guild.id + "\n Pour la raiosn suivante :" + args[1:])
       contents = message.content.split(" ")
