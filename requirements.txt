@@ -4,3 +4,4 @@ youtube-dl
 PyNaCl
 requests
 scrapy
+dblpy
