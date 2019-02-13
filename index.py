@@ -139,7 +139,7 @@ async def on_message(message):
         arg_2 = (" ".join(args[2:]))
         
         channel = discord.utils.get(message.server.channels, name = 'report')
-        except:
+        try:
           await client.send_message(message.channel, "Je ne trouve ***auccun*** salon appelé \"report\"")
         report=discord.Embed(color=0x700127)
         report.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
