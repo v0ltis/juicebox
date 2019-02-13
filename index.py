@@ -144,11 +144,11 @@ async def on_message(message):
         report.add_field(name="Signialé par", value=message.author, inline=False)
         report.add_field(name="Signialé pour la raison suivante :", value=arg_2, inline=False)
         channel = discord.utils.get(message.server.channels, name = 'report')
-        await client.send_message(channel, embed=report)
         try:
-          await client.send_message(message.channel, "Je ne trouve ***auccun*** salon appelé \"report\"")
+          await client.send_message(channel, embed=report)
+          await client.send_message(message.author, "Votre signalement a bien été envoyé")
         except:
-            pass
+          await client.send_message(message.channel, "Je ne trouve ***auccun*** salon appelé \"report\"")
  
        
         
