@@ -134,7 +134,7 @@ async def on_message(message):
     
     if message.content.upper().startswith("/REPORT"):
         args = message.content.split(" ")
-        arg_1 = (" ".join(args[1]))
+        arg_1 = ("".join(args[1]))
         arg_2 = (" ".join(args[2:]))
         report=discord.Embed(color=0x700127)
         report.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
