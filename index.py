@@ -29,7 +29,7 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='Mise a jour 1.7 publiée!'))
+    await client.change_presence(game=discord.Game(name='/help'))
     await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 
     
@@ -103,7 +103,9 @@ async def on_message(message):
                                                                   "https://tenor.com/view/cobie-smulders-sad-crying-wine-upset-gif-3550883",
                                                                   "https://tenor.com/view/ted-teddy-bear-bear-hump-humping-gif-4762693",
                                                                   "https://tenor.com/view/shocked-omg-australiasgottalent-noway-gif-5027549",
-                                                                  "https://tenor.com/view/cat-neutered-kitten-what-wtf-gif-10638247"]))
+                                                                  "https://tenor.com/view/cat-neutered-kitten-what-wtf-gif-10638247",
+                                                                  "https://gph.is/2SGx6It",
+                                                                  "https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif"]))
         message_content = message.content.split(' ')[1]
         print(message_content)
 
