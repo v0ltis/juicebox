@@ -1,7 +1,6 @@
 import discord
-from discord import *
-from discord.ext import *
-from discord.ext.commands import *
+from discord.ext.commands import Bot
+from discord.ext import commands
 import youtube_dl
 from itertools import cycle
 import asyncio
