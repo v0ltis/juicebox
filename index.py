@@ -147,6 +147,8 @@ async def on_message(message):
         await client.send_message(channel, embed=report)
         try:
           await client.send_message(message.channel, "Je ne trouve ***auccun*** salon appelé \"report\"")
+        except:
+            pass
  
        
         
