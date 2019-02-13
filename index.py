@@ -17,7 +17,7 @@ client = commands.Bot(command_prefix = '/')
 
 merde = ["MERDE","CHIER","CHIANT","CHIE"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
-bypass_list = ["362615539773997056","437289213616979968","528268989525131274","402896241429577729"]
+bypass_list = ["362615539773997056","528268989525131274","402896241429577729"]
 
 def check_queue(id):
   if queues[id] != []:
@@ -29,7 +29,7 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='Mise a jour publiée !'))
+    await client.change_presence(game=discord.Game(name='Test de mise a jour'))
     await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
     
     
@@ -140,7 +140,7 @@ async def on_message(message):
         report.add_field(name="Utilisateur signialé:", value=arg_1, inline=False)
         report.add_field(name="Signialé par", value=message.author, inline=False)
         report.add_field(name="Signialé pour la raison suivante :", value=arg_2, inline=False)
-        channel = discord.utils.get(server.channels, name = 'report')
+        channel = discord.utils.get(guild.channels, name = 'report')
         await client.send_message(channel, embed=report)
         
 
