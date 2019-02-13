@@ -58,7 +58,11 @@ async def on_message(message):
           await client.send_message(message.channel, (" ".join(args[1:])))
          
       
-    
+    if message.content.upper().startswith("/BOT-ADMIN"):
+      if message.author.id in bypass_list:
+        await message.add_reaction(message, ":flag_es:")
+      
+      
     if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
         await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
