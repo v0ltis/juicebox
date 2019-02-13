@@ -55,10 +55,7 @@ async def on_message(message):
     if message.content.upper().startswith("/SAY"):
           args = message.content.split(" ")
           await client.send_message(message.channel, (" ".join(args[1:])))
-          
-    if message.content.upper().startswith("/RANDOM"):
-      args = message.content.split(" ")
-      await client.send_message(message.channel, (" ".join(args{1:})))
+         
       
     
     if message.content.upper().startswith("/TICKET"):
