@@ -55,6 +55,11 @@ async def on_message(message):
     if message.content.upper().startswith("/SAY"):
           args = message.content.split(" ")
           await client.send_message(message.channel, (" ".join(args[1:])))
+          
+    if message.content.upper().startswith("/RANDOM"):
+      args = message.content.split(" ")
+      await client.send_message(message.channel, (" ".join(args{1:})))
+      
     
     if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
@@ -133,12 +138,13 @@ async def on_message(message):
         args = message.content.split(" ")
         arg_1 = args[1]
         arg_2 = args[2:]
-        report = discord.Embed(title='Signalement de', description= message.author , colour=0xa4002d)
-        report.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
-        report.add_field(name="Signialé par :", value= message.author, inline=False)
-        report.add_field(name="Utilisateur signialé", value=arg_1, inline=False)
-        report.add_field(name="Raison:", value=arg_2, inline=False)
-        await client.send_message(message.channel, embed=report)
+        report=discord.Embed(color=0x700127)
+        report.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
+        report.add_field(name="Utilisateur signialé:", value=arg_1, inline=False)
+        report.add_field(name="Signialé par", value=message.author, inline=False)
+        report.add_field(name="Signialé pour la raison suivante :", value=arg_2, inline=False)
+        await client.send_message(message.channel, embed=embed)
+        
 
         
     if message.content.upper().startswith("/SUPPORT"):
@@ -239,7 +245,7 @@ async def on_message(message):
             await client.send_message(message_channel,message_content)
             
         else:
-          print("I'm taking the second way !")
+          print("2eme essaie!")
 
           try:
             channel = message.author.voice.voice_channel
