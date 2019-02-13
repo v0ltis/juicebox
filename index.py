@@ -115,6 +115,7 @@ async def on_message(message):
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
         help.add_field(name="/gif", value="Donne un GIF aleatoirement!", inline=True)
         help.add_field(name="/ticket ***(Nouveau)***", value="Envoie un message aux devlopeurs", inline=True)
+        help.add_field(name="/report ***nouveau)***", value="Envoie le signalement dans #report !"), inline=True)
         help.add_field(name="/musique ***(Bug)***", value="donne les commandes musicales du bot", inline=False)
         help.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.", inline=True)
         help.add_field(name="/support", value="Donne notre serveur du support: ``https://discord.gg/Abfvn9y``.", inline=True)
@@ -136,18 +137,18 @@ async def on_message(message):
         args = message.content.split(" ")
         arg_1 = ("".join(args[1]))
         arg_2 = (" ".join(args[2:]))
-        if arg_1 != user.mention :
-          await message.send_message(message.channel, "Veuillez mentioner une personne s'il vous plait !")
-          return
+        
+        channel = discord.utils.get(message.server.channels, name = 'report')
+        except:
+          await client.send_message(message.channel, "Je ne trouve ***auccun*** salon appelé \"report\"")
         report=discord.Embed(color=0x700127)
         report.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
         report.add_field(name="Utilisateur signialé:", value=arg_1, inline=False)
         report.add_field(name="Signialé par", value=message.author, inline=False)
         report.add_field(name="Signialé pour la raison suivante :", value=arg_2, inline=False)
-        channel = discord.utils.get(message.server.channels, name = 'report')
         await client.send_message(channel, embed=report)
-        
-
+ 
+       
         
     if message.content.upper().startswith("/SUPPORT"):
       await client.send_message(message.channel,"Venez papoter ici: \n https://discord.gg/Abfvn9y")
