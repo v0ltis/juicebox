@@ -60,7 +60,7 @@ async def on_message(message):
       
     if message.content.upper().startswith("/BOT-ADMIN"):
       if message.author.id in bypass_list:
-        await client.add_reaction(message, ":flag_es:")
+        await client.add_reaction(message, "flag_es")
       
       
     if message.content.upper().startswith("/TICKET"):
