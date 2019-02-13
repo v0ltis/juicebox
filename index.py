@@ -1,7 +1,8 @@
 import discord
+from discord import *
+from discord.ext import *
+from discord.ext.commands import *
 import youtube_dl
-from discord.ext.commands import Bot
-from discord.ext import commands
 from itertools import cycle
 import asyncio
 import time
@@ -133,14 +134,15 @@ async def on_message(message):
     
     if message.content.upper().startswith("/REPORT"):
         args = message.content.split(" ")
-        arg_1 = (" ".join(args[1:]))
+        arg_1 = (" ".join(args[1]))
         arg_2 = (" ".join(args[2:]))
         report=discord.Embed(color=0x700127)
         report.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
         report.add_field(name="Utilisateur signialé:", value=arg_1, inline=False)
         report.add_field(name="Signialé par", value=message.author, inline=False)
         report.add_field(name="Signialé pour la raison suivante :", value=arg_2, inline=False)
-        await client.send_message(message.channel, embed=report)
+        channel = discord.utils.get(server.channels, name = 'report')
+        await client.send_message(channel, embed=report)
         
 
         
