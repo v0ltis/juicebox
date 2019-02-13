@@ -29,7 +29,7 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='Test de mise a jour'))
+    await client.change_presence(game=discord.Game(name='Mise a jour 1.7 publiée!'))
     await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 
     
@@ -115,7 +115,7 @@ async def on_message(message):
         help.add_field(name="/ping", value="Affiche le ping", inline=True)
         help.add_field(name="/gif", value="Donne un GIF aleatoirement!", inline=True)
         help.add_field(name="/ticket ***(Nouveau)***", value="Envoie un message aux devlopeurs", inline=True)
-        help.add_field(name="/report ***(nouveau)***", value="Envoie le signalement dans #report !", inline=True)
+        help.add_field(name="/report ***(nouveau)***", value="Signale les méchant utilisateur #report ! \n Fonctionement : /report (mention) (raison)", inline=True)
         help.add_field(name="/musique", value="donne les commandes musicales du bot", inline=False)
         help.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.", inline=True)
         help.add_field(name="/support", value="Donne notre serveur du support: ``https://discord.gg/Abfvn9y``.", inline=True)
@@ -148,7 +148,7 @@ async def on_message(message):
           await client.send_message(channel, embed=report)
           await client.send_message(message.author, "Votre signalement a bien été envoyé")
         except:
-          await client.send_message(message.channel, "Erreur ... voicis les choses a faire :\nVerifier que le salon report existe bien\nVerifier que vous avez bien donné une raison au report\n Ca ne marche toujour pas ? Evoyez nous un ticket !")
+          await client.send_message(message.channel, "Erreur ... voici les choses a faire :\nVerifier que le salon report existe bien.\nVerifier que vous avez bien donné une raison au report.\n Ca ne marche toujour pas ? Evoyez nous un ticket !")
  
        
         
