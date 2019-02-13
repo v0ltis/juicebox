@@ -140,7 +140,7 @@ async def on_message(message):
         report.add_field(name="Utilisateur signialé:", value=arg_1, inline=False)
         report.add_field(name="Signialé par", value=message.author, inline=False)
         report.add_field(name="Signialé pour la raison suivante :", value=arg_2, inline=False)
-        channel = discord.utils.get(guild.channels, name = 'report')
+        channel = discord.utils.get(servers.channels, name = 'report')
         await client.send_message(channel, embed=report)
         
 
