@@ -7,10 +7,9 @@ import asyncio
 import time
 import os
 import random
-import dbl
-import logging
-import aiohttp
+
 import scrapy
+
 import my_directory
 import text_to_url
 
@@ -25,31 +24,12 @@ def check_queue(id):
     player = queues[id].pop(0)
     players[id] = player
     player.start()
-
-class DiscordBotsOrgAPI:
-     def __init__(self, bot):
-        self.bot = bot
-        self.token = os.environ['TOKEN_SERVER']
-        self.dblpy = dbl.Client(self.bot, self.token)
-        self.bot.loop.create_task(self.update_stats())
-
-    async def update_stats(self):
-      
-        while True:
-            logger.info('attempting to post server count')
-            try:
-                await self.dblpy.post_server_count()
-                logger.info('posted server count ({})'.format(len(self.bot.guilds)))
-            except Exception as e:
-                logger.exception('Failed to post server count\n{}: {}'.format(type(e).__name__, e))
-            await asyncio.sleep(1800)
-            
-def setup(bot):
-    global logger
-    logger = logging.getLogger('bot')
-    bot.add_cog(DiscordBotsOrgAPI(bot))
+    
+@client.event
+async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
+    await client.change_presence(game=discord.Game(name='Test de mise a jour'))
     await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 
     
