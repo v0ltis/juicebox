@@ -65,9 +65,8 @@ async def on_message(message):
         ticket = ["Ticket de l'utilisateur: ``", message.author.name, "`` Avec l'ID: ``", message.author.id, "``\nPour la raison suivante: "]
         separator = " "
         ticket_message = separator.join(ticket)
-        ticket_message =  ticket_message + "\n" + (" ".join(args[1:]))
         await client.send_message(discord.Object(id="544830498099298324"), ticket_message)
-        #await client.send_message(discord.Object(id="544830498099298324"), (" ".join(args[1:])))
+        await client.send_message(discord.Object(id="544830498099298324"), (" ".join(args[1:])))
         await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite ! ")
       
     contents = message.content.split(" ")
@@ -141,9 +140,9 @@ async def on_message(message):
         
         report=discord.Embed(color=0x700127)
         report.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
-        report.add_field(name="Utilisateur signialé:", value=arg_1, inline=False)
-        report.add_field(name="Signialé par", value=message.author, inline=False)
-        report.add_field(name="Signialé pour la raison suivante :", value=arg_2, inline=False)
+        report.add_field(name="Utilisateur signalé:", value=arg_1, inline=False)
+        report.add_field(name="Signalé par", value=message.author, inline=False)
+        report.add_field(name="Signalé pour la raison suivante :", value=arg_2, inline=False)
         channel = discord.utils.get(message.server.channels, name = 'report')
         try:
           await client.send_message(channel, embed=report)
