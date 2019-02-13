@@ -18,8 +18,13 @@ class url_find():
 		x = 0
 
 		for x in range(0,len(query_splited)-1):
+			print(len(query_splited))
 			query_builted = query_builted + query_splited[x] + '+'
-		query_builted = query_builted + query_splited[x+1]
+		try:
+			query_builted = query_builted + query_splited[x+1]
+		except:
+			pass
+		
 		ytb_query = ytb_query + query_builted
 		print(ytb_query)
 		self.query_url = ytb_query
