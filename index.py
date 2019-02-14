@@ -63,7 +63,7 @@ async def on_message(message):
         await client.add_reaction("🇦")
       
       
-   if message.content.upper().startswith("/TICKET"):
+    if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
         await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
         ticket = ["Ticket de l'utilisateur: ``", message.author.name, "`` Avec l'ID: ``", message.author.id, "``\nPour la raison suivante: "]
