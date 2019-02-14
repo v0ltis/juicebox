@@ -63,18 +63,16 @@ async def on_message(message):
         await client.add_reaction("🇦")
       
       
-    if message.content.upper().startswith("/TICKET"):
+   if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
-        ticket = ["Ticket de l'utilisateur: ", message.author, " Avec l'ID: ``", message.author.id, "``\nPour la raison suivante: "]
+        await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
+        ticket = ["Ticket de l'utilisateur: ``", message.author.name, "`` Avec l'ID: ``", message.author.id, "``\nPour la raison suivante: "]
         separator = " "
         ticket_message = separator.join(ticket)
         ticket_message =  ticket_message + "\n" + (" ".join(args[1:]))
-        ticket_em = discord.Embed(color=0x5e005e)
-        ticket_em.set_author(name=message.author, icon_url=message.author.default_avatar_url)
-        ticket_em.add_field(name="Nouveau ticket:", value=ticket_message, inline=False)
-        await client.send_message(discord.Object(id="544830498099298324"), embed=ticket_em)
-        await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous re-contacter au plus vite ! ")
-     
+        await client.send_message(discord.Object(id="544830498099298324"), ticket_message)
+        await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite ! ")
+
       
     contents = message.content.split(" ")
     for word in contents:
