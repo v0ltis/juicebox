@@ -65,7 +65,6 @@ async def on_message(message):
       
     if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
-        await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
         ticket = ["Ticket de l'utilisateur: ", message.author, " Avec l'ID: ``", message.author.id, "``\nPour la raison suivante: "]
         separator = " "
         ticket_message = separator.join(ticket)
