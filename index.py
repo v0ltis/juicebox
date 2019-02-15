@@ -199,7 +199,7 @@ async def on_message(message):
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
     
     if message.content.upper().startswith("/INFO"):
-      await client.send_message(message.channel, message.mentions)
+      await client.send_message(message.channel, message.mentions.name)
 
     #join
     if message.content.upper().startswith("/JOIN"):
