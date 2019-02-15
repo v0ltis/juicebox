@@ -65,7 +65,7 @@ async def on_message(message):
     if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
         await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
-        ticket=discord.Embed(color=0x700127)
+        ticket=discord.Embed(color=0x7a2581)
         ticket.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
         ticket.add_field(name="Ticket de l'utilisateur", value=message.author, inline=False)
         ticket.add_field(name="Le ticket est le suivant", value=("".join(args[1:])), inline=False)
