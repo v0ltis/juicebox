@@ -183,10 +183,6 @@ async def on_message(message):
                 await client.send_message(message.channel, ":shit:")
               
               
-    if message.content.upper().startswith("/LOCATE _VOLTIS"):
-       if message.channel.id == ("459444059556020228"):
-        await client.send_message(message.channel, "voltis il est dans ton cul ***connard*** !")
-                
     if message.content.upper().startswith("YO"):
        if not message.content.upper().startswith("YOU"):
         await client.send_message(message.channel,random.choice(["ga",
@@ -202,7 +198,7 @@ async def on_message(message):
         await client.delete_message(message)
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
     
-    if message.content.upper().startswith("/INFO")
+    if message.content.upper().startswith("/INFO"):
         await client.send_messgae(message.channel, message.mentions.id)
 
     #join
