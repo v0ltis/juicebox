@@ -18,6 +18,7 @@ client = commands.Bot(command_prefix = '/')
 merde = ["MERDE","CHIER","CHIANT","CHIE"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
 bypass_list = ["362615539773997056","528268989525131274","402896241429577729"]
+ban_user = ["159985870458322944"]
 
 def check_queue(id):
   if queues[id] != []:
@@ -39,7 +40,9 @@ queues = {}
 
 
 @client.event
-async def on_message(message):   
+async def on_message(message):
+    if message.author.id in ban_user:
+        return
     if message.author == client.user:
         return
  
@@ -58,22 +61,18 @@ async def on_message(message):
           await client.send_message(message.channel, (" ".join(args[1:])))
          
       
-    if message.content.upper().startswith("/BOT-ADMIN"):
-      if message.author.id in bypass_list:
-        await client.add_reaction("🇦")
-      
       
     if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
         await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
-        ticket = ["Ticket de l'utilisateur: ", message.author.name, " Avec l'ID: ``", message.author.id, "``\nPour la raison suivante: "]
-        separator = " "
-        ticket_message = separator.join(ticket)
-        ticket_message =  ticket_message + "\n" + (" ".join(args[1:]))
-        await client.send_message(discord.Object(id="544830498099298324"), ticket_message)
-        await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite ! ")
-
-      
+        ticket=discord.Embed(color=0x700127)
+        ticket.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
+        ticket.add_field(name="Ticket de l'utilisateur", value=message.author, inline=False)
+        ticket.add_field(name="Le ticket est le suivant", value=("".join(args[1:])), inline=False)
+        ticket.set_footer(text="ID de l'utilisateur : " + message.author.id) 
+        await client.send_message(discord.Object(id="544830498099298324"), embed=ticket)
+        await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite !")
+         
     contents = message.content.split(" ")
     for word in contents:
            if word.upper() in chat_filter:
