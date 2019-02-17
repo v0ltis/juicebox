@@ -370,8 +370,10 @@ async def on_message(message):
             queues[server.id].append(player)
           else:
             queues[server.id] = [player]
-          await client.say('Video mise dans la playlist !')
-
+          message_channel = message.channel
+          message_content = 'Video mise dans la playlist !'
+          await client.send_message(message_channel,message_content)
+      
           try:
             player.start()
             message_channel = message.channel
