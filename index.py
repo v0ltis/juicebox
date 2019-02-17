@@ -18,7 +18,6 @@ client = commands.Bot(command_prefix = '/')
 merde = ["MERDE","CHIER","CHIANT","CHIE"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
 bypass_list = ["362615539773997056","528268989525131274","402896241429577729"]
-ban_user = ["159985870458322944"]
 
 def check_queue(id):
   if queues[id] != []:
@@ -30,7 +29,7 @@ def check_queue(id):
 async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
-    await client.change_presence(game=discord.Game(name='/help'))
+    await client.change_presence(game=discord.Game(name='Mise a jour 1.7 publiée!'))
     await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 
     
@@ -40,9 +39,7 @@ queues = {}
 
 
 @client.event
-async def on_message(message):
-    if message.author.id in ban_user:
-        return
+async def on_message(message):   
     if message.author == client.user:
         return
  
@@ -61,18 +58,18 @@ async def on_message(message):
           await client.send_message(message.channel, (" ".join(args[1:])))
          
       
-      
+    
     if message.content.upper().startswith("/TICKET"):
         args = message.content.split(" ")
         await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
-        ticket=discord.Embed(color=0x7a2581)
-        ticket.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
-        ticket.add_field(name="Utilisateur", value=message.author, inline=False)
-        ticket.add_field(name="Tiket :", value=("".join(args[1:])), inline=False)
-        ticket.set_footer(text="ID de l'utilisateur : " + message.author.id) 
-        await client.send_message(discord.Object(id="544830498099298324"), embed=ticket)
-        await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite !")
-         
+        ticket = ["Ticket de l'utilisateur: ``", message.author.name, "`` Avec l'ID: ``", message.author.id, "``\nPour la raison suivante: "]
+        separator = " "
+        ticket_message = separator.join(ticket)
+        ticket_message =  ticket_message + "\n" + (" ".join(args[1:]))
+        await client.send_message(discord.Object(id="544830498099298324"), ticket_message)
+        await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite ! ")
+     
+      
     contents = message.content.split(" ")
     for word in contents:
            if word.upper() in chat_filter:
@@ -106,9 +103,7 @@ async def on_message(message):
                                                                   "https://tenor.com/view/cobie-smulders-sad-crying-wine-upset-gif-3550883",
                                                                   "https://tenor.com/view/ted-teddy-bear-bear-hump-humping-gif-4762693",
                                                                   "https://tenor.com/view/shocked-omg-australiasgottalent-noway-gif-5027549",
-                                                                  "https://tenor.com/view/cat-neutered-kitten-what-wtf-gif-10638247",
-                                                                  "https://gph.is/2SGx6It",
-                                                                  "https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif"]))
+                                                                  "https://tenor.com/view/cat-neutered-kitten-what-wtf-gif-10638247"]))
         message_content = message.content.split(' ')[1]
         print(message_content)
 
@@ -175,7 +170,7 @@ async def on_message(message):
     
     
     if message.content.upper().startswith("<@528268989525131274>"):
-       await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voici quelques commandes qui pourait vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique ")      
+       await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voicis quelques commandes qui pourait vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique : \n /ping : affiche le ping ")      
     
     for word in contents:
            if word.upper() in merde:
@@ -183,6 +178,10 @@ async def on_message(message):
                 await client.send_message(message.channel, ":shit:")
               
               
+    if message.content.upper().startswith("/LOCATE _VOLTIS"):
+       if message.channel.id == ("459444059556020228"):
+        await client.send_message(message.channel, "voltis il est dans ton cul ***connard*** !")
+                
     if message.content.upper().startswith("YO"):
        if not message.content.upper().startswith("YOU"):
         await client.send_message(message.channel,random.choice(["ga",
@@ -198,8 +197,7 @@ async def on_message(message):
         await client.delete_message(message)
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
     
-    if message.content.upper().startswith("/INFO"):
-      await client.send_message(message.channel, message.mention.user.id)
+    
 
     #join
     if message.content.upper().startswith("/JOIN"):
