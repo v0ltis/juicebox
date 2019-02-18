@@ -211,7 +211,7 @@ async def on_message(message):
                         info.add_field(name="Date de création du compte:", value=user.created_at, inline=False)
                         info.add_field(name="Avec les roles:", value=user.roles, inline=False)
                         await client.send_message(message.channel, embed=info)
-                    else
+                    else:
                         info=discord.Embed(color=0x700127)
                         info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
                         info.add_field(name="Voici les informations de " + user.name +" :", inline=False)
