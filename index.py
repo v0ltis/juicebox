@@ -198,7 +198,7 @@ async def on_message(message):
         await client.delete_message(message)
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
     
-    if message.content.startswith("!info"):
+    if message.content.upper.startswith("/INFO"):
             if len(message.mentions) > 0:
                 for user in message.mentions:
                     if user.avatar_url() != "":
@@ -232,8 +232,7 @@ async def on_message(message):
                         info.add_field(name="Date de création du compte:", value=message.author.created_at, inline=False)
                         info.add_field(name="Avec les roles:", value=message.author.roles, inline=False)
                         await client.send_message(message.channel, embed=info)
-                        
-                   else:
+                  else:
                         info=discord.Embed(color=0x700127)
                         info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
                         info.add_field(name="Voici les informations de " + message.author.name +" :", inline=False)
