@@ -199,9 +199,10 @@ async def on_message(message):
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
     
     if message.content.upper().startswith("/INFO"):
+            rien = ""
             if len(message.mentions) > 0:
                 for user in message.mentions:
-                    if user.avatar_url() != "":
+                    if user.avatar_url() != rien:
                         info=discord.Embed(color=0x700127)
                         info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
                         info.set_thumbnail(url=user.avatar_url)
@@ -222,7 +223,7 @@ async def on_message(message):
                         await client.send_message(message.channel, embed=info)
                         
             else:
-                  if message.author.avatar_url() != "":
+                  if message.author.avatar_url() != rien:
                         info=discord.Embed(color=0x700127)
                         info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
                         info.set_thumbnail(url=message.author.avatar_url)
