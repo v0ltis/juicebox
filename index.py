@@ -202,15 +202,15 @@ async def on_message(message):
             rien = ""
             if len(message.mentions) > 0:
                 for user in message.mentions:
-                        info=discord.Embed(color=0x700127)
-                        info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
-                        info.set_thumbnail(url=user.avatar_url)
-                        info.add_field(name="Voici les informations de " + user.name +" :",value="", inline=False)
-                        info.add_field(name="Pseudo / ID", value=user.name + " / " + user.id, inline=False)
-                        info.add_field(name="Sur ce serveur depuis:", value=user.joined_at, inline=False)
-                        info.add_field(name="Date de création du compte:", value=user.created_at, inline=False)
-                        info.add_field(name="Avec les roles:", value=user.roles, inline=False)
-                        await client.send_message(message.channel, embed=info)
+                        info_mention=discord.Embed(color=0x700127)
+                        info_mention.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
+                        info_mention.set_thumbnail(url=user.avatar_url)
+                        info_mention.add_field(name="Voici les informations de " + user.name +" :",value="", inline=False)
+                        info_mention.add_field(name="Pseudo / ID", value=user.name + " / " + user.id, inline=False)
+                        info_mention.add_field(name="Sur ce serveur depuis:", value=user.joined_at, inline=False)
+                        info_mention.add_field(name="Date de création du compte:", value=user.created_at, inline=False)
+                        info_mention.add_field(name="Avec les roles:", value=user.roles, inline=False)
+                        await client.send_message(message.channel, embed=info_mention)
             else:
                         info=discord.Embed(color=0x700127)
                         info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
