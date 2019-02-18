@@ -155,8 +155,11 @@ async def on_message(message):
           await client.send_message(message.author, "Votre signalement a bien été envoyé")
         except:
           await client.send_message(message.channel, "Erreur ... voici les choses a faire :\nVerifier que le salon report existe bien.\nVerifier que vous avez bien donné une raison au report.\n Ca ne marche toujour pas ? Evoyez nous un ticket !")
- 
-       
+          
+          
+    if (message.channel.name == "youtube"):
+      await client.add_reaction(message, "<:youtube:314349922885566475>")
+      
         
     if message.content.upper().startswith("/SUPPORT"):
       await client.send_message(message.channel,"Venez papoter ici: \n https://discord.gg/Abfvn9y")
