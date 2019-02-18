@@ -202,7 +202,6 @@ async def on_message(message):
             rien = ""
             if len(message.mentions) > 0:
                 for user in message.mentions:
-                    if user.avatar_url() != rien:
                         info=discord.Embed(color=0x700127)
                         info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
                         info.set_thumbnail(url=user.avatar_url)
@@ -212,18 +211,7 @@ async def on_message(message):
                         info.add_field(name="Date de création du compte:", value=user.created_at, inline=False)
                         info.add_field(name="Avec les roles:", value=user.roles, inline=False)
                         await client.send_message(message.channel, embed=info)
-                    else:
-                        info=discord.Embed(color=0x700127)
-                        info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
-                        info.add_field(name="Voici les informations de " + user.name +" :", inline=False)
-                        info.add_field(name="Pseudo / ID", value=user.name + " / " + user.id, inline=False)
-                        info.add_field(name="Sur ce serveur depuis:", value=user.joined_at, inline=False)
-                        info.add_field(name="Date de création du compte:", value=user.created_at, inline=False)
-                        info.add_field(name="Avec les roles:", value=user.roles, inline=False)
-                        await client.send_message(message.channel, embed=info)
-                        
             else:
-                  if message.author.avatar_url() != rien:
                         info=discord.Embed(color=0x700127)
                         info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
                         info.set_thumbnail(url=message.author.avatar_url)
@@ -233,16 +221,6 @@ async def on_message(message):
                         info.add_field(name="Date de création du compte:", value=message.author.created_at, inline=False)
                         info.add_field(name="Avec les roles:", value=message.author.roles, inline=False)
                         await client.send_message(message.channel, embed=info)
-                  else:
-                        info=discord.Embed(color=0x700127)
-                        info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
-                        info.add_field(name="Voici les informations de " + message.author.name +" :", inline=False)
-                        info.add_field(name="Pseudo / ID", value=message.author.name + " / " + message.author.id, inline=False)
-                        info.add_field(name="Sur ce serveur depuis:", value=message.author.joined_at, inline=False)
-                        info.add_field(name="Date de création du compte:", value=message.author.created_at, inline=False)
-                        info.add_field(name="Avec les roles:", value=message.author.roles, inline=False)
-                        await client.send_message(message.channel, embed=info)
-
     #join
     if message.content.upper().startswith("/JOIN"):
         channel = message.author.voice.voice_channel
