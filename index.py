@@ -205,7 +205,7 @@ async def on_message(message):
                         info=discord.Embed(color=0x700127)
                         info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
                         info.set_thumbnail(url=user.avatar_url)
-                        info.add_field(name="Voici les informations de " + user.name +" :", inline=False)
+                        info.add_field(name="Voici les informations de " + user.name +" :",value="", inline=False)
                         info.add_field(name="Pseudo / ID", value=user.name + " / " + user.id, inline=False)
                         info.add_field(name="Sur ce serveur depuis:", value=user.joined_at, inline=False)
                         info.add_field(name="Date de création du compte:", value=user.created_at, inline=False)
