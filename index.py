@@ -198,7 +198,7 @@ async def on_message(message):
         await client.delete_message(message)
         await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
     
-    if message.content.upper.startswith("/INFO"):
+    if message.content.upper().startswith("/INFO"):
             if len(message.mentions) > 0:
                 for user in message.mentions:
                     if user.avatar_url() != "":
