@@ -31,12 +31,7 @@ async def on_ready():
     print("Logged in as:", client.user.name)
     print("ID:", client.user.id)
     await client.change_presence(game=discord.Game(name='/help'))
-    await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
-    await client.send_message(discord.Object(id='543490625773895681'), "Les serveurs auquel je suis connecté sont :\n")
-    for x in client.servers:
-      await client.send_message(discord.Object(id='543490625773895681'), x.name)
-
-    
+    await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')    
     
 players = {}
 queues = {}
