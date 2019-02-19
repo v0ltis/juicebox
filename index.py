@@ -44,9 +44,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    print(message.server.name)
-    print(message.channel.name)
-    print(message.content)
+    print("Serveur du message : {}, channel du message : {}, message : {}".format(message.server.name,message.channel.name,message.content))
 
     if message.content.upper().startswith("/PING"):
       timePing = time.monotonic()
