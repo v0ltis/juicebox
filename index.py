@@ -43,8 +43,8 @@ async def on_message(message):
         return
     if message.author == client.user:
         return
- 
-
+    print(message.content)
+    print(message.server.name)
 
 
     if message.content.upper().startswith("/PING"):
