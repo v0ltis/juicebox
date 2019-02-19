@@ -44,7 +44,15 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    print("Serveur du message : {}, channel du message : {}, message : {}".format(message.server.name,message.channel.name,message.content))
+    if message.content.upper().startswith("/CHAT ON"):
+      chat_on = True
+    if message.content.upper().startswith("/CHAT OFF"):
+      chat_on = False
+
+    if chat_on == True:
+      chat = "Serveur du message : {}, channel du message : {}, message : {}".format(message.server.name,message.channel.name,message.content)
+      print(chat)
+      await client.send_message(discord.Object(id='547516410343981057'), chat)
 
     if message.content.upper().startswith("/PING"):
       timePing = time.monotonic()
