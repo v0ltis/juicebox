@@ -1,6 +1,5 @@
-import my_directory
-import subprocess
 import os
+import my_directory
 
 class url_find():
 
@@ -11,6 +10,7 @@ class url_find():
 		self.att_url = att_url
 		self.me = my_directory.dir_location()
 		self.query_url = query_url
+
 		ytb_query = '''https://www.youtube.com/results?search_query='''
 		query_splited = query.split(' ')
 
@@ -28,30 +28,10 @@ class url_find():
 		ytb_query = ytb_query + query_builted
 		print(ytb_query)
 		self.query_url = ytb_query
-	def me(arg):
-		a = str(os.getcwd())
-		if a.startswith('/'):
-			return arg
-
-		else:
-			a = a.split('\\')
-			print(a)
-			#print(a)
-			b = len(a)
-			c = str(a[0]) + str('\\')
-			for x in range(1,b):
-				c = c + str(a[x]) + str('\\')
-			d = arg
-			c = c + d
-			return c
-
+	
 	def get_complete_url(self):
-		a = subprocess.check_output("ls").decode()
-		print(a)
-		os_command = "scrapy runspider " + url_find.me(str(self.file_py)) +''' -a url="%s"''' % self.query_url
-		print(os_command)
-		a = subprocess.check_output(os_command).decode()
-		print(a)
+		os_command = "scrapy runspider " + str(self.file_py) + ''' -a url="%s"''' % self.query_url
+		a = os.popen(os_command).read().split("\n")[0]
 		for x in range(0,10):
 			print(a)
 		complete_url = self.main_url + a
