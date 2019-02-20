@@ -59,12 +59,27 @@ async def meme_audio(message):
 	await join(message)
 
 	url = random.choice(["https://www.youtube.com/watch?v=ma7TL8jJT0A",
-		"https://www.youtube.com/watch?v=ma7TL8jJT0A"])
+		"https://www.youtube.com/watch?v=5aFP-iR7hPg"])
 	server = message.server
 	voice_client = client.voice_client_in(server)
 	player = await voice_client.create_ytdl_player(url)
 	players[server.id] = player
 	player.start()
+	if player.is_playing() == False:
+		await leave(message)
+
+async def leave(message):
+	server = message.server
+	print("I'm disconnected from : " + str(server))
+	voice_client = client.voice_client_in(server)
+	try:
+		for x in range(0,100):
+			await voice_client.disconnect()
+	except:
+		print("Error ...")
+		message_channel = message.channel
+		message_content = "Buuuuuug... attend un peut ou essaye avec /join'."
+		await client.send_message(message_channel,message_content)
 
 async def a_test_fonction(msg):
 	print(msg.content)
@@ -147,7 +162,8 @@ async def on_message(message):
 			"https://tenor.com/view/shocked-omg-australiasgottalent-noway-gif-5027549",
 			"https://tenor.com/view/cat-neutered-kitten-what-wtf-gif-10638247",
 			"https://gph.is/2SGx6It",
-			"https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif"]))
+			"https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif",
+			"https://thumbs.gfycat.com/NaiveMatureArmedcrab-small.gif"]))
 		
 		message_content = message.content.split(' ')[1]
 		print(message_content)
@@ -509,18 +525,7 @@ async def on_message(message):
 
 	#leave
 	if message.content.upper().startswith("/LEAVE"):
-		server = message.server
-		print("I'm disconnected from : " + str(server))
-		voice_client = client.voice_client_in(server)
-		try:
-			for x in range(0,100):
-				await voice_client.disconnect()
-		except:
-			print("Error ...")
-			message_channel = message.channel
-			message_content = "Buuuuuug... attend un peut ou essaye avec /join'."
-			await client.send_message(message_channel,message_content)
-			
+		await leave(message)
 
 	if message.content.upper().startswith("/QUEUE"):
 		print(message.content)
