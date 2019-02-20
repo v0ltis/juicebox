@@ -47,7 +47,7 @@ queues = {}
 chat_on = False
 
 async def meme_audio(message):
-		try:
+	try:
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
 		await client.join_voice_channel(channel)
