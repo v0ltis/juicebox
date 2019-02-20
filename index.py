@@ -51,8 +51,10 @@ def meme_audio(message):
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
 		await client.join_voice_channel(channel)
+		
 	except:
 		pass
+
 	url = random.choice(["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 		"https://www.youtube.com/watch?v=ma7TL8jJT0A"])
 	server = message.server
