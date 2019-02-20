@@ -54,7 +54,7 @@ async def meme_audio(message):
 	except:
 		pass
 	url = random.choice(["https://www.youtube.com/watch?v=ma7TL8jJT0A",
-			     "https://www.youtube.com/watch?v=ma7TL8jJT0A"])
+		"https://www.youtube.com/watch?v=ma7TL8jJT0A"])
 	server = message.server
 	voice_client = client.voice_client_in(server)
 	player = await voice_client.create_ytdl_player(url)
