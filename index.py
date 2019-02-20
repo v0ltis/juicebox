@@ -46,7 +46,7 @@ players = {}
 queues = {}
 chat_on = False
 
-async def meme_audio(message):
+async def join(message):
 	try:
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
@@ -54,6 +54,9 @@ async def meme_audio(message):
 
 	except:
 		pass
+
+async def meme_audio(message):
+	await join(message)
 
 	url = random.choice(["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 		"https://www.youtube.com/watch?v=ma7TL8jJT0A"])
