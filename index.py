@@ -46,6 +46,10 @@ players = {}
 queues = {}
 chat_on = False
 
+async def a_test_fonction(msg):
+	print(msg.content)
+	await client.send_message(msg.channel,str(msg.content)) 
+
 @client.event
 async def on_message(message):
 	global chat_on
@@ -216,6 +220,10 @@ async def on_message(message):
 	if message.content.upper().startswith("YO"):
 		if not message.content.upper().startswith("YOU"):
 			await client.send_message(message.channel,random.choice(["ga","plait"]))
+
+	if message.content.upper().startswith("/TEST"):
+		a_test_fonction(message)
+
 
 	if message.content.upper().startswith("BONJOUR"):
 		await client.send_message(message.channel,"Hey!")
