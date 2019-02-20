@@ -48,6 +48,8 @@ class url_find():
 			return c
 
 	def get_complete_url(self):
+		a = subprocess.check_output("ls").decode()
+		print(a)
 		os_command = "scrapy runspider " + url_find.me(str(self.file_py)) +''' -a url="%s"''' % self.query_url
 		print(os_command)
 		a = subprocess.check_output(os_command).decode()
