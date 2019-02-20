@@ -31,9 +31,7 @@ class url_find():
 	def me(arg):
 		a = str(os.getcwd())
 		if a.startswith('/'):
-			args_ext = []
-			a = a +'/'+arg
-			return a
+			return arg
 
 		else:
 			a = a.split('\\')
