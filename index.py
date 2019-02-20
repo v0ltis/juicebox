@@ -30,14 +30,16 @@ def check_queue(id):
 async def on_ready():
 		print("Logged in as:", client.user.name)
 		print("ID:", client.user.id)
-		channel_dem = discord.utils.get(message.server.channels, name = 'serveurs-juicebox-x-delete')
-		await client.delete_channel(channel_dem)
+
+		#channel_dem = discord.utils.get(message.server.channels, name = 'serveurs-juicebox-x-delete')
+
+		#await client.delete_channel(channel_dem)
 		await client.change_presence(game=discord.Game(name='/help'))
 		await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
-		await client.create_channel("JuiceBox Support", "serveurs-juicebox-x-delete")
-		await client.send_message(channel_dem, "Les serveurs auquel je suis connecté sont :\n")
-		for x in client.servers:
-			serveur_juicy = await client.send_message(channel_dem, x.name)
+		#await client.create_channel("JuiceBox Support", "serveurs-juicebox-x-delete")
+		#await client.send_message(channel_dem, "Les serveurs auquel je suis connecté sont :\n")
+		#for x in client.servers:
+			#serveur_juicy = await client.send_message(channel_dem, x.name)
 
 		
 players = {}
