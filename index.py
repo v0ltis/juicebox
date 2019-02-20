@@ -251,13 +251,16 @@ async def on_message(message):
 
 	#play + query
 	if message.content.upper().startswith("/PLAY"):
+
 		print(message.content)
 		message_url = message.content
 		url = message_url.split(" ")[1]
+
 		if len(message_url.split(" ")) == 1:
 			message_channel = message.channel
 			message_content = "Je vais avoir besoin d'un url"
 			await client.send_message(message_channel,message_content)
+
 		if len(message_url.split(" ")) >= 2:
 			debug = 0
 			print(message_url.split("://")[0].split(' '))
@@ -268,17 +271,22 @@ async def on_message(message):
 			if debug >= 1:
 				print(url)
 				print("I'm taking the first way !")
+
 				try:
 					channel = message.author.voice.voice_channel
 					print("I'm connected to : " + str(channel))
 					await client.join_voice_channel(channel)
+
 				except:
 					pass
+
 				server = message.server
 				voice_client = client.voice_client_in(server)
 				player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
 				players[server.id] = player
+
 				try:
+
 					if len(players) == 1:
 						player.start()
 						message_channel = message.channel
@@ -299,10 +307,12 @@ async def on_message(message):
 			
 			else:
 				print("2eme essaie!")
+
 				try:
 					channel = message.author.voice.voice_channel
 					print("I'm connected to : " + str(channel))
 					await client.join_voice_channel(channel)
+
 				except:
 						pass
 
@@ -328,7 +338,7 @@ async def on_message(message):
 				voice_client = client.voice_client_in(server)
 				player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
 				players[server.id] = player
-
+				print(player,players)
 				try:
 					if len(players) == 1:
 						print("Je passe #2!")
