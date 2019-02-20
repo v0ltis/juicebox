@@ -14,8 +14,6 @@ class url_find():
 		ytb_query = '''https://www.youtube.com/results?search_query='''
 		query_splited = query.split(' ')
 
-		my_directory.search()
-		self.file_py = my_directory.me
 		query_builted = ''
 		x = 0
 
@@ -40,8 +38,7 @@ class url_find():
 			print(a)
 		complete_url = self.main_url + a
 		return complete_url
-'''
+
 #Test
 get_url = url_find('yt_url_spider_v2.py','youtube.com','windows error song').get_complete_url()
 print(get_url)
-'''
