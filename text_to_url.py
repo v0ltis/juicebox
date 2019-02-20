@@ -1,5 +1,5 @@
-import os
 import my_directory
+import subprocess
 
 class url_find():
 
@@ -31,7 +31,9 @@ class url_find():
 	
 	def get_complete_url(self):
 		os_command = "scrapy runspider " + str(self.file_py) + ''' -a url="%s"''' % self.query_url
-		a = os.popen(os_command).read().split("\n")[0]
+		print(os_command)
+		a = subprocess.check_output(os_command).decode()
+		print(a)
 		for x in range(0,10):
 			print(a)
 		complete_url = self.main_url + a
