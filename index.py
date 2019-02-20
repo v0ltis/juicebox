@@ -331,6 +331,7 @@ async def on_message(message):
 
 				try:
 					if len(players) == 1:
+						print("Je passe #2!")
 						player.start()
 						message_channel = message.channel
 						print("Let's play : " + str(url))
@@ -347,7 +348,8 @@ async def on_message(message):
 					message_channel = message.channel
 					message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
 					await client.send_message(message_channel,message_content)
-					
+	
+	'''	
 	#queue + query
 	if message.content.upper().startswith("/QUEUE"):
 		print(message.content)
@@ -439,7 +441,7 @@ async def on_message(message):
 					message_channel = message.channel
 					message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
 					await client.send_message(message_channel,message_content)
-
+	'''
 
 	#pause
 	if message.content.upper().startswith("/PAUSE"):
