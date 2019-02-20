@@ -279,12 +279,19 @@ async def on_message(message):
 				player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
 				players[server.id] = player
 				try:
-					player.start()
-					message_channel = message.channel
-					print("Let's play : " + str(url))
-					message_content = "C'est parti pour : " + str(url)
-					await client.send_message(message_channel,message_content)
-				 
+					if len(players) == 1:
+						player.start()
+						message_channel = message.channel
+						print("Let's play : " + str(url))
+						message_content = "C'est parti pour : " + str(url)
+						await client.send_message(message_channel,message_content)
+
+					else:
+						message_channel = message.channel
+						print("Je n'ai pas finit ! : " + str(url))
+						message_content = "Laisse moi finir s'il te plait"
+						await client.send_message(message_channel,message_content)
+
 				except:
 					message_channel = message.channel
 					message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
@@ -323,12 +330,19 @@ async def on_message(message):
 				players[server.id] = player
 
 				try:
-					player.start()
-					message_channel = message.channel
-					print("Let's play : " + str(url))
-					message_content = "C'est parti pour : " + str(url)
-					await client.send_message(message_channel,message_content)
-					
+					if len(players) == 1:
+						player.start()
+						message_channel = message.channel
+						print("Let's play : " + str(url))
+						message_content = "C'est parti pour : " + str(url)
+						await client.send_message(message_channel,message_content)
+
+					else:
+						message_channel = message.channel
+						print("Je n'ai pas finit ! : " + str(url))
+						message_content = "Laisse moi finir s'il te plait"
+						await client.send_message(message_channel,message_content)
+				
 				except:
 					message_channel = message.channel
 					message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
