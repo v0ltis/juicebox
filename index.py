@@ -46,7 +46,7 @@ players = {}
 queues = {}
 chat_on = False
 
-async def meme_audio(message):
+def meme_audio(message):
 	try:
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
