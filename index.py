@@ -46,6 +46,21 @@ players = {}
 queues = {}
 chat_on = False
 
+async def meme_audio(message):
+		try:
+		channel = message.author.voice.voice_channel
+		print("I'm connected to : " + str(channel))
+		await client.join_voice_channel(channel)
+	except:
+		pass
+	url = random.choice(["https://www.youtube.com/watch?v=ma7TL8jJT0A",
+			     "https://www.youtube.com/watch?v=ma7TL8jJT0A"])
+	server = message.server
+	voice_client = client.voice_client_in(server)
+	player = await voice_client.create_ytdl_player(url)
+	players[server.id] = player
+	player.start()
+
 async def a_test_fonction(msg):
 	print(msg.content)
 	await client.send_message(msg.channel,str(msg.content)) 
@@ -180,19 +195,9 @@ async def on_message(message):
 	if (message.channel.name == "youtube"):
 		await client.add_reaction(message, "<:youtube:314349922885566475>")
 		
-	```
 	if message.content.upper().startswith("/MEMEAUDIO"):
-		channel = message.author.voice.voice_channel
-		message_url = message.content
-		url = random.choice(["https://www.youtube.com/watch?v=ma7TL8jJT0A",
-					     "https://www.youtube.com/watch?v=ma7TL8jJT0A"])
-		server = message.server
-		voice_client = client.voice_client_in(server)
-		player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
-		await voice_client = client.voice_client_in(server)
-	```
-		
-				
+		meme_audio(message)
+
 	if message.content.upper().startswith("/SUPPORT"):
 		await client.send_message(message.channel,"Venez papoter ici: \n https://discord.gg/Abfvn9y")
 			
