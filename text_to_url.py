@@ -28,9 +28,17 @@ class url_find():
 		ytb_query = ytb_query + query_builted
 		print(ytb_query)
 		self.query_url = ytb_query
-	def me():
+	def me(arg):
 		a = str(os.getcwd())
-		print(a)
+		if a.startswith('/'):
+			args_ext = []
+			args = arg.split("\\")
+			for x in args:
+				args_ext.append('/')
+				args_ext.append(x)
+			args_ext.append(arg)
+			args_end = ''.join(args_ext)
+			return args_end
 		a = a.split('\\')
 		print(a)
 		#print(a)
@@ -38,10 +46,12 @@ class url_find():
 		c = str(a[0]) + str('\\')
 		for x in range(1,b):
 			c = c + str(a[x]) + str('\\')
+		d = arg
+		c = c + d
 		return c
 
 	def get_complete_url(self):
-		os_command = "scrapy runspider " + url_find.me() + str(self.file_py) + ''' -a url="%s"''' % self.query_url
+		os_command = "scrapy runspider " + url_find.me(str(self.file_py)) +''' -a url="%s"''' % self.query_url
 		print(os_command)
 		a = subprocess.check_output(os_command).decode()
 		print(a)
