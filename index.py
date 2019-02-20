@@ -46,12 +46,12 @@ players = {}
 queues = {}
 chat_on = False
 
-def meme_audio(message):
+async def meme_audio(message):
 	try:
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
 		await client.join_voice_channel(channel)
-		
+
 	except:
 		pass
 
@@ -198,7 +198,7 @@ async def on_message(message):
 		await client.add_reaction(message, "<:youtube:314349922885566475>")
 		
 	if message.content.upper().startswith("/MEMEAUDIO"):
-		meme_audio(message)
+		await meme_audio(message)
 
 	if message.content.upper().startswith("/SUPPORT"):
 		await client.send_message(message.channel,"Venez papoter ici: \n https://discord.gg/Abfvn9y")
@@ -229,7 +229,7 @@ async def on_message(message):
 			await client.send_message(message.channel,random.choice(["ga","plait"]))
 
 	if message.content.upper().startswith("/TEST"):
-		a_test_fonction(message)
+		await a_test_fonction(message)
 
 
 	if message.content.upper().startswith("BONJOUR"):
