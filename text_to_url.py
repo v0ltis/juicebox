@@ -30,7 +30,9 @@ class url_find():
 		self.query_url = ytb_query
 	def me():
 		a = str(os.getcwd())
+		print(a)
 		a = a.split('\\')
+		print(a)
 		#print(a)
 		b = len(a)
 		c = str(a[0]) + str('\\')
