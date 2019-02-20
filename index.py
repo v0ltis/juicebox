@@ -176,6 +176,16 @@ async def on_message(message):
 	if (message.channel.name == "youtube"):
 		await client.add_reaction(message, "<:youtube:314349922885566475>")
 		
+	if message.content.upper().startswith("/MEMEAUDIO"):
+		channel = message.author.voice.voice_channel
+		message_url = message.content
+		url = random.choice(["https://www.youtube.com/watch?v=ma7TL8jJT0A",
+				     "https://www.youtube.com/watch?v=ma7TL8jJT0A"])
+		server = message.server
+		voice_client = client.voice_client_in(server)
+		player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
+		await voice_client = client.voice_client_in(server)
+		
 				
 	if message.content.upper().startswith("/SUPPORT"):
 		await client.send_message(message.channel,"Venez papoter ici: \n https://discord.gg/Abfvn9y")
@@ -350,7 +360,7 @@ async def on_message(message):
 
 					else:
 						message_channel = message.channel
-						print("Je n'ai pas finit ! : " + str(url))
+						print("Je n'ai pas fini ! : " + str(url))
 						message_content = "Laisse moi finir s'il te plait"
 						await client.send_message(message_channel,message_content)
 				
