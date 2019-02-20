@@ -14,6 +14,8 @@ class url_find():
 		ytb_query = '''https://www.youtube.com/results?search_query='''
 		query_splited = query.split(' ')
 
+		my_directory.search()
+		self.file_py = my_directory.me
 		query_builted = ''
 		x = 0
 
