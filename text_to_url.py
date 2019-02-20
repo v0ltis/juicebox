@@ -32,23 +32,20 @@ class url_find():
 		a = str(os.getcwd())
 		if a.startswith('/'):
 			args_ext = []
-			args = arg.split("\\")
-			for x in args:
-				args_ext.append('/')
-				args_ext.append(x)
-			args_ext.append(arg)
-			args_end = ''.join(args_ext)
-			return args_end
-		a = a.split('\\')
-		print(a)
-		#print(a)
-		b = len(a)
-		c = str(a[0]) + str('\\')
-		for x in range(1,b):
-			c = c + str(a[x]) + str('\\')
-		d = arg
-		c = c + d
-		return c
+			a = a +'/'+arg
+			return a
+
+		else:
+			a = a.split('\\')
+			print(a)
+			#print(a)
+			b = len(a)
+			c = str(a[0]) + str('\\')
+			for x in range(1,b):
+				c = c + str(a[x]) + str('\\')
+			d = arg
+			c = c + d
+			return c
 
 	def get_complete_url(self):
 		os_command = "scrapy runspider " + url_find.me(str(self.file_py)) +''' -a url="%s"''' % self.query_url
