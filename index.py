@@ -185,7 +185,7 @@ async def play(message):
 			players[server.id] = player
 			print(player,players)
 			try:
-				if player.is_playing() == False or play_on == True:
+				if player.is_playing() == False or play_on == False:
 					player.start()
 					print("Let's play : " + str(url))
 					await send_msg(message.channel,("C'est parti pour : " + str(url)))
