@@ -120,7 +120,7 @@ async def play(message):
 			voice_client = client.voice_client_in(server)
 			player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
 			players[server.id] = player
-
+			print("----------\n",player,"\n",players)
 			try:
 
 				if len(players) == 1:
