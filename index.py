@@ -59,8 +59,10 @@ async def meme_audio(message):
 	await join(message)
 
 	url = random.choice(["https://www.youtube.com/watch?v=ma7TL8jJT0A",
-		"https://www.youtube.com/watch?v=5aFP-iR7hPg"
-		"https://www.youtube.com/watch?v=rrvFFjoqg8A"])
+		"https://www.youtube.com/watch?v=5aFP-iR7hPg",
+		"https://www.youtube.com/watch?v=rrvFFjoqg8A",
+		"https://www.youtube.com/watch?v=QglFGVDcuX8",
+		"https://www.youtube.com/watch?v=XE6YaLtctcI"])
 	server = message.server
 	voice_client = client.voice_client_in(server)
 	player = await voice_client.create_ytdl_player(url)
