@@ -110,6 +110,9 @@ async def verif_play(message):
 	if len(message_url.split(" ")) >= 2:
 		pass
 
+async def play_url(message):
+
+
 async def play(message):
 	global play_on
 	print(message.content)
@@ -175,28 +178,34 @@ async def play(message):
 
 			except:
 					pass
-						
+			
 			print(msg_query_end)
 			url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
 			print(url)
-			server = message.server
-			voice_client = client.voice_client_in(server)
-			player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
-			players[server.id] = player
-			print(player,players)
-			try:
-				if player.is_playing() == False or play_on == False:
-					player.start()
-					print("Let's play : " + str(url))
-					await send_msg(message.channel,("C'est parti pour : " + str(url)))
-					play_on = True
 
-				else:
+			if player != None:
+				if player.is_playing() == True:
 					print("Je n'ai pas fini ! : " + str(url))
 					await send_msg(message.channel,"Laisse moi finir s'il te plait")
+			else:
+				server = message.server
+				voice_client = client.voice_client_in(server)
+				player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
+				players[server.id] = player
+				print(player,players)
+				try:
+					if player.is_playing() == False or play_on == False:
+						player.start()
+						print("Let's play : " + str(url))
+						await send_msg(message.channel,("C'est parti pour : " + str(url)))
+						play_on = True
 
-			except:
-				await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
+					else:
+						print("Je n'ai pas fini ! : " + str(url))
+						await send_msg(message.channel,"Laisse moi finir s'il te plait")
+
+				except:
+					await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
 
 
 async def meme_audio(message):
