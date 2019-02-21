@@ -59,7 +59,7 @@ async def join(message):
 		await client.send_message(message.channel, "Je suis pret à chanter !")
 		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***')
 	except:
-		send_msg(message.channel,"Erreur ...")
+		await send_msg(message.channel,"Erreur ...")
 
 async def leave(message):
 	server = message.server
@@ -137,9 +137,7 @@ async def play(message):
 					await client.send_message(message_channel,message_content)
 
 			except:
-				message_channel = message.channel
-				message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
-				await client.send_message(message_channel,message_content)
+				send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
 			
 		else:
 			print("2eme essaie!")
