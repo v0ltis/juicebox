@@ -45,6 +45,7 @@ async def on_ready():
 players = {}
 queues = {}
 chat_on = False
+play_on = False
 
 async def send_msg(channel,content):
 	message_channel = channel
@@ -52,6 +53,8 @@ async def send_msg(channel,content):
 	await client.send_message(message_channel,message_content)
 
 async def join(message):
+	global play_on
+	play_on = False
 	try:
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
@@ -108,6 +111,7 @@ async def verif_play(message):
 		pass
 
 async def play(message):
+	global play_on
 	print(message.content)
 	message_url = message.content
 	url = message_url.split(" ")[1]
@@ -135,12 +139,13 @@ async def play(message):
 			print("----------\n",player,"\n",players)
 			try:
 
-				if player.is_playing() == False:
+				if player.is_playing() == False or play_on == False:
 					player.start()
 					message_channel = message.channel
 					print("Let's play : " + str(url))
 					message_content = "C'est parti pour : " + str(url)
 					await client.send_message(message_channel,message_content)
+					play_on = True
 
 				else:
 					message_channel = message.channel
@@ -180,7 +185,7 @@ async def play(message):
 			players[server.id] = player
 			print(player,players)
 			try:
-				if player.is_playing() == False:
+				if player.is_playing() == False or play_on == True:
 					player.start()
 					print("Let's play : " + str(url))
 					await send_msg(message.channel,("C'est parti pour : " + str(url)))
