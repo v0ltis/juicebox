@@ -41,11 +41,11 @@ async def on_ready():
 		#for x in client.servers:
 			#serveur_juicy = await client.send_message(channel_dem, x.name + server.owner)
 
-		
 players = {}
 queues = {}
 chat_on = False
 play_on = False
+player = None
 
 async def send_msg(channel,content):
 	message_channel = channel
@@ -114,7 +114,7 @@ async def play_url(message):
 	pass
 
 async def play(message):
-	global play_on
+	global play_on,player
 	print(message.content)
 	message_url = message.content
 	url = message_url.split(" ")[1]
