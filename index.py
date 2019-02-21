@@ -111,7 +111,7 @@ async def verif_play(message):
 		pass
 
 async def play_url(message):
-
+	pass
 
 async def play(message):
 	global play_on
