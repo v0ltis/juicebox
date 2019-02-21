@@ -58,6 +58,7 @@ async def join(message):
 		await client.join_voice_channel(channel)
 		await client.send_message(message.channel, "Je suis pret à chanter !")
 		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***')
+
 	except:
 		await send_msg(message.channel,"Erreur ...")
 
@@ -201,6 +202,7 @@ async def meme_audio(message):
 		"https://www.youtube.com/watch?v=QglFGVDcuX8",
 		"https://www.youtube.com/watch?v=XE6YaLtctcI",
 		"https://www.youtube.com/watch?v=caXgpo5Ezo4"])
+
 	server = message.server
 	voice_client = client.voice_client_in(server)
 	player = await voice_client.create_ytdl_player(url)
