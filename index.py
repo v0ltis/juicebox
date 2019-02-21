@@ -39,7 +39,7 @@ async def on_ready():
 		#await client.create_channel("JuiceBox Support", "serveurs-juicebox-x-delete")
 		#await client.send_message(channel_dem, "Les serveurs auquel je suis connecté sont :\n")
 		#for x in client.servers:
-			#serveur_juicy = await client.send_message(channel_dem, x.name)
+			#serveur_juicy = await client.send_message(channel_dem, x.name + server.owner)
 
 		
 players = {}
