@@ -46,14 +46,142 @@ players = {}
 queues = {}
 chat_on = False
 
+async def send_msg(channel,content):
+	message_channel = channel
+	message_content = str(content)
+	await client.send_message(message_channel,message_content)
+
 async def join(message):
 	try:
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
 		await client.join_voice_channel(channel)
-
+		await client.send_message(message.channel, "Je suis pret à chanter !")
+		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***')
 	except:
-		pass
+		send_msg(message.channel,"Erreur ...")
+
+async def leave(message):
+	server = message.server
+	print("I'm disconnected from : " + str(server))
+	voice_client = client.voice_client_in(server)
+	try:
+		for x in range(0,100):
+			await voice_client.disconnect()
+	except:
+		print("Error ...")
+		message_channel = message.channel
+		message_content = "Buuuuuug... attend un peut ou essaye avec /join'."
+		await client.send_message(message_channel,message_content)
+
+async def pause(message):
+	id = message.server.id
+	players[id].pause()
+	message_channel = message.channel
+	message_content = "Pause :+1:"
+	await client.send_message(message_channel,message_content)
+
+async def resume(message):
+	id = message.server.id
+	players[id].resume()
+	message_channel = message.channel
+	message_content = "Je recomence"
+	await client.send_message(message_channel,message_content)
+
+async def stop(message):
+	id = message.server.id
+	players[id].stop()
+	message_channel = message.channel
+	message_content = "Ok , ok , j'arrete"
+	await client.send_message(message_channel,message_content)
+
+async def play(message):
+	print(message.content)
+	message_url = message.content
+	url = message_url.split(" ")[1]
+
+	if len(message_url.split(" ")) == 1:
+		await send_msg(message.content,"Je vais avoir besoin d'un url")
+
+	if len(message_url.split(" ")) >= 2:
+		debug = 0
+		print(message_url.split("://")[0].split(' '))
+	
+		if message_url.split("://")[0].split(' ')[1] == 'https':
+			debug += 1
+				
+		if debug >= 1:
+			print(url)
+			print("Https detecté !")
+
+			await join(message)
+
+			server = message.server
+			voice_client = client.voice_client_in(server)
+			player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
+			players[server.id] = player
+
+			try:
+
+				if len(players) == 1:
+					player.start()
+					message_channel = message.channel
+					print("Let's play : " + str(url))
+					message_content = "C'est parti pour : " + str(url)
+					await client.send_message(message_channel,message_content)
+
+				else:
+					message_channel = message.channel
+					print("Je n'ai pas finit ! : " + str(url))
+					message_content = "Laisse moi finir s'il te plait"
+					await client.send_message(message_channel,message_content)
+
+			except:
+				message_channel = message.channel
+				message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
+				await client.send_message(message_channel,message_content)
+			
+		else:
+			print("2eme essaie!")
+
+			await join(message)
+			
+			msg_query = message.content.split(' ')
+			msg_query.pop(0)
+
+			msg_query_end = ''
+			x=0
+
+			for x in range(len(msg_query)-1):
+				msg_query_end = msg_query_end + msg_query[x] + ' '
+						
+			try:
+				msg_query_end = msg_query_end + msg_query[x+1]
+
+			except:
+					pass
+						
+			print(msg_query_end)
+			url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
+			print(url)
+			server = message.server
+			voice_client = client.voice_client_in(server)
+			player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
+			players[server.id] = player
+			print(player,players)
+			try:
+				if len(players) == 1:
+					player.start()
+					print("Let's play : " + str(url))
+					await send_msg(message.channel,("C'est parti pour : " + str(url)))
+
+				else:
+					print("Je n'ai pas fini ! : " + str(url))
+					await send_msg(message.channel,"Laisse moi finir s'il te plait")
+
+			except:
+				await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
+
 
 async def meme_audio(message):
 	await join(message)
@@ -73,18 +201,6 @@ async def meme_audio(message):
 			await leave(message)
 			break
 
-async def leave(message):
-	server = message.server
-	print("I'm disconnected from : " + str(server))
-	voice_client = client.voice_client_in(server)
-	try:
-		for x in range(0,100):
-			await voice_client.disconnect()
-	except:
-		print("Error ...")
-		message_channel = message.channel
-		message_content = "Buuuuuug... attend un peut ou essaye avec /join'."
-		await client.send_message(message_channel,message_content)
 
 async def a_test_fonction(msg):
 	print(msg.content)
@@ -293,123 +409,36 @@ async def on_message(message):
 		
 	#join
 	if message.content.upper().startswith("/JOIN"):
-		channel = message.author.voice.voice_channel
-		print("I'm connected to : " + str(channel))
-		await client.join_voice_channel(channel)
-		await client.send_message(message.channel, "Je suis pret à chanter !")
-		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***')
-		
+		await join(message)
 
 	#play + query
 	if message.content.upper().startswith("/PLAY"):
+		await play(message)
 
+	#pause
+	if message.content.upper().startswith("/PAUSE"):
+		await pause(message)
+	
+	#resume
+	if message.content.upper().startswith("/RESUME"):
+		await resume(message)
+
+	#STOP
+	if message.content.upper().startswith("/STOP"):
+		await stop(message)
+
+	#leave
+	if message.content.upper().startswith("/LEAVE"):
+		await leave(message)
+
+	'''
+	if message.content.upper().startswith("/QUEUE"):
+		await pause(message)
 		print(message.content)
 		message_url = message.content
 		url = message_url.split(" ")[1]
+	'''
 
-		if len(message_url.split(" ")) == 1:
-			message_channel = message.channel
-			message_content = "Je vais avoir besoin d'un url"
-			await client.send_message(message_channel,message_content)
-
-		if len(message_url.split(" ")) >= 2:
-			debug = 0
-			print(message_url.split("://")[0].split(' '))
-		
-			if message_url.split("://")[0].split(' ')[1] == 'https':
-				debug += 1
-				
-			if debug >= 1:
-				print(url)
-				print("I'm taking the first way !")
-
-				try:
-					channel = message.author.voice.voice_channel
-					print("I'm connected to : " + str(channel))
-					await client.join_voice_channel(channel)
-
-				except:
-					pass
-
-				server = message.server
-				voice_client = client.voice_client_in(server)
-				player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
-				players[server.id] = player
-
-				try:
-
-					if len(players) == 1:
-						player.start()
-						message_channel = message.channel
-						print("Let's play : " + str(url))
-						message_content = "C'est parti pour : " + str(url)
-						await client.send_message(message_channel,message_content)
-
-					else:
-						message_channel = message.channel
-						print("Je n'ai pas finit ! : " + str(url))
-						message_content = "Laisse moi finir s'il te plait"
-						await client.send_message(message_channel,message_content)
-
-				except:
-					message_channel = message.channel
-					message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
-					await client.send_message(message_channel,message_content)
-			
-			else:
-				print("2eme essaie!")
-
-				try:
-					channel = message.author.voice.voice_channel
-					print("I'm connected to : " + str(channel))
-					await client.join_voice_channel(channel)
-
-				except:
-						pass
-
-				msg_query = message.content.split(' ')
-				msg_query.pop(0)
-
-				msg_query_end = ''
-				x=0
-
-				for x in range(len(msg_query)-1):
-					msg_query_end = msg_query_end + msg_query[x] + ' '
-						
-				try:
-					msg_query_end = msg_query_end + msg_query[x+1]
-
-				except:
-					pass
-						
-				print(msg_query_end)
-				url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
-				print(url)
-				server = message.server
-				voice_client = client.voice_client_in(server)
-				player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
-				players[server.id] = player
-				print(player,players)
-				try:
-					if len(players) == 1:
-						print("Je passe #2!")
-						player.start()
-						message_channel = message.channel
-						print("Let's play : " + str(url))
-						message_content = "C'est parti pour : " + str(url)
-						await client.send_message(message_channel,message_content)
-
-					else:
-						message_channel = message.channel
-						print("Je n'ai pas fini ! : " + str(url))
-						message_content = "Laisse moi finir s'il te plait"
-						await client.send_message(message_channel,message_content)
-				
-				except:
-					message_channel = message.channel
-					message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
-					await client.send_message(message_channel,message_content)
-	
 	'''	
 	#queue + query
 	if message.content.upper().startswith("/QUEUE"):
@@ -503,40 +532,6 @@ async def on_message(message):
 					message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
 					await client.send_message(message_channel,message_content)
 	'''
-
-	#pause
-	if message.content.upper().startswith("/PAUSE"):
-		id = message.server.id
-		players[id].pause()
-		message_channel = message.channel
-		message_content = "Pause :+1:"
-		await client.send_message(message_channel,message_content)
-		
-	#resume
-	if message.content.upper().startswith("/RESUME"):
-		id = message.server.id
-		players[id].resume()
-		message_channel = message.channel
-		message_content = "Je recomence"
-		await client.send_message(message_channel,message_content)
-
-	#STOP
-	if message.content.upper().startswith("/STOP"):
-		id = message.server.id
-		players[id].stop()
-		message_channel = message.channel
-		message_content = "Ok , ok , j'arrete"
-		await client.send_message(message_channel,message_content)
-
-	#leave
-	if message.content.upper().startswith("/LEAVE"):
-		await leave(message)
-
-	if message.content.upper().startswith("/QUEUE"):
-		print(message.content)
-		message_url = message.content
-		url = message_url.split(" ")[1]
-			
 '''
 async def queue(ctx,url):
 	server = message.server
