@@ -243,7 +243,7 @@ async def on_message(message):
 		ticket=discord.Embed(color=0x7a2581)
 		ticket.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
 		ticket.add_field(name="Utilisateur", value=message.author, inline=False)
-		ticket.add_field(name="Tiket :", value=("".join(args[1:])), inline=False)
+		ticket.add_field(name="Tiket :", value=(" ".join(args[1:])), inline=False)
 		ticket.set_footer(text="ID de l'utilisateur : " + message.author.id) 
 		await client.send_message(discord.Object(id="544830498099298324"), embed=ticket)
 		await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite !")
