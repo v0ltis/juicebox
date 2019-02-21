@@ -68,8 +68,10 @@ async def meme_audio(message):
 	player = await voice_client.create_ytdl_player(url)
 	players[server.id] = player
 	player.start()
-	if player.is_playing() == False:
-		await leave(message)
+	while True:
+		if player.is_playing() == False:
+			await leave(message)
+			break
 
 async def leave(message):
 	server = message.server
