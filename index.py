@@ -189,6 +189,7 @@ async def play(message):
 					player.start()
 					print("Let's play : " + str(url))
 					await send_msg(message.channel,("C'est parti pour : " + str(url)))
+					play_on = True
 
 				else:
 					print("Je n'ai pas fini ! : " + str(url))
