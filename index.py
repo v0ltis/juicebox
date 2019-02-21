@@ -105,7 +105,7 @@ async def verif_play(message):
 
 	if len(message_url.split(" ")) >= 2:
 		pass
-		
+
 async def play(message):
 	print(message.content)
 	message_url = message.content
@@ -199,7 +199,8 @@ async def meme_audio(message):
 		"https://www.youtube.com/watch?v=5aFP-iR7hPg",
 		"https://www.youtube.com/watch?v=rrvFFjoqg8A",
 		"https://www.youtube.com/watch?v=QglFGVDcuX8",
-		"https://www.youtube.com/watch?v=XE6YaLtctcI"])
+		"https://www.youtube.com/watch?v=XE6YaLtctcI",
+		"https://www.youtube.com/watch?v=caXgpo5Ezo4"])
 	server = message.server
 	voice_client = client.voice_client_in(server)
 	player = await voice_client.create_ytdl_player(url)
