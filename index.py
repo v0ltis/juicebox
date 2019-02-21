@@ -123,7 +123,7 @@ async def play(message):
 			print("----------\n",player,"\n",players)
 			try:
 
-				if len(players) == 1:
+				if player.is_playing == False:
 					player.start()
 					message_channel = message.channel
 					print("Let's play : " + str(url))
