@@ -105,6 +105,7 @@ async def verif_play(message):
 
 	if len(message_url.split(" ")) >= 2:
 		pass
+		
 async def play(message):
 	print(message.content)
 	message_url = message.content
@@ -178,7 +179,7 @@ async def play(message):
 			players[server.id] = player
 			print(player,players)
 			try:
-				if len(players) == 1:
+				if player.is_playing() == False:
 					player.start()
 					print("Let's play : " + str(url))
 					await send_msg(message.channel,("C'est parti pour : " + str(url)))
