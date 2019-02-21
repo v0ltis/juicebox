@@ -95,6 +95,16 @@ async def stop(message):
 	message_content = "Ok , ok , j'arrete"
 	await client.send_message(message_channel,message_content)
 
+async def verif_play(message):
+	print(message.content)
+	message_url = message.content
+	url = message_url.split(" ")[1]
+
+	if len(message_url.split(" ")) == 1:
+		await send_msg(message.content,"Je vais avoir besoin d'un url")
+
+	if len(message_url.split(" ")) >= 2:
+		pass
 async def play(message):
 	print(message.content)
 	message_url = message.content
@@ -123,7 +133,7 @@ async def play(message):
 			print("----------\n",player,"\n",players)
 			try:
 
-				if player.is_playing == False:
+				if player.is_playing() == False:
 					player.start()
 					message_channel = message.channel
 					print("Let's play : " + str(url))
