@@ -142,7 +142,7 @@ async def play_url(message,url):
 	await join(message)
 
 	if player != None:
-		if player.is_playing() == True:
+		if player.is_done() == False:
 			print("Je n'ai pas fini ! : " + str(url))
 			await send_msg(message.channel,"Laisse moi finir s'il te plait")
 
@@ -153,7 +153,7 @@ async def play_url(message,url):
 		players[server.id] = player
 		print(player,players)
 		try:
-			if player.is_playing() == False or play_on == False:
+			if player.is_done() == True or play_on == False:
 				player.start()
 				print("Let's play : " + str(url))
 				await send_msg(message.channel,("C'est parti pour : " + str(url)))
@@ -214,7 +214,7 @@ async def meme_audio(message):
 	await play_url(message,url)
 
 	while True:
-		if player.is_playing() == False:
+		if player.is_done() == True:
 			await leave(message)
 			break
 
