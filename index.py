@@ -216,6 +216,8 @@ async def meme_audio(message):
 			msg = await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
 			emji =client.wait_for_reaction()
 			print(emji)
+			for x in emji:
+				yield x
 			await client.add_reaction(msg,emji)
 			'''
 			msg = await client.wait_for_message(author=None)
