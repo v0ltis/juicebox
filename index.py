@@ -150,7 +150,7 @@ async def play_url(message,url):
 	print(player,players)
 	try:
 		if player.is_done() == True or play_on == False:
-			time.sleep(3)
+			time.sleep(5)
 			player.start()
 			print("Let's play : " + str(url))
 			await send_msg(message.channel,("C'est parti pour : " + str(url)))
@@ -207,6 +207,12 @@ async def play(message):
 
 		await play_url(message,url)
 
+def test(message):
+	emji = client.wait_for_reaction()
+	print(emji)
+	for x in emji:
+		yield x
+
 async def meme_audio(message):
 	await join(message)
 
@@ -216,8 +222,11 @@ async def meme_audio(message):
 			msg = await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
 			emji =client.wait_for_reaction()
 			print(emji)
-			for x in emji:
-				yield x
+
+			test(message)
+			test(message)
+			test(message)
+			
 			await client.add_reaction(msg,emji)
 			'''
 			msg = await client.wait_for_message(author=None)
@@ -251,7 +260,7 @@ async def meme_audio(message):
 
 	while True:
 		if player.is_done() == True:
-			time.sleep(3)
+			time.sleep(5)
 			await leave(message)
 			break
 
