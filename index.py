@@ -217,7 +217,7 @@ async def meme_audio(message):
 			print(msg.author)
 			
 			try:
-				print(message.)
+				print(message)
 			
 			except:
 				pass
