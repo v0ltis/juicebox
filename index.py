@@ -211,7 +211,7 @@ async def meme_audio(message):
 
 	url = random.choice(memeaudio)
 
-	play_url(message,url)
+	await play_url(message,url)
 
 	while True:
 		if player.is_playing() == False:
