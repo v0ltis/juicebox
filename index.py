@@ -25,7 +25,8 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 	     "https://www.youtube.com/watch?v=QglFGVDcuX8",
 	     "https://www.youtube.com/watch?v=XE6YaLtctcI",
 	     "https://www.youtube.com/watch?v=caXgpo5Ezo4",
-	     "https://www.youtube.com/watch?v=6IG4aHDFBYw"]
+	     "https://www.youtube.com/watch?v=6IG4aHDFBYw",
+	     "https://www.youtube.com/watch?v=1IySOpdDCx0"]
 
 @client.event
 async def on_ready():
@@ -211,8 +212,9 @@ async def meme_audio(message):
 	url = random.choice(memeaudio)
 	try:
 		if message.content.split(' ')[1] != None:
-			await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
-		
+			msg = await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
+			await msg.add_reaction()
+			'''
 			msg = await client.wait_for_message(author=None)
 			print(msg.author)
 			
@@ -234,6 +236,7 @@ async def meme_audio(message):
 			await client.send_message(message.channel,str(react_test))
 
 			react = await client.wait_for_reaction(message=msg,emoji=':white_check_mark:')
+			'''
 			await client.send_message(message.channel,str(react))
 
 	except:
@@ -243,6 +246,7 @@ async def meme_audio(message):
 
 	while True:
 		if player.is_done() == True:
+			time.sleep(2)
 			await leave(message)
 			break
 
