@@ -145,26 +145,26 @@ async def play_url(message,url):
 		if player.is_done() == False:
 			print("Je n'ai pas fini ! : " + str(url))
 			await send_msg(message.channel,"Laisse moi finir s'il te plait")
+			return
+	
+	server = message.server
+	voice_client = client.voice_client_in(server)
+	player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
+	players[server.id] = player
+	print(player,players)
+	try:
+		if player.is_done() == True or play_on == False:
+			player.start()
+			print("Let's play : " + str(url))
+			await send_msg(message.channel,("C'est parti pour : " + str(url)))
+			play_on = True
 
-	else:
-		server = message.server
-		voice_client = client.voice_client_in(server)
-		player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
-		players[server.id] = player
-		print(player,players)
-		try:
-			if player.is_done() == True or play_on == False:
-				player.start()
-				print("Let's play : " + str(url))
-				await send_msg(message.channel,("C'est parti pour : " + str(url)))
-				play_on = True
+		else:
+			print("Je n'ai pas fini ! : " + str(url))
+			await send_msg(message.channel,"Laisse moi finir s'il te plait")
 
-			else:
-				print("Je n'ai pas fini ! : " + str(url))
-				await send_msg(message.channel,"Laisse moi finir s'il te plait")
-
-		except:
-			await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
+	except:
+		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
 
 async def play(message):
 	global play_on,player
