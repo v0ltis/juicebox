@@ -66,11 +66,11 @@ async def join(message):
 		print("I'm connected to : " + str(channel))
 		await client.join_voice_channel(channel)
 		await client.send_message(message.channel, "Je suis pret à chanter !")
-		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***'\
+		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***' \
 			+'\n Nom du serveur : "***' + message.server.name + '"***')
-
 	except:
-		await send_msg(message.channel,"Erreur ...")
+		pass
+#await send_msg(message.channel,"Erreur ...(join command)")
 
 async def leave(message):
 	server = message.server
@@ -117,15 +117,10 @@ async def verif_play(message):
 	if len(message_url.split(" ")) >= 2:
 		pass
 
-async def play_url(message):
-	pass
-
-async def play(message):
-	global play_on,player
-	print(message.content)
+#renvoie True si il s'agit d'un url sinon False
+async def verifie_url(message):
 	message_url = message.content
 	url = message_url.split(" ")[1]
-
 	if len(message_url.split(" ")) == 1:
 		await send_msg(message.content,"Je vais avoir besoin d'un url")
 
@@ -135,85 +130,81 @@ async def play(message):
 	
 		if message_url.split("://")[0].split(' ')[1] == 'https':
 			debug += 1
-				
-		if debug >= 1:
 			print(url)
 			print("Https detecté !")
-
-			await join(message)
-
-			server = message.server
-			voice_client = client.voice_client_in(server)
-			player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
-			players[server.id] = player
-			print("----------\n",player,"\n",players)
-			try:
-
-				if player.is_playing() == False or play_on == False:
-					player.start()
-					message_channel = message.channel
-					print("Let's play : " + str(url))
-					message_content = "C'est parti pour : " + str(url)
-					await client.send_message(message_channel,message_content)
-					play_on = True
-
-				else:
-					message_channel = message.channel
-					print("Je n'ai pas finit ! : " + str(url))
-					message_content = "Laisse moi finir s'il te plait"
-					await client.send_message(message_channel,message_content)
-
-			except:
-				send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
-			
+			return True
 		else:
-			print("2eme essaie!")
+			return False
 
-			await join(message)
-			
-			msg_query = message.content.split(' ')
-			msg_query.pop(0)
+async def play_url(message,url):
+	global player,play_on
 
-			msg_query_end = ''
-			x=0
+	await join(message)
 
-			for x in range(len(msg_query)-1):
-				msg_query_end = msg_query_end + msg_query[x] + ' '
-						
-			try:
-				msg_query_end = msg_query_end + msg_query[x+1]
+	if player != None:
+		if player.is_playing() == True:
+			print("Je n'ai pas fini ! : " + str(url))
+			await send_msg(message.channel,"Laisse moi finir s'il te plait")
 
-			except:
-					pass
-			
-			print(msg_query_end)
-			url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
-			print(url)
+	else:
+		server = message.server
+		voice_client = client.voice_client_in(server)
+		player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
+		players[server.id] = player
+		print(player,players)
+		try:
+			if player.is_playing() == False or play_on == False:
+				player.start()
+				print("Let's play : " + str(url))
+				await send_msg(message.channel,("C'est parti pour : " + str(url)))
+				play_on = True
 
-			if player != None:
-				if player.is_playing() == True:
-					print("Je n'ai pas fini ! : " + str(url))
-					await send_msg(message.channel,"Laisse moi finir s'il te plait")
 			else:
-				server = message.server
-				voice_client = client.voice_client_in(server)
-				player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
-				players[server.id] = player
-				print(player,players)
-				try:
-					if player.is_playing() == False or play_on == False:
-						player.start()
-						print("Let's play : " + str(url))
-						await send_msg(message.channel,("C'est parti pour : " + str(url)))
-						play_on = True
+				print("Je n'ai pas fini ! : " + str(url))
+				await send_msg(message.channel,"Laisse moi finir s'il te plait")
 
-					else:
-						print("Je n'ai pas fini ! : " + str(url))
-						await send_msg(message.channel,"Laisse moi finir s'il te plait")
+		except:
+			await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
 
-				except:
-					await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
+async def play(message):
+	global play_on,player
+	
+	message_url = message.content
+	url = message_url.split(" ")[1]
+	print(url)
+	
+	https = verifie_url(message)
+	if https == True:
+		print("Https == True")
+		await join(message)
 
+		await play_url(message,url)
+
+	elif https == False:
+		print("Https == False")
+		await join(message)
+			
+		msg_query = message.content.split(' ')
+		msg_query.pop(0)
+
+		msg_query_end = ''
+		x=0
+
+		for x in range(len(msg_query)-1):
+			msg_query_end = msg_query_end + msg_query[x] + ' '
+						
+		try:
+			msg_query_end = msg_query_end + msg_query[x+1]
+
+		except:
+			pass
+			
+		print(msg_query_end)
+		url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
+		print(url)
+
+
+		await play_url(message,url)
 
 async def meme_audio(message):
 	await join(message)
