@@ -19,6 +19,12 @@ merde = ["MERDE","CHIER","CHIANT","CHIE"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
 bypass_list = ["362615539773997056","528268989525131274","402896241429577729","281134477877575680"]
 ban_user = ["159985870458322944"]
+memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
+	     "https://www.youtube.com/watch?v=5aFP-iR7hPg",
+	     "https://www.youtube.com/watch?v=rrvFFjoqg8A",
+	     "https://www.youtube.com/watch?v=QglFGVDcuX8",
+	     "https://www.youtube.com/watch?v=XE6YaLtctcI",
+	     "https://www.youtube.com/watch?v=caXgpo5Ezo4"]
 
 def check_queue(id):
 	if queues[id] != []:
@@ -211,12 +217,7 @@ async def play(message):
 async def meme_audio(message):
 	await join(message)
 
-	url = random.choice(["https://www.youtube.com/watch?v=ma7TL8jJT0A",
-		"https://www.youtube.com/watch?v=5aFP-iR7hPg",
-		"https://www.youtube.com/watch?v=rrvFFjoqg8A",
-		"https://www.youtube.com/watch?v=QglFGVDcuX8",
-		"https://www.youtube.com/watch?v=XE6YaLtctcI",
-		"https://www.youtube.com/watch?v=caXgpo5Ezo4"])
+	url = random.choice(memeaudio)
 
 	server = message.server
 	voice_client = client.voice_client_in(server)
@@ -320,19 +321,24 @@ async def on_message(message):
 		help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
 		help.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		help.add_field(name="Prefix:", value="/", inline=False)
-		help.add_field(name="/help", value="Affiche les commandes", inline=True)
-		help.add_field(name="/say (+texte)", value="Fait dire au bot le texte", inline=True)
-		help.add_field(name="/ping", value="Affiche le ping", inline=True)
-		help.add_field(name="/gif", value="Donne un GIF aleatoirement!", inline=True)
-		help.add_field(name="/ticket ***(Nouveau)***", value="Envoie un message aux devlopeurs", inline=True)
-		help.add_field(name="/report ***(nouveau)***", value="Signale les méchant utilisateur dans #report ! \n Fonctionement : /report (mention) (raison)", inline=True)
-		help.add_field(name="/musique", value="donne les commandes musicales du bot", inline=False)
-		help.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.", inline=True)
-		help.add_field(name="/support", value="Donne notre serveur du support: ``https://discord.gg/Abfvn9y``.", inline=True)
+		help.add_field(name="/fun", value="Donne les commandes de fun", inline=True)
+		help.add_field(name="/moderation", value="Donne les commandes de moderations", inline=True)
+		help.add_field(name="/musique", value="Donne les commandes de musique", inline=True)
+		help.set_footer(text="Demandé par: " + message.author)
 		await client.send_message(message.channel, embed=help)
-								 
+		
+		
+	if message.content.upper().startswith("/SUPPORT"):
+		dev = discord.Embed(title='Commandes de support:', description='Voici la liste des commandes pour vous aider a meiux connaitre Juicy !', colour=0x7a2581)
+		dev.add_field(name="/ticket", value="Envoie un message aux devlopeurs", inline=True)
+		dev.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.", inline=True)
+		dev.add_field(name="/discord", value="Donne notre serveur du support: ``https://discord.gg/Abfvn9y``.", inline=True)
+		dev.set_footer(text="Demandé par: " + message.author)
+		await client.send_message(message.channel, embed=dev)
+	
+	
 	if message.content.upper().startswith("/MUSIQUE"):
-		musique = discord.Embed(title='Commandes musicales:', description='Voici la liste des commandes de la musique', colour=0x7a2581)
+		musique = discord.Embed(title='Commandes musicales:', description='Voici la liste des commandes de la musique:', colour=0x7a2581)
 		musique.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		musique.add_field(name=" /join", value="Fait rejoindre juicebox dans votre salon vocal ", inline=True)
 		musique.add_field(name="/play", value=" lis la video/musique (l'URL doit être un URL YouTube) ", inline=True)
@@ -340,8 +346,25 @@ async def on_message(message):
 		musique.add_field(name="/pause", value="Met en pause la video", inline=True)
 		musique.add_field(name="/resume", value="Reprend la video", inline=True)
 		musique.add_field(name="/leave", value="Fait quitter juiceBox de votre salon vocal", inline=True)
+		musique.set_footer(text="Demandé par: " + message.author)
 		await client.send_message(message.channel, embed=musique)
-				
+	
+	if message.content.upper().startswith("/FUN"):
+		fun = discord.Embed(title="Commandes fun", description="Voici les commandes fun:", colour=0x7a2581)
+		fun.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+		fun.add_field(name="/say + texte", value="Fait dire au bot le texte", inline=True)
+		fun.add_field(name="/gif", value="Donne un gif aléatoire", inline=True)
+		fun.add_field(name="/memeaudio ***Bientot...***", value="???", inline=True)
+		fun.set_footer(text="Demandé par: " + message.author)
+		await client.send_message(message.channel, embed=fun)
+	
+	if message.content.upper().startswith("/MODERATION")
+		modo = discord.Embed(title="Commandes de modération:", description="Voici la liste des commandes de moderations:", colour=0x7a2581)
+		modo.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+		modo.add_field(name="/report", value="Signale les méchant utilisateur dans #report ! \n Fonctionement : /report (mention) (raison)", inline=True)
+		modo.add_field(name="Gros-mots", value="Je suprimme automatiquement les insultes !", inline=True)
+		fun.set_footer(text="Demandé par: " + message.author)
+		await client.send_message(message.channel, embed=modo)
 		
 	if message.content.upper().startswith("/REPORT"):
 		args = message.content.split(" ")
