@@ -324,7 +324,7 @@ async def on_message(message):
 		help.add_field(name="/fun", value="Donne les commandes de fun", inline=True)
 		help.add_field(name="/moderation", value="Donne les commandes de moderations", inline=True)
 		help.add_field(name="/musique", value="Donne les commandes de musique", inline=True)
-		help.set_footer(text="Demandé par: " + message.author)
+		help.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=help)
 		
 		
@@ -333,7 +333,7 @@ async def on_message(message):
 		dev.add_field(name="/ticket", value="Envoie un message aux devlopeurs", inline=True)
 		dev.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.", inline=True)
 		dev.add_field(name="/discord", value="Donne notre serveur du support: ``https://discord.gg/Abfvn9y``.", inline=True)
-		dev.set_footer(text="Demandé par: " + message.author)
+		dev.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=dev)
 	
 	
@@ -346,7 +346,7 @@ async def on_message(message):
 		musique.add_field(name="/pause", value="Met en pause la video", inline=True)
 		musique.add_field(name="/resume", value="Reprend la video", inline=True)
 		musique.add_field(name="/leave", value="Fait quitter juiceBox de votre salon vocal", inline=True)
-		musique.set_footer(text="Demandé par: " + message.author)
+		musique.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=musique)
 	
 	if message.content.upper().startswith("/FUN"):
@@ -355,7 +355,7 @@ async def on_message(message):
 		fun.add_field(name="/say + texte", value="Fait dire au bot le texte", inline=True)
 		fun.add_field(name="/gif", value="Donne un gif aléatoire", inline=True)
 		fun.add_field(name="/memeaudio ***Bientot...***", value="???", inline=True)
-		fun.set_footer(text="Demandé par: " + message.author)
+		fun.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=fun)
 	
 	if message.content.upper().startswith("/MODERATION"):
@@ -363,7 +363,7 @@ async def on_message(message):
 		modo.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		modo.add_field(name="/report", value="Signale les méchant utilisateur dans #report ! \n Fonctionement : /report (mention) (raison)", inline=True)
 		modo.add_field(name="Gros-mots", value="Je suprimme automatiquement les insultes !", inline=True)
-		fun.set_footer(text="Demandé par: " + message.author)
+		fun.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=modo)
 		
 	if message.content.upper().startswith("/REPORT"):
