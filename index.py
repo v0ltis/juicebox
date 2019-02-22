@@ -208,21 +208,21 @@ async def meme_audio(message):
 	await join(message)
 
 	url = random.choice(memeaudio)
+	if message.content.split(' ')[1] != None:
+		await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
 	
-	await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
-	
-	msg = await client.wait_for_message(author=None)
-	print(msg.author)
-	print(msg)
+		msg = await client.wait_for_message(author=None)
+		print(msg.author)
+		print(msg)
 
-	await client.add_reaction(msg,":white_check_mark:")
+		await client.add_reaction(msg,":white_check_mark:")
 
-	print("I'm waiting for reaction : False")
-	react_test = await client.wait_for_reaction()
-	await client.send_message(message.channel,str(react_test))
+		print("I'm waiting for reaction : False")
+		react_test = await client.wait_for_reaction()
+		await client.send_message(message.channel,str(react_test))
 
-	react = await client.wait_for_reaction(message=msg,emoji=':white_check_mark:')
-	await client.send_message(message.channel,str(react))
+		react = await client.wait_for_reaction(message=msg,emoji=':white_check_mark:')
+		await client.send_message(message.channel,str(react))
 
 	await play_url(message,url)
 
