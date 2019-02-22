@@ -216,6 +216,7 @@ async def meme_audio(message):
 	await client.add_reaction(msg,":white_check_mark:")
 	print("I'm waiting for reaction : Falseé")
 	react = await client.wait_for_reaction(message=msg,emoji=':white_check_mark:')
+	await client.send_message(message.channel,str(react))
 
 	await play_url(message,url)
 
