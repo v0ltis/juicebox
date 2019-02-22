@@ -358,7 +358,7 @@ async def on_message(message):
 		fun.set_footer(text="Demandé par: " + message.author)
 		await client.send_message(message.channel, embed=fun)
 	
-	if message.content.upper().startswith("/MODERATION")
+	if message.content.upper().startswith("/MODERATION"):
 		modo = discord.Embed(title="Commandes de modération:", description="Voici la liste des commandes de moderations:", colour=0x7a2581)
 		modo.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		modo.add_field(name="/report", value="Signale les méchant utilisateur dans #report ! \n Fonctionement : /report (mention) (raison)", inline=True)
