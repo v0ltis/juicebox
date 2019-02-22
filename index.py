@@ -214,6 +214,13 @@ async def meme_audio(message):
 		
 			msg = await client.wait_for_message(author=None)
 			print(msg.author)
+			
+			try:
+				print(msg.member)
+			
+			except:
+				pass
+			
 			print(msg)
 
 			await client.add_reaction(msg,":white_check_mark:")
