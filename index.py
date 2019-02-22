@@ -211,10 +211,16 @@ async def meme_audio(message):
 	
 	await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
 	
-	msg = await client.wait_for_message(author=discord.user(id="528268989525131274"))
+	msg = await client.wait_for_message(author=None)
+
 	print(msg)
+
 	await client.add_reaction(msg,":white_check_mark:")
-	print("I'm waiting for reaction : Falseé")
+
+	print("I'm waiting for reaction : False")
+	react_test = await client.wait_for_reaction()
+	await client.send_message(message.channel,str(react_test))
+
 	react = await client.wait_for_reaction(message=msg,emoji=':white_check_mark:')
 	await client.send_message(message.channel,str(react))
 
