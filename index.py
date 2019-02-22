@@ -173,7 +173,7 @@ async def play(message):
 	url = message_url.split(" ")[1]
 	print(url)
 	
-	https = verifie_url(message)
+	https = await verifie_url(message)
 	if https == True:
 		print("Https == True")
 		await join(message)
@@ -211,11 +211,8 @@ async def meme_audio(message):
 
 	url = random.choice(memeaudio)
 
-	server = message.server
-	voice_client = client.voice_client_in(server)
-	player = await voice_client.create_ytdl_player(url)
-	players[server.id] = player
-	player.start()
+	play_url(message,url)
+
 	while True:
 		if player.is_playing() == False:
 			await leave(message)
