@@ -392,7 +392,7 @@ async def on_message(message):
 	if message.content.upper().startswith("/MEMEAUDIO"):
 		await meme_audio(message)
 
-	if message.content.upper().startswith("/SUPPORT"):
+	if message.content.upper().startswith("/DISCORD"):
 		await client.send_message(message.channel,"Venez papoter ici: \n https://discord.gg/Abfvn9y")
 			
 	if message.content.upper().startswith("/SITE"):
