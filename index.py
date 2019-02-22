@@ -66,7 +66,8 @@ async def join(message):
 		print("I'm connected to : " + str(channel))
 		await client.join_voice_channel(channel)
 		await client.send_message(message.channel, "Je suis pret à chanter !")
-		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***')
+		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***'\
+			+'\n Nom du serveur : "***' + message.server.name + '"***')
 
 	except:
 		await send_msg(message.channel,"Erreur ...")
