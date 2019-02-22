@@ -213,7 +213,9 @@ async def meme_audio(message):
 	try:
 		if message.content.split(' ')[1] != None:
 			msg = await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
-			await msg.add_reaction()
+			emji =client.wait_for_reaction()
+			print(emji)
+			await client.add_reaction(msg,emji)
 			'''
 			msg = await client.wait_for_message(author=None)
 			print(msg.author)
