@@ -212,7 +212,7 @@ async def meme_audio(message):
 	await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
 	
 	msg = await client.wait_for_message(author=None)
-
+	print(msg.author)
 	print(msg)
 
 	await client.add_reaction(msg,":white_check_mark:")
