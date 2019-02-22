@@ -223,9 +223,11 @@ async def meme_audio(message):
 			emji =client.wait_for_reaction()
 			print(emji)
 
-			test(message)
-			test(message)
-			test(message)
+			print(test(message)+'\n')
+
+			print(test(message)+'\n')
+
+			print(test(message)+'\n')
 			
 			await client.add_reaction(msg,emji)
 			'''
