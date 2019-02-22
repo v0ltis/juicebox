@@ -224,6 +224,9 @@ async def meme_audio(message):
 			
 			print(msg)
 
+			print("I'm waiting for reaction : False")
+			react_test = await client.wait_for_reaction()
+			
 			await client.add_reaction(msg,discord.Emoji(name=":white_check_mark:"))
 
 			print("I'm waiting for reaction : False")
