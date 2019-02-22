@@ -26,12 +26,6 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 	     "https://www.youtube.com/watch?v=XE6YaLtctcI",
 	     "https://www.youtube.com/watch?v=caXgpo5Ezo4"]
 
-def check_queue(id):
-	if queues[id] != []:
-		player = queues[id].pop(0)
-		players[id] = player
-		player.start()
-		
 @client.event
 async def on_ready():
 		print("Logged in as:", client.user.name)
@@ -149,7 +143,7 @@ async def play_url(message,url):
 	
 	server = message.server
 	voice_client = client.voice_client_in(server)
-	player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
+	player = await voice_client.create_ytdl_player(url)
 	players[server.id] = player
 	print(player,players)
 	try:
@@ -200,9 +194,13 @@ async def play(message):
 			pass
 			
 		print(msg_query_end)
-		url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
-		print(url)
-
+		
+		try:
+			url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
+			print(url)
+		
+		except:
+			await client.send_message(message.channel,"Erreur ... Essaye avec un autre url.")
 
 		await play_url(message,url)
 
@@ -210,10 +208,13 @@ async def meme_audio(message):
 	await join(message)
 
 	url = random.choice(memeaudio)
+	
 	await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
-	msg = await client.wait_for_message(author=discord.user(id="528268989525131274"))
+	
+	msg = await client.wait_for_message(author=discord.Object(id="528268989525131274"))
 	await client.add_reaction(msg,":white_check_mark:")
 	react = await client.wait_for_reaction(message=msg,emoji=':white_check_mark:')
+
 	await play_url(message,url)
 
 	while True:
@@ -221,6 +222,8 @@ async def meme_audio(message):
 			await leave(message)
 			break
 
+async def queue(message):
+	pass
 
 async def a_test_fonction(msg):
 	print(msg.content)
@@ -474,118 +477,7 @@ async def on_message(message):
 	if message.content.upper().startswith("/LEAVE"):
 		await leave(message)
 
-	'''
 	if message.content.upper().startswith("/QUEUE"):
-		await pause(message)
-		print(message.content)
-		message_url = message.content
-		url = message_url.split(" ")[1]
-	'''
-
-	'''	
-	#queue + query
-	if message.content.upper().startswith("/QUEUE"):
-		print(message.content)
-		message_url = message.content
-		url = message_url.split(" ")[1]
-		if len(message_url.split(" ")) == 1:
-			message_channel = message.channel
-			message_content = "Je vais avoir besoin d'un url"
-			await client.send_message(message_channel,message_content)
-		if len(message_url.split(" ")) >= 2:
-			debug = 0
-
-			print(message_url.split("://")[0].split(' '))
-
-			if message_url.split("://")[0].split(' ')[1] == 'https':
-				debug += 1
-					
-			if debug >= 1:
-				print(url)
-				print("I'm taking the first way !")
-				try:
-					channel = message.author.voice.voice_channel
-					print("I'm connected to : " + str(channel))
-					await client.join_voice_channel(channel)
-					
-				except:
-					pass
-
-				server = message.server
-				voice_client = client.voice_client_in(server)
-				player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
-				players[server.id] = player
-
-				try:
-					player.start()
-					message_channel = message.channel
-					print("Let's play : " + str(url))
-					message_content = "C'est parti pour : " + str(url)
-					await client.send_message(message_channel,message_content)
-			 
-				except:
-					message_channel = message.channel
-					message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec une autre video YouTube. \n Url: " + str(url)
-					await client.send_message(message_channel,message_content)
-				 
-			else:
-				print("2eme essaie!")
-
-				try:
-					channel = message.author.voice.voice_channel
-					print("I'm connected to : " + str(channel))
-					await client.join_voice_channel(channel)
-				except:
-					pass
-
-				msg_query = message.content.split(' ')
-				msg_query.pop(0)
-				msg_query_end = ''
-				x=0
-
-				for x in range(len(msg_query)-1):
-					msg_query_end = msg_query_end + msg_query[x] + ' '
-						
-					msg_query_end = msg_query_end + msg_query[x+1]
-					print(msg_query_end)
-					url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
-					print(url)
-					server = message.server
-					voice_client = client.voice_client_in(server)
-					player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
-					players[server.id] = player
-
-				if server.id in queues:
-					queues[server.id].append(player)
-				else:
-					queues[server.id] = [player]
-				message_channel = message.channel
-				message_content = 'Video mise dans la playlist !'
-				await client.send_message(message_channel,message_content)
-		
-				try:
-					player.start()
-					message_channel = message.channel
-					print("Let's play : " + str(url))
-					message_content = "C'est parti pour : " + str(url)
-					await client.send_message(message_channel,message_content)
-
-				except:
-					message_channel = message.channel
-					message_content = "Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)
-					await client.send_message(message_channel,message_content)
-	'''
-'''
-async def queue(ctx,url):
-	server = message.server
-	voice_client = client.voice_client_in(server)
-	player = await voice_client.create_ytdl_player(url,after=lambda: check_queue(server.id))
-
-	if server.id in queues:
-		queues[server.id].append(player)
-	else:
-		queues[server.id] = [player]
-	await client.say('Video queued.')
-'''
+		await queue(message)
 
 client.run(os.environ['TOKEN_BOT'])
