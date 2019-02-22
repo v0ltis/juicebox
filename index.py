@@ -150,6 +150,7 @@ async def play_url(message,url):
 	print(player,players)
 	try:
 		if player.is_done() == True or play_on == False:
+			time.sleep(2)
 			player.start()
 			print("Let's play : " + str(url))
 			await send_msg(message.channel,("C'est parti pour : " + str(url)))
