@@ -34,17 +34,19 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 
 nb_of_serv_where_i_am_connected = 0
 
+def 
+
 
 @client.event
 async def on_ready():
 	a = dir_location()
 	a.search()
-	a.got_tot_file('sonds_fonction.py')
+	a.go_to_file('sonds_fonction.py')
 	b = open(a.me,'r')
 	c = b.read()
 	b.close()
 	exec(c)
-	
+
 	global nb_of_serv_where_i_am_connected
 	print("Logged in as:", client.user.name)
 	print("ID:", client.user.id)
