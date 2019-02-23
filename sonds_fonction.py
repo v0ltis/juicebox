@@ -75,7 +75,7 @@ async def stop(message):
 	message_content = "Ok , ok , j'arrete"
 	await client.send_message(message_channel,message_content)
 
-async def verif_play(message):
+async def verifie_play(message):
 	print(message.content)
 	message_url = message.content
 	url = message_url.split(" ")[1]
