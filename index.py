@@ -163,6 +163,39 @@ async def play_url(message,url):
 	except:
 		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
 
+async def play_url_meme(message,url):
+	global player,play_on
+
+	await join(message)
+
+	if player != None:
+		if player.is_done() == False:
+			print("Je n'ai pas fini ! : " + str(url))
+			await send_msg(message.channel,"Laisse moi finir s'il te plait")
+			return
+	
+	server = message.server
+	voice_client = client.voice_client_in(server)
+	player = await voice_client.create_ytdl_player(url)
+	players[server.id] = player
+	print(player,players)
+	try:
+		if player.is_done() == True or play_on == False:
+			time.sleep(5)
+			player.start()
+			print("Go pour: " + str(url))
+			await send_msg(message.channel,("C'est parti !"))
+			play_on = True
+
+		else:
+			print("Je n'ai pas fini !")
+			await send_msg(message.channel,"Laisse moi finir s'il te plait")
+
+	except:
+		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez plus tard , ou prevenez mes devlopeurs avec /ticket."))
+		
+		
+		
 async def play(message):
 	global play_on,player
 	
@@ -254,7 +287,7 @@ async def meme_audio(message):
 	except:
 		pass
 
-	await play_url(message,url)
+	await play_url_meme(message,url)
 
 	while True:
 		if player.is_done() == True:
