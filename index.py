@@ -46,7 +46,7 @@ def file_to_main(file):
 
 @client.event
 async def on_ready():
-	exec(file_to_main(sonds_fonction.py))
+	exec(file_to_main('sonds_fonction.py'))
 
 	global nb_of_serv_where_i_am_connected
 	print("Logged in as:", client.user.name)
