@@ -41,11 +41,12 @@ def file_to_main(file):
 	b = open(a,'r')
 	c = b.read()
 	b.close()
+	print(c)
 	return c
 
 @client.event
 async def on_ready():
-	exec(file_to_main('sonds_fonction.py'))
+	print(file_to_main('sonds_fonction.py'))
 
 	global nb_of_serv_where_i_am_connected
 	print("Logged in as:", client.user.name)
