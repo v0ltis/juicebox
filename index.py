@@ -57,15 +57,16 @@ async def on_ready():
 	#await client.send_message(channel_dem, "Les serveurs auquel je suis connecté sont :\n")
 	for x in client.servers:
 		nb_of_serv_where_i_am_connected += 1
-		print(nb_of_serv_where_i_am_connected,x.name + server.owner)
+		print(nb_of_serv_where_i_am_connected,x.name + x.owner)
 		#nb_server_juicy = await client.send_message(channel_dem,str(nb_of_serv_where_i_am_connected))
-		#serveur_juicy = await client.send_message(channel_dem, x.name + server.owner)
+		#serveur_juicy = await client.send_message(channel_dem, x.name + x.owner)
 	await client.change_presence(game=discord.Game(name='/help - ' + nb_of_serv_where_i_am_connected + ' serveurs'))
 	
 players = {}
 queues = {}
 chat_on = False
 play_on = False
+play_on_patched = {}
 player = None
 
 
