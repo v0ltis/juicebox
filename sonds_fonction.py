@@ -5,7 +5,7 @@ import time
 from discord.ext import commands
 import my_directory
 import text_to_url
-
+import discord
 #Be carefull this document can't be used alone you need index.py for some varioables
 
 merde = ["MERDE","CHIER","CHIANT","CHIE"]
@@ -35,7 +35,7 @@ play_on_patched = {}
 player = None
 
 #needed
-client = dicord.client
+client = discord.client
 
 async def send_msg(channel,content):
 	message_channel = channel
