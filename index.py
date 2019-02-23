@@ -62,8 +62,6 @@ async def join_meme(message):
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
 		await client.join_voice_channel(channel)
-		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***' \
-			+'\n Nom du serveur : "***' + message.server.name + '"*** pour "même"')
 	except:
 		pass
 #await send_msg(message.channel,"Erreur ...(join command)")
