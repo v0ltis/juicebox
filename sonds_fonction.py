@@ -35,7 +35,7 @@ play_on_patched = {}
 player = None
 
 #needed
-client = commands.Bot(command_prefix = '/')
+client = dicord.client
 
 async def send_msg(channel,content):
 	message_channel = channel
