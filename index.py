@@ -26,7 +26,11 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 	     "https://www.youtube.com/watch?v=XE6YaLtctcI",
 	     "https://www.youtube.com/watch?v=caXgpo5Ezo4",
 	     "https://www.youtube.com/watch?v=6IG4aHDFBYw",
-	     "https://www.youtube.com/watch?v=1IySOpdDCx0"]
+	     "https://www.youtube.com/watch?v=1IySOpdDCx0",
+	     "https://www.youtube.com/watch?v=Q5LZcw6MASA",
+	     "https://www.youtube.com/watch?v=o6RQuIbzwJk",
+	     "https://www.youtube.com/watch?v=H07zYvkNYL8",
+	     "https://www.youtube.com/watch?v=Ygnez_odlNg"]
 
 @client.event
 async def on_ready():
