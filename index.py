@@ -12,6 +12,7 @@ import scrapy
 
 import my_directory
 import text_to_url
+from sonds_fonction import *
 
 client = commands.Bot(command_prefix = '/')
 
@@ -34,18 +35,9 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 
 nb_of_serv_where_i_am_connected = 0
 
-async def doc_to_fonc(doc):
-	my_directory.dir_location.search()
-	my_directory.dir_location.go_to_file(doc)
-	my_doc = open(my_directory.dir_location.me,'r')
-	fonc = my_doc.read()
-	my_doc.close()
-	print(fonc)
-	exec(fonc)
 
 @client.event
 async def on_ready():
-	doc_to_fonc('sonds_fonction.py')
 	global nb_of_serv_where_i_am_connected
 	print("Logged in as:", client.user.name)
 	print("ID:", client.user.id)

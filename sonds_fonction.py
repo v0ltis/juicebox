@@ -1,3 +1,5 @@
+from asyncio import *
+
 #Be carefull this document can't be used alone you need index.py for some varioables
 
 async def send_msg(channel,content):
@@ -103,7 +105,7 @@ async def play_url(message,url):
 
 	if await verifie_play(message) == False:
 		return
-		
+
 	if player != None:
 		if player.is_done() == False:
 			print("Je n'ai pas fini ! : " + str(url))
