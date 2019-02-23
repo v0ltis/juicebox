@@ -1,5 +1,5 @@
 from asyncio import *
-
+import time
 #Be carefull this document can't be used alone you need index.py for some varioables
 
 async def send_msg(channel,content):
@@ -215,46 +215,34 @@ def test(message):
 	for x in emji:
 		yield x
 
+async def verif_anti_spam(message,msg_validation="Veux tu jouer un meme audio aléatoire ? (clique sur ok)",emoji='✅'):
+	msg = await client.send_message(message.channel,msg_validation)
+	await client.add_reaction(msg,emoji=emoji)
+
+	def check(reaction, user):
+		return True
+	
+	time.sleep(2)
+	res = await client.wait_for_reaction(emoji=emoji,message=msg, check=check)
+
+	while str(res.user).split('#')[0] != str(message.author.name):
+		time.sleep(1)
+		res = await client.wait_for_reaction(emoji=emoji,message=msg, check=check)
+
+	return [True,msg]
+
+
 async def meme_audio(message):
 	await join_meme(message)
 
 	url = random.choice(memeaudio)
-	try:
-		if message.content.split(' ')[1] != None:
-			msg = await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
-			await msg.add_reaction(emoji='✅')
-			print(emji)
-
-			print(test(message)+'\n')
-
-			await client.add_reaction(msg,emji)
-			'''
-			msg = await client.wait_for_message(author=None)
-			print(msg.author)
-			
-			try:
-				print(message)
-			
-			except:
-				pass
-			
-			print(msg)
-
-			print("I'm waiting for reaction : False")
-			react_test = await client.wait_for_reaction()
-
-			await message.add_reaction(msg,discord.Emoji(name=":white_check_mark:"))
-
-			print("I'm waiting for reaction : False")
-			react_test = await client.wait_for_reaction()
-			await client.send_message(message.channel,str(react_test))
-
-			react = await client.wait_for_reaction(message=msg,emoji=':white_check_mark:')
-			'''
-			await client.send_message(message.channel,str(react))
-
-	except:
-		pass
+	anti_spam = 0
+	verif_ansp = await verif_anti_spam(message)
+	while verif_ansp[0] != True:
+		if anti_spam >= 20:
+			await client.delete_message()
+		time.sleep(1)
+		anti_spam += 1
 
 	await play_url_meme(message,url)
 
