@@ -101,6 +101,9 @@ async def play_url(message,url):
 
 	await join(message)
 
+	if await verifie_play(message) == False:
+		return
+		
 	if player != None:
 		if player.is_done() == False:
 			print("Je n'ai pas fini ! : " + str(url))
