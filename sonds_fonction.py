@@ -72,9 +72,10 @@ async def verif_play(message):
 
 	if len(message_url.split(" ")) == 1:
 		await send_msg(message.content,"Je vais avoir besoin d'un url")
+		return False
 
 	if len(message_url.split(" ")) >= 2:
-		pass
+		return True
 
 #renvoie True si il s'agit d'un url sinon False
 async def verifie_url(message):

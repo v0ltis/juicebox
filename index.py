@@ -36,7 +36,7 @@ nb_of_serv_where_i_am_connected = 0
 
 async def doc_to_fonc(doc):
 	my_directory.dir_location.search()
-	my_directory.dir_location.go_to_file('sonds_fonction.py')
+	my_directory.dir_location.go_to_file(doc)
 	my_doc = open(my_directory.dir_location.me,'r')
 	fonc = my_doc.read()
 	my_doc.close()
@@ -44,7 +44,7 @@ async def doc_to_fonc(doc):
 
 @client.event
 async def on_ready():
-
+	doc_to_fonc('sonds_fonction.py')
 	global nb_of_serv_where_i_am_connected
 	print("Logged in as:", client.user.name)
 	print("ID:", client.user.id)
