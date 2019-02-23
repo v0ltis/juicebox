@@ -53,6 +53,20 @@ async def send_msg(channel,content):
 	message_channel = channel
 	message_content = str(content)
 	await client.send_message(message_channel,message_content)
+	
+	
+async def join_meme(message):
+	global play_on
+	play_on = False
+	try:
+		channel = message.author.voice.voice_channel
+		print("I'm connected to : " + str(channel))
+		await client.join_voice_channel(channel)
+		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***' \
+			+'\n Nom du serveur : "***' + message.server.name + '"*** pour "même"')
+	except:
+		pass
+#await send_msg(message.channel,"Erreur ...(join command)")
 
 async def join(message):
 	global play_on
@@ -247,7 +261,7 @@ def test(message):
 		yield x
 
 async def meme_audio(message):
-	await join(message)
+	await join_meme(message)
 
 	url = random.choice(memeaudio)
 	try:
