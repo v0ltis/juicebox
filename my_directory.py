@@ -20,7 +20,12 @@ class dir_location():
         self.me = c
         if self.pr == 1:
             print(self.me)
-            
+    
+    def search_slash(self):
+        a = str(os.getcwd())
+        print(a)
+
+
     def go_to_folder(self,Where):
         a = self.me + str(Where) + str('\\')
         self.me = a

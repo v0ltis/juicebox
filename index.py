@@ -36,9 +36,8 @@ nb_of_serv_where_i_am_connected = 0
 
 #trandfert les fonctions d'un fichier à celui ci changer à adapter avec my_directory
 def file_to_main(file):
-	a = dir_location()
-	a.search()
-	a = a.me + '/' +  file
+	a = str(os.getcwd())
+	a = a + '/' +  file
 	b = open(a,'r')
 	c = b.read()
 	b.close()
