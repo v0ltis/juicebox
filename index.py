@@ -43,7 +43,7 @@ async def on_ready():
 	channel_dem = discord.utils.get(message.server.channels, name = 'serveurs-juicebox-x-delete')
 
 	#await client.delete_channel(channel_dem)
-	await client.change_presence(game=discord.Game(name='/help'))
+	await client.change_presence(game=discord.Game(name='/help - ' + nb_of_serv_where_i_am_connected + ' serveurs'))
 	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 	#await client.create_channel("JuiceBox Support", "serveurs-juicebox-x-delete")
 	#await client.send_message(channel_dem, "Les serveurs auquel je suis connecté sont :\n")
