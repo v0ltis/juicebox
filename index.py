@@ -40,7 +40,7 @@ async def on_ready():
 	print("Logged in as:", client.user.name)
 	print("ID:", client.user.id)
 
-	channel_dem = discord.utils.get(message.server.channels, name = 'serveurs-juicebox-x-delete')
+	#channel_dem = discord.utils.get(message.server.channels, name = 'serveurs-juicebox-x-delete')
 
 	#await client.delete_channel(channel_dem)
 	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
