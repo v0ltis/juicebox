@@ -37,9 +37,8 @@ nb_of_serv_where_i_am_connected = 0
 #trandfert les fonctions d'un fichier à celui ci
 def file_to_main(file):
 	a = dir_location()
-	a.search()
-	a.go_to_file(file)
-	b = open(a.me,'r')
+	a = a.me + file
+	b = open(a,'r')
 	c = b.read()
 	b.close()
 	return c
