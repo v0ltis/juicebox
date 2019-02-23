@@ -40,6 +40,7 @@ async def doc_to_fonc(doc):
 	my_doc = open(my_directory.dir_location.me,'r')
 	fonc = my_doc.read()
 	my_doc.close()
+	print(fonc)
 	exec(fonc)
 
 @client.event
