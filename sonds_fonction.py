@@ -4,6 +4,7 @@ from asyncio import *
 import time
 from discord.ext import commands
 import my_directory
+import text_to_url
 
 #Be carefull this document can't be used alone you need index.py for some varioables
 
