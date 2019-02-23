@@ -10,9 +10,8 @@ import random
 
 import scrapy
 
-import my_directory
+from my_directory import dir_location
 import text_to_url
-from sonds_fonction import *
 
 client = commands.Bot(command_prefix = '/')
 
@@ -38,6 +37,14 @@ nb_of_serv_where_i_am_connected = 0
 
 @client.event
 async def on_ready():
+	a = dir_location()
+	a.search()
+	a.got_tot_file('sonds_fonction.py')
+	b = open(a.me,'r')
+	c = b.read()
+	b.close()
+	exec(c)
+	
 	global nb_of_serv_where_i_am_connected
 	print("Logged in as:", client.user.name)
 	print("ID:", client.user.id)
