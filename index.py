@@ -62,7 +62,7 @@ async def on_ready():
 		print(nb_of_serv_where_i_am_connected,x.name + x.owner.name)
 		#nb_server_juicy = await client.send_message(channel_dem,str(nb_of_serv_where_i_am_connected))
 		#serveur_juicy = await client.send_message(channel_dem, x.name + x.owner)
-	await client.change_presence(game=discord.Game(name='/help - ' + nb_of_serv_where_i_am_connected + ' serveurs'))
+	await client.change_presence(game=discord.Game(name='/help - ' + str(nb_of_serv_where_i_am_connected) + ' serveurs'))
 	
 players = {}
 queues = {}
