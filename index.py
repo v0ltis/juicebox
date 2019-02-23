@@ -34,10 +34,10 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 
 nb_of_serv_where_i_am_connected = 0
 
-#trandfert les fonctions d'un fichier à celui ci
+#trandfert les fonctions d'un fichier à celui ci changer à adapter avec my_directory
 def file_to_main(file):
 	a = dir_location()
-	a = a.me + file
+	a = a.me + '/' +  file
 	b = open(a,'r')
 	c = b.read()
 	b.close()
