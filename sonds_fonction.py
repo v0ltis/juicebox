@@ -1,6 +1,14 @@
+
+#needed
 from asyncio import *
 import time
+from discord.ext import commands
+import my_directory
+
 #Be carefull this document can't be used alone you need index.py for some varioables
+
+#needed
+client = commands.Bot(command_prefix = '/')
 
 async def send_msg(channel,content):
 	message_channel = channel
@@ -225,7 +233,7 @@ async def verif_anti_spam(message,msg_validation="Veux tu jouer un meme audio al
 	time.sleep(2)
 	res = await client.wait_for_reaction(emoji=emoji,message=msg, check=check)
 
-	while str(res.user).split('#')[0] != str(message.author.name):
+	while str(res.user.name) != str(message.author.name):
 		time.sleep(1)
 		res = await client.wait_for_reaction(emoji=emoji,message=msg, check=check)
 
