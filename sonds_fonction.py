@@ -8,6 +8,36 @@ import text_to_url
 
 #Be carefull this document can't be used alone you need index.py for some varioables
 
+merde = ["MERDE","CHIER","CHIANT","CHIE"]
+chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
+bypass_list = ["362615539773997056","528268989525131274","402896241429577729","281134477877575680"]
+ban_user = ["159985870458322944"]
+memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
+	     "https://www.youtube.com/watch?v=5aFP-iR7hPg",
+	     "https://www.youtube.com/watch?v=rrvFFjoqg8A",
+	     "https://www.youtube.com/watch?v=QglFGVDcuX8",
+	     "https://www.youtube.com/watch?v=XE6YaLtctcI",
+	     "https://www.youtube.com/watch?v=caXgpo5Ezo4",
+	     "https://www.youtube.com/watch?v=6IG4aHDFBYw",
+	     "https://www.youtube.com/watch?v=1IySOpdDCx0",
+	     "https://www.youtube.com/watch?v=Q5LZcw6MASA",
+	     "https://www.youtube.com/watch?v=o6RQuIbzwJk",
+	     "https://www.youtube.com/watch?v=H07zYvkNYL8",
+	     "https://www.youtube.com/watch?v=Ygnez_odlNg"]
+
+nb_of_serv_where_i_am_connected = 0
+
+players = {}
+queues = {}
+chat_on = False
+play_on = False
+play_on_patched = {}
+player = None
+
+
+
+
+
 #needed
 client = commands.Bot(command_prefix = '/')
 
