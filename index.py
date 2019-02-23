@@ -34,18 +34,19 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 
 nb_of_serv_where_i_am_connected = 0
 
-def 
-
-
-@client.event
-async def on_ready():
+#trandfert les fonctions d'un fichier à celui ci
+def file_to_main(file):
 	a = dir_location()
 	a.search()
-	a.go_to_file('sonds_fonction.py')
+	a.go_to_file(file)
 	b = open(a.me,'r')
 	c = b.read()
 	b.close()
-	exec(c)
+	return c
+
+@client.event
+async def on_ready():
+	exec(file_to_main(sonds_fonction.py))
 
 	global nb_of_serv_where_i_am_connected
 	print("Logged in as:", client.user.name)
