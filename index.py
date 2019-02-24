@@ -71,11 +71,10 @@ async def send_msg(channel,content):
 
 async def info(message):
 	info_mention_user = None
-	user = None
-	for user in message.mentions:
-		info_mention_user = user
-
-	if info_mention_user != user:
+	
+	if message.mentions != []:
+		info_mention_user = message.mentions[0]
+	else:
 		info_mention_user = message.author
 
 	info_mention=discord.Embed(color=0x700127)
