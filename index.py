@@ -62,29 +62,18 @@ async def send_msg(channel,content):
 	message_channel = channel
 	message_content = str(content)
 	await client.send_message(message_channel,message_content)
-	
-	
-async def join_meme(message):
-	global play_on
-	play_on = False
-	try:
-		channel = message.author.voice.voice_channel
-		print("I'm connected to : " + str(channel))
-		await client.join_voice_channel(channel)
-	except:
-		pass
-#await send_msg(message.channel,"Erreur ...(join command)")
 
-async def join(message):
+async def join(message,comment=False):
 	global play_on
 	play_on = False
 	try:
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
 		await client.join_voice_channel(channel)
-		await client.send_message(message.channel, "Je suis pret à chanter !")
-		await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***' \
-			+'\n Nom du serveur : "***' + message.server.name + '"***')
+		if comment == True:
+			await client.send_message(message.channel, "Je suis pret à chanter !")
+			await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***' \
+				+'\n Nom du serveur : "***' + message.server.name + '"***')
 	except:
 		pass
 #await send_msg(message.channel,"Erreur ...(join command)")
@@ -153,10 +142,10 @@ async def verifie_url(message):
 		else:
 			return False
 
-async def play_url(message,url):
+async def play_url(message,url,comment):
 	global player,play_on
 
-	await join(message)
+	await join(message,comment)
 
 	if player != None:
 		if player.is_done() == False:
@@ -183,39 +172,6 @@ async def play_url(message,url):
 
 	except:
 		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
-
-async def play_url_meme(message,url):
-	global player,play_on
-
-	await join(message)
-
-	if player != None:
-		if player.is_done() == False:
-			print("Je n'ai pas fini ! : " + str(url))
-			await send_msg(message.channel,"Laisse moi finir s'il te plait")
-			return
-	
-	server = message.server
-	voice_client = client.voice_client_in(server)
-	player = await voice_client.create_ytdl_player(url)
-	players[server.id] = player
-	print(player,players)
-	try:
-		if player.is_done() == True or play_on == False:
-			time.sleep(5)
-			player.start()
-			print("Go pour: " + str(url))
-			await send_msg(message.channel,("C'est parti !"))
-			play_on = True
-
-		else:
-			print("Je n'ai pas fini !")
-			await send_msg(message.channel,"Laisse moi finir s'il te plait")
-
-	except:
-		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez plus tard , ou prevenez mes devlopeurs avec /ticket."))
-		
-		
 		
 async def play(message):
 	global play_on,player
@@ -227,13 +183,10 @@ async def play(message):
 	https = await verifie_url(message)
 	if https == True:
 		print("Https == True")
-		await join(message)
-
-		await play_url(message,url)
+		await play_url(message,url,True)
 
 	elif https == False:
 		print("Https == False")
-		await join(message)
 			
 		msg_query = message.content.split(' ')
 		msg_query.pop(0)
@@ -259,7 +212,7 @@ async def play(message):
 		except:
 			await client.send_message(message.channel,"Erreur ... Essaye avec un autre url.")
 
-		await play_url(message,url)
+		await play_url(message,url,True)
 
 def test(message):
 	emji = client.wait_for_reaction()
@@ -267,42 +220,35 @@ def test(message):
 	for x in emji:
 		yield x
 
+#antispam
+async def agreement(message):
+	msg = await client.send_message(message.channel,"Veux tu jouer un meme audio aléatoire ? (clique sur ok)")
+	await client.add_reaction(msg,emoji='✅')
+
+	def check(reaction, user):
+		return True
+	
+	time.sleep(2)
+	res = await client.wait_for_reaction(emoji='✅',message=msg, check=check)
+
+	while str(res.user).split('#')[0] != str(message.author.name):
+		time.sleep(1)
+		res = await client.wait_for_reaction(emoji='✅',message=msg, check=check)
+
+	return True
+
+def break_until_agrement_is_true(message):
+	turn = 0
+	while True:
+		if await test_upload(message) == True:
+			return True
+		if turn == 20:
+			return False
+		turn += 1
+		time.sleep(1)
+
 async def meme_audio(message):
-	await join_meme(message)
-
-	url = random.choice(memeaudio)
-	try:
-		if message.content.split(' ')[1] != None:
-			msg = await client.send_message(message.channel,"Voulez-vous jouer un meme audio ?")
-			await msg.add_reaction(emoji='✅')
-			print(emji)
-
-			print(test(message)+'\n')
-
-			await client.add_reaction(msg,emji)
-			'''
-			msg = await client.wait_for_message(author=None)
-			print(msg.author)
-			
-			try:
-				print(message)
-			
-			except:
-				pass
-			
-			print(msg)
-			print("I'm waiting for reaction : False")
-			react_test = await client.wait_for_reaction()
-			await message.add_reaction(msg,discord.Emoji(name=":white_check_mark:"))
-			print("I'm waiting for reaction : False")
-			react_test = await client.wait_for_reaction()
-			await client.send_message(message.channel,str(react_test))
-			react = await client.wait_for_reaction(message=msg,emoji=':white_check_mark:')
-			'''
-			await client.send_message(message.channel,str(react))
-
-	except:
-		pass
+	await join(message,False)
 
 	await play_url_meme(message,url)
 
