@@ -81,7 +81,6 @@ async def info(message):
 	info_mention.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
 	info_mention.set_thumbnail(url=info_mention_user.avatar_url)
 	info_mention.add_field(name="Voici les informations de :",value=info_mention_user, inline=False)
-	print(user.name)
 	info_mention.add_field(name="Pseudo / ID", value=info_mention_user.name + " / " + info_mention_user.id, inline=False)
 	info_mention.add_field(name="Sur ce serveur depuis:", value=info_mention_user.joined_at, inline=False)
 	info_mention.add_field(name="Date de création du compte:", value=info_mention_user.created_at, inline=False)
