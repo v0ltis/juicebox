@@ -237,10 +237,11 @@ async def agreement(message):
 
 	return True
 
-def break_until_agrement_is_true(message):
+async def break_until_agrement_is_true(message):
 	turn = 0
 	while True:
-		if await test_upload(message) == True:
+		agr = await agreement(message=message)
+		if agr == True:
 			return True
 		if turn == 20:
 			return False
