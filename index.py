@@ -70,6 +70,8 @@ async def send_msg(channel,content):
 #Information fonction
 
 async def info(message):
+	info_mention_user = None
+	user = None
 	for user in message.mentions:
 		info_mention_user = user
 
