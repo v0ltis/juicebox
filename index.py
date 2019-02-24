@@ -479,7 +479,7 @@ async def on_message(message):
 				info_mention.add_field(name="Date de création du compte:", value=user.created_at, inline=False)
 
 				list_user_roles = []
-				for x in user.roles:
+				for x in message.author.roles:
 					list_user_roles.append(x.name)
 				list_user_roles = str(list_user_roles)
 				print(list_user_roles)
