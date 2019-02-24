@@ -59,10 +59,46 @@ chat_on = False
 play_on = False
 player = None
 
+#Messages fonctions
+
 async def send_msg(channel,content):
 	message_channel = channel
 	message_content = str(content)
 	await client.send_message(message_channel,message_content)
+
+
+#Information fonction
+
+async def info(message):
+	for user in message.mentions:
+		if len(message.mentions) > 0:
+			info_mention_user = user
+
+		else:
+			info_mention_user = message.author
+
+		info_mention=discord.Embed(color=0x700127)
+		info_mention.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
+		info_mention.set_thumbnail(url=info_mention_user.avatar_url)
+		info_mention.add_field(name="Voici les informations de :",value=info_mention_user, inline=False)
+		print(user.name)
+		info_mention.add_field(name="Pseudo / ID", value=info_mention_user.name + " / " + info_mention_user.id, inline=False)
+		info_mention.add_field(name="Sur ce serveur depuis:", value=info_mention_user.joined_at, inline=False)
+		info_mention.add_field(name="Date de création du compte:", value=info_mention_user.created_at, inline=False)
+
+		list_user_roles = []
+
+		for x in info_mention_user.roles:
+			list_user_roles.append(x.name)
+		list_user_roles = str(list_user_roles)
+		print(list_user_roles)
+
+		info_mention.add_field(name="Avec les roles:", value=list_user_roles, inline=False)
+
+		await client.send_message(message.channel, embed=info_mention)
+
+
+#Music fonctions
 
 async def join(message,comment=False):
 	global play_on
@@ -77,7 +113,7 @@ async def join(message,comment=False):
 				+'\n Nom du serveur : "***' + message.server.name + '"***')
 	except:
 		pass
-#await send_msg(message.channel,"Erreur ...(join command)")
+		#await send_msg(message.channel,"Erreur ...(join command)")
 
 async def leave(message):
 	server = message.server
@@ -215,12 +251,6 @@ async def play(message):
 
 		await play_url(message,url,True)
 
-def test(message):
-	emji = client.wait_for_reaction()
-	print(emji)
-	for x in emji:
-		yield x
-
 #antispam
 async def agreement(message):
 	msg = await client.send_message(message.channel,"Veux tu jouer un meme audio aléatoire ? (clique sur ok)")
@@ -262,10 +292,6 @@ async def meme_audio(message):
 
 async def queue(message):
 	pass
-
-async def a_test_fonction(msg):
-	print(msg.content)
-	await client.send_message(msg.channel,str(msg.content)) 
 
 @client.event
 async def on_message(message):
@@ -467,37 +493,7 @@ async def on_message(message):
 		await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
 		
 	if message.content.upper().startswith("/INFO"):
-		rien = ""
-		if len(message.mentions) > 0:
-			for user in message.mentions:
-				info_mention=discord.Embed(color=0x700127)
-				info_mention.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
-				info_mention.set_thumbnail(url=user.avatar_url)
-				info_mention.add_field(name="Voici les informations de " + user.name +" :",value="", inline=False)
-				info_mention.add_field(name="Pseudo / ID", value=user.name + " / " + user.id, inline=False)
-				info_mention.add_field(name="Sur ce serveur depuis:", value=user.joined_at, inline=False)
-				info_mention.add_field(name="Date de création du compte:", value=user.created_at, inline=False)
-
-				list_user_roles = []
-				for x in message.author.roles:
-					list_user_roles.append(x.name)
-				list_user_roles = str(list_user_roles)
-				print(list_user_roles)
-				info_mention.add_field(name="Avec les roles:", value=list_user_roles, inline=False)
-
-				await client.send_message(message.channel, embed=info_mention)
-				
-		else:
-			info=discord.Embed(color=0x700127)
-			info.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
-			info.set_thumbnail(url=message.author.avatar_url)
-			info.add_field(name="Voici les informations de :", value=message.author, inline=False)
-			info.add_field(name="Pseudo / ID", value=message.author.name + " / " + message.author.id, inline=False)
-			info.add_field(name="Sur ce serveur depuis:", value=message.author.joined_at, inline=False)
-			info.add_field(name="Date de création du compte:", value=message.author.created_at, inline=False)
-			info.add_field(name="Avec les roles:", value=message.author.roles, inline=False)
-			await client.send_message(message.channel, embed=info)
-		
+		await info(message)
 	#join
 	if message.content.upper().startswith("/JOIN"):
 		await join(message)
