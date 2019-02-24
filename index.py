@@ -488,7 +488,7 @@ async def on_message(message):
 			info.add_field(name="Pseudo / ID", value=message.author.name + " / " + message.author.id, inline=False)
 			info.add_field(name="Sur ce serveur depuis:", value=message.author.joined_at, inline=False)
 			info.add_field(name="Date de création du compte:", value=message.author.created_at, inline=False)
-			info.add_field(name="Avec les roles:", value=message.author.roles, inline=False)
+			info.add_field(name="Avec les roles:", value=message.author.roles.name, inline=False)
 			await client.send_message(message.channel, embed=info)
 		
 	#join
