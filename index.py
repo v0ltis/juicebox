@@ -71,31 +71,30 @@ async def send_msg(channel,content):
 
 async def info(message):
 	for user in message.mentions:
-		if len(message.mentions) > 0:
-			info_mention_user = user
+		info_mention_user = user
 
-		else:
-			info_mention_user = message.author
+	if info_mention_user != user:
+		info_mention_user = message.author
 
-		info_mention=discord.Embed(color=0x700127)
-		info_mention.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
-		info_mention.set_thumbnail(url=info_mention_user.avatar_url)
-		info_mention.add_field(name="Voici les informations de :",value=info_mention_user, inline=False)
-		print(user.name)
-		info_mention.add_field(name="Pseudo / ID", value=info_mention_user.name + " / " + info_mention_user.id, inline=False)
-		info_mention.add_field(name="Sur ce serveur depuis:", value=info_mention_user.joined_at, inline=False)
-		info_mention.add_field(name="Date de création du compte:", value=info_mention_user.created_at, inline=False)
+	info_mention=discord.Embed(color=0x700127)
+	info_mention.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
+	info_mention.set_thumbnail(url=info_mention_user.avatar_url)
+	info_mention.add_field(name="Voici les informations de :",value=info_mention_user, inline=False)
+	print(user.name)
+	info_mention.add_field(name="Pseudo / ID", value=info_mention_user.name + " / " + info_mention_user.id, inline=False)
+	info_mention.add_field(name="Sur ce serveur depuis:", value=info_mention_user.joined_at, inline=False)
+	info_mention.add_field(name="Date de création du compte:", value=info_mention_user.created_at, inline=False)
 
-		list_user_roles = []
+	list_user_roles = []
 
-		for x in info_mention_user.roles:
-			list_user_roles.append(x.name)
-		list_user_roles = str(list_user_roles)
-		print(list_user_roles)
+	for x in info_mention_user.roles:
+		list_user_roles.append(x.name)
+	list_user_roles = str(list_user_roles)
+	print(list_user_roles)
 
-		info_mention.add_field(name="Avec les roles:", value=list_user_roles, inline=False)
+	info_mention.add_field(name="Avec les roles:", value=list_user_roles, inline=False)
 
-		await client.send_message(message.channel, embed=info_mention)
+	await client.send_message(message.channel, embed=info_mention)
 
 
 #Music fonctions
