@@ -477,7 +477,12 @@ async def on_message(message):
 				info_mention.add_field(name="Pseudo / ID", value=user.name + " / " + user.id, inline=False)
 				info_mention.add_field(name="Sur ce serveur depuis:", value=user.joined_at, inline=False)
 				info_mention.add_field(name="Date de création du compte:", value=user.created_at, inline=False)
-				info_mention.add_field(name="Avec les roles:", value=user.roles, inline=False)
+
+				list_user_roles = []
+				for x in user.roles:
+					list_user_roles.append(x.name)
+				info_mention.add_field(name="Avec les roles:", value=list_user_roles, inline=False)
+
 				await client.send_message(message.channel, embed=info_mention)
 				
 		else:
