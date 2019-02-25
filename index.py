@@ -281,7 +281,7 @@ async def break_until_agrement_is_true(message):
 async def meme_audio(message):
 	await join(message,False)
 
-	await play_url_meme(message,url)
+	await play_url(message,url,False)
 
 	while True:
 		if player.is_done() == True:
