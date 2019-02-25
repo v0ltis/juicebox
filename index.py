@@ -477,10 +477,6 @@ async def on_message(message):
 		if not message.content.upper().startswith("YOU"):
 			await client.send_message(message.channel,random.choice(["ga","plait"]))
 
-	if message.content.upper().startswith("/TEST"):
-		await a_test_fonction(message)
-
-
 	if message.content.upper().startswith("BONJOUR"):
 		await client.send_message(message.channel,"Hey!")
 
