@@ -30,7 +30,8 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 	     "https://www.youtube.com/watch?v=Q5LZcw6MASA",
 	     "https://www.youtube.com/watch?v=o6RQuIbzwJk",
 	     "https://www.youtube.com/watch?v=H07zYvkNYL8",
-	     "https://www.youtube.com/watch?v=Ygnez_odlNg"]
+	     "https://www.youtube.com/watch?v=Ygnez_odlNg",
+	     "https://www.youtube.com/watch?v=wPqo_q-HgmE"]
 
 nb_of_serv_where_i_am_connected = 0
 
@@ -281,6 +282,7 @@ async def break_until_agrement_is_true(message):
 async def meme_audio(message):
 	await join(message,False)
 
+	url = random.choice(memeaudio)
 	await play_url(message,url,False)
 
 	while True:
