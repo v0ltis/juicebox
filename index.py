@@ -492,7 +492,7 @@ async def on_message(message):
 		await client.delete_message(message)
 		await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
 	
-	if messgae.content.upper().startswith("/NEWS")
+	if messgae.content.upper().startswith("/NEWS"):
 		news=discord.Embed(color=0x700127)
 		report.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
 		report.add_field(name="Dernière nouveautées :", value=news_emb, inline=False)
