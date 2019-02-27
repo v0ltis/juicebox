@@ -284,7 +284,7 @@ async def break_until_agrement_is_true(message):
 		time.sleep(1)
 
 async def meme_audio(message):
-	if message.content.endwith('-l'):
+	if message.content.endswith('-l'):
 		msg_meme_audio = []
 
 		for x in memeaudio:
