@@ -34,7 +34,7 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 	     "https://www.youtube.com/watch?v=wPqo_q-HgmE"]
 
 
-news_emb = "Mise a jour 1.8 : \n Ajout du /memeaudio : Joue un meme dans votre salon vocal! \n Ajout d'un /info : Apprenez tout sur les memebres de votre serveur ... ou vous meme ! \n Nouvautée: Juicebox affiche désormais le nombre de serveurs , sur lequel il est connécté ! c'est pas super ?"    
+news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme dans votre salon vocal! \n Ajout d'un ***__/info__*** : Apprenez tout sur les membres de votre serveur ... ou vous même! \n Nouvautée: Juicebox affiche désormais le nombre de serveurs sur lequel il est connecté ! c'est pas super ?"    
 
 nb_of_serv_where_i_am_connected = 0
 
