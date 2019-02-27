@@ -182,7 +182,7 @@ async def verifie_url(message):
 		else:
 			return False
 
-async def play_url(message,url,comment):
+async def play_url(message,url,comment=False):
 	global player,play_on
 
 	await join(message,comment)
@@ -199,11 +199,12 @@ async def play_url(message,url,comment):
 	players[server.id] = player
 	print(player,players)
 	try:
-		if player.is_done() == True or play_on == False:
+		if players[server.id].is_done() == True or play_on == False:
 			time.sleep(5)
 			player.start()
 			print("Let's play : " + str(url))
-			await send_msg(message.channel,("C'est parti pour : " + str(url)))
+			if comment != False:
+				await send_msg(message.channel,("C'est parti pour : " + str(url)))
 			play_on = True
 
 		else:
@@ -211,40 +212,7 @@ async def play_url(message,url,comment):
 			await send_msg(message.channel,"Laisse moi finir s'il te plait")
 
 	except:
-		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube. \n Url: " + str(url)))
-
-		
-async def play_url_meme(message,url,comment):
-	global player,play_on
-
-	await join(message,comment)
-
-	if player != None:
-		if player.is_done() == False:
-			print("Je n'ai pas fini !")
-			await send_msg(message.channel,"Laisse moi finir s'il te plait")
-			return
-	
-	server = message.server
-	voice_client = client.voice_client_in(server)
-	player = await voice_client.create_ytdl_player(url)
-	players[server.id] = player
-	print(player,players)
-	try:
-		if player.is_done() == True or play_on == False:
-			time.sleep(5)
-			player.start()
-			print("Let's play : " + str(url))
-			play_on = True
-
-		else:
-			print("Je n'ai pas fini !")
-			await send_msg(message.channel,"Laisse moi finir s'il te plait")
-
-	except:
-		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , attendez un peut !"))
-				
-		
+		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube ou attendez un peu. \n Url: " + str(url)))
 		
 async def play(message):
 	global play_on,player
@@ -316,16 +284,27 @@ async def break_until_agrement_is_true(message):
 		time.sleep(1)
 
 async def meme_audio(message):
-	await join(message,False)
+	if message.content.endwith('-l'):
+		msg_meme_audio = []
 
-	url = random.choice(memeaudio)
-	await play_url_meme(message,url,False)
+		for x in memeaudio:
+			msg_meme_audio.append(await client.send_message(message.channel,x))
 
-	while True:
-		if player.is_done() == True:
-			time.sleep(5)
-			await leave(message)
-			break
+		time.sleep(10)
+
+		for x in msg_meme_audio:
+			await client.delete_message(x)
+	else:
+		await join(message,False)
+
+		url = random.choice(memeaudio)
+		await play_url(message,url,False)
+
+		while True:
+			if player.is_done() == True:
+				time.sleep(5)
+				await leave(message)
+				break
 
 async def queue(message):
 	pass
