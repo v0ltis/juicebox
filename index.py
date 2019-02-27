@@ -33,6 +33,9 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 	     "https://www.youtube.com/watch?v=Ygnez_odlNg",
 	     "https://www.youtube.com/watch?v=wPqo_q-HgmE"]
 
+
+nems_emb = "Mise a jour 1.8 : \n Ajout du /memeaudio : Joue un meme dans votre salon vocal! \n Ajout d'un /info : Apprenez tout sur les memebres de votre serveur ... ou vous meme ! \n Nouvautée: Juicebox affiche désormais le nombre de serveurs , sur lequel il est connécté ! c'est pas super ?"    
+
 nb_of_serv_where_i_am_connected = 0
 
 @client.event
@@ -488,7 +491,13 @@ async def on_message(message):
 	if message.content.upper().startswith("/BOTADMIN"):
 		await client.delete_message(message)
 		await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
-		
+	
+	if messgae.content.upper().startswith("/NEWS")
+		news=discord.Embed(color=0x700127)
+		report.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
+		report.add_field(name="Dernière nouveautées :", value=news_emb, inline=False)
+		await client.send_message(message.author, embed=news)
+	
 	if message.content.upper().startswith("/INFO"):
 		await info(message)
 	#join
