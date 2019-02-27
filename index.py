@@ -242,7 +242,7 @@ async def play_url_meme(message,url,comment):
 			await send_msg(message.channel,"Laisse moi finir s'il te plait")
 
 	except:
-		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , attendez un peut !))
+		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , attendez un peut !"))
 				
 		
 		
