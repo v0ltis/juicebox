@@ -98,9 +98,6 @@ async def info(message):
 	info_mention.add_field(name="Avec les roles:", value=list_user_roles, inline=False)
 
 	
-	info_mention.add_field(name="A les permissions suivantes :", value=info_mention_user.server_permissions.name, inline=False)
-	
-	
 
 	await client.send_message(message.channel, embed=info_mention)
 
