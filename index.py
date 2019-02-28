@@ -94,10 +94,15 @@ async def info(message):
 	for x in info_mention_user.roles:
 		list_user_roles.append(x.name)
 	list_user_roles = str(list_user_roles)
-	print(list_user_roles)
 
 	info_mention.add_field(name="Avec les roles:", value=list_user_roles, inline=False)
-	info_mention.add_field(name="A les permissions suivantes :", value=info_mention_user.server_permissions, inline=False)
+	
+	for x in info_mention_user.server_permissions:
+		list_user_roles.append(x.name)
+	list_user_roles = str(list_user_perms)
+
+	
+	info_mention.add_field(name="A les permissions suivantes :", value=list_user_perms, inline=False)
 	
 	
 
