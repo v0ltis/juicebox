@@ -43,7 +43,6 @@ async def on_ready():
 	global nb_of_serv_where_i_am_connected
 	print("Logged in as:", client.user.name)
 	print("ID:", client.user.id)
-
 	#channel_dem = discord.utils.get(message.server.channels, name = 'serveurs-juicebox-x-delete')
 
 	#await client.delete_channel(channel_dem)
@@ -56,6 +55,9 @@ async def on_ready():
 		#serveur_juicy = await client.send_message(channel_dem, x.name + server.owner)
 	serv_co = '/help - ' + str(nb_of_serv_where_i_am_connected) + ' serveurs'
 	await client.change_presence(game=discord.Game(name=serv_co))
+	#upload l'emoji juicebot sur tout les serveurs
+	for x in client.servers:
+		await client.create_custom_emoji(x,name='JuiceBox',image=open('JuiceBot.png','rb').read())
 	
 players = {}
 queues = {}
