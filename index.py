@@ -435,7 +435,7 @@ async def on_message(message):
 		fun.add_field(name="/say + texte", value="Fait dire au bot le texte", inline=True)
 		fun.add_field(name="/gif", value="Donne un gif aléatoire", inline=True)
 		fun.add_field(name="/memeaudio ***(Nouveau)***", value="Joue un meme (audio) dans votre salon vocal !", inline=True)
-		fun.add_field(name="/info + *mention [optionel]*", value="Donne toutes les informations sur les membres du serveur... ou vous-même!", inline=True)
+		fun.add_field(name="/info + *mention [optionel]* ***(nouveau)***", value="Donne toutes les informations sur les membres du serveur... ou vous-même!", inline=True)
 		fun.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=fun)
 	
