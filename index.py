@@ -96,6 +96,8 @@ async def info(message):
 	list_user_roles = str(list_user_roles)
 
 	info_mention.add_field(name="Avec les roles:", value=list_user_roles, inline=False)
+	
+	info_mention.set_footer(text=message.author)
 
 	
 
@@ -400,7 +402,8 @@ async def on_message(message):
 		help.add_field(name="/fun", value="Donne les commandes de fun", inline=True)
 		help.add_field(name="/moderation", value="Donne les commandes de moderations", inline=True)
 		help.add_field(name="/musique", value="Donne les commandes de musique", inline=True)
-		help.add_field(name="/support", value="Donne les commandes en liens avec mes devlopeurs !", inline=True) 
+		help.add_field(name="/support", value="Donne les commandes en liens avec mes devlopeurs !", inline=True)
+		help.add_field(name="/news", value="Ok JuiceBox , quelles sont les dernières nouveautées ?", inline=False)
 		help.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=help)
 		
@@ -431,7 +434,8 @@ async def on_message(message):
 		fun.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		fun.add_field(name="/say + texte", value="Fait dire au bot le texte", inline=True)
 		fun.add_field(name="/gif", value="Donne un gif aléatoire", inline=True)
-		fun.add_field(name="/memeaudio ***Bientot...***", value="???", inline=True)
+		fun.add_field(name="/memeaudio ***(Nouveau)***", value="Joue un meme (audio) dans votre salon vocal !", inline=True)
+		fun.add_field(name="/info + *mention [optionel]*", value="Donne toutes les informations sur les membres du serveur... ou vous-même!", inline=True)
 		fun.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=fun)
 	
