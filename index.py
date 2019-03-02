@@ -302,7 +302,7 @@ async def break_until_agrement_is_true(message):
 
 
 
-def arg_meme_audio(message)
+def arg_meme_audio(message):
 	pass#url,titre
 
 async def meme_audio(message):
