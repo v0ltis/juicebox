@@ -40,6 +40,8 @@ news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme da
 
 nb_of_serv_where_i_am_connected = 0
 
+admin = ['TheLicheIsBack','v0ltis']
+
 @client.event
 async def on_ready():
 	global nb_of_serv_where_i_am_connected
@@ -298,6 +300,11 @@ async def break_until_agrement_is_true(message):
 		turn += 1
 		time.sleep(1)
 
+
+
+def arg_meme_audio(message)
+	pass#url,titre
+
 async def meme_audio(message):
 	if message.content.endswith('-l'):
 		msg_meme_audio = []
@@ -323,6 +330,17 @@ async def meme_audio(message):
 
 async def queue(message):
 	pass
+
+async def verifie_admin(ctx):
+	global admin
+	
+	for x in admin:
+		if ctx.message.author.name == x:
+			await client.send_message(ctx.message.channel,'You are {}, proceed ...'.format(ctx.message.author.name))
+			return True
+
+	await client.send_message(ctx.message.channel,'You are not an admin.')
+	return False
 
 @client.event
 async def on_message(message):
