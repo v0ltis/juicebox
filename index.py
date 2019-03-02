@@ -58,9 +58,17 @@ async def on_ready():
 	serv_co = '/help - ' + str(nb_of_serv_where_i_am_connected) + ' serveurs'
 	await client.change_presence(game=discord.Game(name=serv_co))
 	#upload l'emoji juicebot sur tout les serveurs
+	juiceboxemoji = False
 	for x in client.servers:
-		await client.create_custom_emoji(x,name='JuiceBox',image=open('JuiceBot.png','rb').read())
-	
+		for y in x.emojis:
+			if y.name == "JuiceBox":
+				#already this emoji
+				juiceboxemoji = True
+		if juiceboxemoji == False:
+			await client.create_custom_emoji(x,name='JuiceBox',image=open('JuiceBot.png','rb').read())
+		else:
+			juiceboxemoji = False
+			
 players = {}
 queues = {}
 chat_on = False
