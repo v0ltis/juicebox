@@ -331,16 +331,20 @@ async def meme_audio(message):
 async def queue(message):
 	pass
 
-async def verifie_admin(ctx):
+async def verifie_admin(message):
 	global admin
 	
 	for x in admin:
-		if ctx.message.author.name == x:
-			await client.send_message(ctx.message.channel,'You are {}, proceed ...'.format(ctx.message.author.name))
+		if message.author.name == x:
+			await client.send_message(message.channel,'You are {}, proceed ...'.format(message.author.name))
 			return True
 
-	await client.send_message(ctx.message.channel,'You are not an admin.')
+	await client.send_message(message.channel,'You are not an admin.')
 	return False
+
+async def close(message):
+	if await verifie_admin(message) == True:
+		await client.close()
 
 @client.event
 async def on_message(message):
@@ -574,4 +578,6 @@ async def on_message(message):
 	if message.content.upper().startswith("/QUEUE"):
 		await queue(message)
 
+	if message.content.upper().startswith("/CLOSE"):
+		await close(message)	
 client.run(os.environ['TOKEN_BOT'])
