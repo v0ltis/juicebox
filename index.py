@@ -219,10 +219,15 @@ async def play_url(message,url,comment=False):
 	try:
 		if players[server.id].is_done() == True or play_on == False:
 			time.sleep(5)
+			temps_0 = time.monotonic()
 			player.start()
 			print("Let's play : " + str(url))
 			if comment != False:
 				await send_msg(message.channel,("C'est parti pour : " + str(url)))
+			while not players[server.id].is_done():
+				time.sleep(1)
+			time_end = time.monotonic() - temps_0
+			await send_msg(message.channel,str(time_end))
 			play_on = True
 
 		else:
@@ -264,12 +269,9 @@ async def play(message):
 			
 		print(msg_query_end)
 		
-		try:
-			url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
-			print(url)
-		
-		except:
-			await client.send_message(message.channel,"Erreur ... Essaye avec un autre url.")
+		url =text_to_url.url_find('yt_url_spider_v2.py','https://www.youtube.com',str(msg_query_end)).get_complete_url()
+		print(url)
+
 
 		await play_url(message,url,True)
 
