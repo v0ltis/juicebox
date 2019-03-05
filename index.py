@@ -227,7 +227,11 @@ async def play_url(message,url,comment=False):
 			while not players[server.id].is_done():
 				time.sleep(1)
 			time_end = time.monotonic() - temps_0
-			await send_msg(message.channel,str(time_end))
+			min_time_end = 0
+			while time_end >= 60:
+				time_end -= 60
+				min_time_end += 1
+			await send_msg(message.channel,(str(min_time_end),str(time_end)))
 			play_on = True
 
 		else:
