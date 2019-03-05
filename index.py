@@ -222,12 +222,16 @@ async def play_url(message,url,comment=False):
 			temps_0 = time.monotonic()
 			player.start()
 			print("Let's play : " + str(url))
+			
 			if comment != False:
 				await send_msg(message.channel,("C'est parti pour : " + str(url)))
+			
+			time_end = time.monotonic() - temps_0
+			
 			while not players[server.id].is_done():
 				time.sleep(1)
-			time_end = time.monotonic() - temps_0
 			min_time_end = 0
+			
 			while time_end >= 60:
 				time_end -= 60
 				min_time_end += 1
