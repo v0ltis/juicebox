@@ -230,6 +230,7 @@ async def play_url(message,url,comment=False):
 			
 			while not players[server.id].is_done():
 				time.sleep(1)
+			
 			min_time_end = 0
 			
 			while time_end >= 60:
