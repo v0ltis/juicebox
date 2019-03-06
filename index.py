@@ -77,7 +77,7 @@ async def on_ready():
 
 	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 	
-	boucle()
+	await boucle()
 
 	#upload l'emoji juicebot sur tout les serveurs
 	juiceboxemoji = False
