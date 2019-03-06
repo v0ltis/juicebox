@@ -56,6 +56,14 @@ news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme da
 nb_of_serv_where_i_am_connected = 0
 
 admin = ['TheLicheIsBack','v0ltis']
+async def boucle():
+	while True:
+		await client.change_presence(game=discord.Game(name=serv_co))
+		time.sleep(15)
+		await client.change_presence(game=discord.Game(name="/help"))
+		time.sleep(15)
+		await client.change_presence(game=discord.Game(name="juicebot.github.io"))
+		time.sleep(15)
 
 @client.event
 async def on_ready():
@@ -68,14 +76,9 @@ async def on_ready():
 		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
 
 	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
-	while True:
-		await client.change_presence(game=discord.Game(name=serv_co))
-		time.sleep(15)
-		await client.change_presence(game=discord.Game(name="/help"))
-		time.sleep(15)
-		await client.change_presence(game=discord.Game(name="juicebot.github.io"))
-		time.sleep(15)
-			
+	
+	boucle()
+
 	#upload l'emoji juicebot sur tout les serveurs
 	juiceboxemoji = False
 	for x in client.servers:
@@ -608,5 +611,6 @@ async def on_message(message):
 		await queue(message)
 
 	if message.content.upper().startswith("/CLOSE"):
-		await close(message)	
+		await close(message)
+
 client.run(os.environ['TOKEN_BOT'])
