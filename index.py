@@ -62,20 +62,18 @@ async def on_ready():
 	global nb_of_serv_where_i_am_connected
 	print("Logged in as:", client.user.name)
 	print("ID:", client.user.id)
-	nb_of_serv_where_i_am_connected = 0
+	#channel_dem = discord.utils.get(message.server.channels, name = 'serveurs-juicebox-x-delete')
+
+	#await client.delete_channel(channel_dem)
+	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
+	#await client.create_channel("JuiceBox Support", "serveurs-juicebox-x-delete")
+	#await client.send_message(channel_dem, "Les serveurs auquel je suis connecté sont :\n")
 	for x in client.servers:
 		nb_of_serv_where_i_am_connected += 1
-		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
-
-	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
-	while True:
-		await client.change_presence(game=discord.Game(name=serv_co))
-		time.sleep(15)
-		await client.change_presence(game=discord.Game(name="/help"))
-		time.sleep(15)
-		await client.change_presence(game=discord.Game(name="juicebot.github.io"))
-		time.sleep(15)
-			
+		#nb_server_juicy = await client.send_message(channel_dem,str(nb_of_serv_where_i_am_connected))
+		#serveur_juicy = await client.send_message(channel_dem, x.name + server.owner)
+	serv_co = '/help - ' + str(nb_of_serv_where_i_am_connected) + ' serveurs'
+	await client.change_presence(game=discord.Game(name=serv_co))
 	#upload l'emoji juicebot sur tout les serveurs
 	juiceboxemoji = False
 	for x in client.servers:
