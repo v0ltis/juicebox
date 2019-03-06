@@ -212,8 +212,11 @@ async def play_url(message,url,comment=False):
 	
 	server = message.server
 	voice_client = client.voice_client_in(server)
+	'''
 	beforeArgs = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5" 
 	player = await voice_client.create_ytdl_player(url, before_options=beforeArgs)
+	'''
+	player = await voice_client.create_ytdl_player(url)
 	players[server.id] = player
 	print(player,players)
 	try:
