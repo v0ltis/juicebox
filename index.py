@@ -36,6 +36,21 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 	     "https://www.youtube.com/watch?v=xAdo9bgToTk"]
 
 
+ytdl_format_options = {
+    'format': 'bestaudio/best',
+    'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
+    'restrictfilenames': True,
+    'noplaylist': True,
+    'nocheckcertificate': True,
+    'ignoreerrors': False,
+    'logtostderr': False,
+    'quiet': True,
+    'no_warnings': True,
+    'default_search': 'auto',
+    'source_address': '0.0.0.0',
+    'usenetrc': True
+}
+
 news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme dans votre salon vocal! \n Ajout d'un ***__/info__*** : Apprenez tout sur les membres de votre serveur ... ou vous même! \n Nouvautée: Juicebox affiche désormais le nombre de serveurs sur lequel il est connecté ! c'est pas super ?"    
 
 nb_of_serv_where_i_am_connected = 0
@@ -200,7 +215,7 @@ async def verifie_url(message):
 			return False
 
 async def play_url(message,url,comment=False):
-	global player,play_on
+	global player,play_on,ytdl_format_options
 
 	await join(message,comment)
 
@@ -212,11 +227,8 @@ async def play_url(message,url,comment=False):
 	
 	server = message.server
 	voice_client = client.voice_client_in(server)
-	'''
 	beforeArgs = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5" 
-	player = await voice_client.create_ytdl_player(url, before_options=beforeArgs)
-	'''
-	player = await voice_client.create_ytdl_player(url)
+	player = await voice_client.create_ytdl_player(url,options=ytdl_format_options, before_options=beforeArgs)
 	players[server.id] = player
 	print(player,players)
 	try:
