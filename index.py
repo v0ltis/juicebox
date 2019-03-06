@@ -57,6 +57,13 @@ nb_of_serv_where_i_am_connected = 0
 
 admin = ['TheLicheIsBack','v0ltis']
 async def boucle():
+	global nb_of_serv_where_i_am_connected
+	nb_of_serv_where_i_am_connected = 0
+	
+	for x in client.servers:
+		nb_of_serv_where_i_am_connected += 1
+		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
+	
 	while True:
 		await client.change_presence(game=discord.Game(name=serv_co))
 		time.sleep(15)
