@@ -68,13 +68,13 @@ async def on_ready():
 	while True:
 		for x in client.servers:
 			nb_of_serv_where_i_am_connected += 1
-		serv_co = nb_of_serv_where_i_am_connected, 'serveurs'
+		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
 		await client.change_presence(game=discord.Game(name=serv_co))
-		time.sleep(5)
+		time.sleep(15)
 		await client.change_presence(game=discord.Game(name="/help"))
-		time.sleep(5)
+		time.sleep(15)
 		await client.change_presence(game=discord.Game(name="juicebot.github.io"))
-		time.sleep(5)
+		time.sleep(15)
 			
 	#upload l'emoji juicebot sur tout les serveurs
 	juiceboxemoji = False
