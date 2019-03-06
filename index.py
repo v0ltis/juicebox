@@ -64,8 +64,8 @@ async def on_ready():
 	print("ID:", client.user.id)
 	nb_of_serv_where_i_am_connected = 0
 	for x in client.servers:
-			nb_of_serv_where_i_am_connected += 1
-		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
+		nb_of_serv_where_i_am_connected += 1
+	serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
 
 	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 	while True:
