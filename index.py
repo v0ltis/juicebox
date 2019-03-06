@@ -619,7 +619,7 @@ async def on_message(message):
 
 	if message.content.upper().startswith("/CLOSE"):
 		await close(message)
-	
-	await boucle()
+
+	#await boucle()
 
 client.run(os.environ['TOKEN_BOT'])
