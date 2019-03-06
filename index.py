@@ -56,13 +56,9 @@ news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme da
 nb_of_serv_where_i_am_connected = 0
 
 admin = ['TheLicheIsBack','v0ltis']
+
 async def boucle():
 	global nb_of_serv_where_i_am_connected
-	nb_of_serv_where_i_am_connected = 0
-	
-	for x in client.servers:
-		nb_of_serv_where_i_am_connected += 1
-		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
 	
 	while True:
 		await client.change_presence(game=discord.Game(name=serv_co))
@@ -82,9 +78,15 @@ async def on_ready():
 		nb_of_serv_where_i_am_connected += 1
 		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
 
+	nb_of_serv_where_i_am_connected = 0
+	
+	for x in client.servers:
+		nb_of_serv_where_i_am_connected += 1
+		serv_co = str(nb_of_serv_where_i_am_connected) + ' serveurs'
+
 	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 	
-	#await boucle()
+	await client.change_presence(game=discord.Game(name=("/help "+serv_co)))
 
 	#upload l'emoji juicebot sur tout les serveurs
 	juiceboxemoji = False
