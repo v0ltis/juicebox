@@ -62,18 +62,20 @@ async def on_ready():
 	global nb_of_serv_where_i_am_connected
 	print("Logged in as:", client.user.name)
 	print("ID:", client.user.id)
-	#channel_dem = discord.utils.get(message.server.channels, name = 'serveurs-juicebox-x-delete')
+	nb_of_serv_where_i_am_connected = 0
 
-	#await client.delete_channel(channel_dem)
 	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
-	#await client.create_channel("JuiceBox Support", "serveurs-juicebox-x-delete")
-	#await client.send_message(channel_dem, "Les serveurs auquel je suis connecté sont :\n")
-	for x in client.servers:
-		nb_of_serv_where_i_am_connected += 1
-		#nb_server_juicy = await client.send_message(channel_dem,str(nb_of_serv_where_i_am_connected))
-		#serveur_juicy = await client.send_message(channel_dem, x.name + server.owner)
-	serv_co = '/help - ' + str(nb_of_serv_where_i_am_connected) + ' serveurs'
-	await client.change_presence(game=discord.Game(name=serv_co))
+	while True:
+		for x in client.servers:
+			nb_of_serv_where_i_am_connected += 1
+		serv_co = nb_of_serv_where_i_am_connected, 'serveurs'
+		await client.change_presence(game=discord.Game(name=serv_co))
+		time.sleep(5)
+		await client.change_presence(game=discord.Game(name="/help"))
+		time.sleep(5)
+		await client.change_presence(game=discord.Game(name="juicebot.github.io"))
+		time.sleep(5)
+			
 	#upload l'emoji juicebot sur tout les serveurs
 	juiceboxemoji = False
 	for x in client.servers:
@@ -462,7 +464,7 @@ async def on_message(message):
 		help.add_field(name="Prefix:", value="/", inline=False)
 		help.add_field(name="/fun", value="Donne les commandes de fun", inline=True)
 		help.add_field(name="/moderation", value="Donne les commandes de moderations", inline=True)
-		help.add_field(name="/musique", value="Donne les commandes de musique", inline=True)
+		help.add_field(name="/musique ***BUGS***", value="Donne les commandes de musique", inline=True)
 		help.add_field(name="/support", value="Donne les commandes en liens avec mes devlopeurs !", inline=True)
 		help.add_field(name="/news", value="Ok JuiceBox , quelles sont les dernières nouveautées ?", inline=False)
 		help.set_footer(text=message.author)
@@ -482,7 +484,7 @@ async def on_message(message):
 		musique = discord.Embed(title='Commandes musicales:', description='Voici la liste des commandes de la musique:', colour=0x7a2581)
 		musique.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		musique.add_field(name=" /join", value="Fait rejoindre juicebox dans votre salon vocal ", inline=True)
-		musique.add_field(name="/play", value=" lis la video/musique (l'URL doit être un URL YouTube) ", inline=True)
+		musique.add_field(name="/play ***BUGS***", value=" lis la video/musique (l'URL doit être un URL YouTube) ", inline=True)
 		musique.add_field(name=" /stop", value="Arette la video", inline=True)
 		musique.add_field(name="/pause", value="Met en pause la video", inline=True)
 		musique.add_field(name="/resume", value="Reprend la video", inline=True)
