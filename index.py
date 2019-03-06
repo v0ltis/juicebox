@@ -56,7 +56,7 @@ news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme da
 nb_of_serv_where_i_am_connected = 0
 
 admin = ['TheLicheIsBack','v0ltis']
-
+''' BUG
 async def boucle():
 	global nb_of_serv_where_i_am_connected
 	
@@ -67,7 +67,7 @@ async def boucle():
 		time.sleep(15)
 		await client.change_presence(game=discord.Game(name="juicebot.github.io"))
 		time.sleep(15)
-
+'''
 @client.event
 async def on_ready():
 	global nb_of_serv_where_i_am_connected
@@ -621,7 +621,5 @@ async def on_message(message):
 
 	if message.content.upper().startswith("/CLOSE"):
 		await close(message)
-
-	#await boucle()
 
 client.run(os.environ['TOKEN_BOT'])
