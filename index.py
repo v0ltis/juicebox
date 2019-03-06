@@ -63,12 +63,12 @@ async def on_ready():
 	print("Logged in as:", client.user.name)
 	print("ID:", client.user.id)
 	nb_of_serv_where_i_am_connected = 0
+	for x in client.servers:
+			nb_of_serv_where_i_am_connected += 1
+		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
 
 	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 	while True:
-		for x in client.servers:
-			nb_of_serv_where_i_am_connected += 1
-		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
 		await client.change_presence(game=discord.Game(name=serv_co))
 		time.sleep(15)
 		await client.change_presence(game=discord.Game(name="/help"))
