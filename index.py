@@ -33,7 +33,8 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 	     "https://www.youtube.com/watch?v=Ygnez_odlNg",
 	     "https://www.youtube.com/watch?v=wPqo_q-HgmE",
 	     "https://www.youtube.com/watch?v=8vgQCArK2sY",
-	     "https://www.youtube.com/watch?v=xAdo9bgToTk"]
+	     "https://www.youtube.com/watch?v=xAdo9bgToTk",
+	     "https://www.youtube.com/watch?v=Pr8ETbGz35Q"]
 
 
 ytdl_format_options = {
