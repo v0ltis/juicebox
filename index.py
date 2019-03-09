@@ -541,9 +541,7 @@ async def on_message(message):
 		except:
 			await client.send_message(message.channel, "Erreur ... voici les choses a faire :\nVerifier que le salon report existe bien.\nVerifier que vous avez bien donné une raison au report.\n Ca ne marche toujour pas ? Evoyez nous un ticket !")
 					
-					
-	if (message.channel.name == "youtube"):
-		await client.add_reaction(message, "<:youtube:314349922885566475>")
+
 		
 	if message.content.upper().startswith("/MEMEAUDIO"):
 		await meme_audio(message)
@@ -568,8 +566,7 @@ async def on_message(message):
 
 	for word in contents:
 		if word.upper() in merde:
-			await client.delete_message(message)
-			await client.send_message(message.channel, ":shit:")
+			await client.add_reaction(message.channel, emoji='💩')
 							
 						
 	if message.content.upper().startswith("YO"):
