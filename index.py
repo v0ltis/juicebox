@@ -267,18 +267,7 @@ async def play_url(message,url,comment=False):
 			
 			if comment != False:
 				await send_msg(message.channel,("C'est parti pour : " + str(url)))
-			
-			time_end = time.monotonic() - temps_0
-			
-			while not players[server.id].is_done():
-				time.sleep(1)
-			
-			min_time_end = 0
-			
-			while time_end >= 60:
-				time_end -= 60
-				min_time_end += 1
-			await send_msg(message.channel,(str(min_time_end),str(time_end)))
+
 			play_on = True
 
 		else:
