@@ -14,6 +14,8 @@ import my_directory
 import text_to_url
 
 client = commands.Bot(command_prefix = '/')
+prefix = '/'
+
 
 merde = ["MERDE","CHIER","CHIANT","CHIE"]
 chat_filter = ["PUTE","SALOPE","CONNARD","CUL","ABRUTIT","NIQUE","ENCULE","CHATTE","BITE","CON","BITCH","PUTIN","FOUTRE","ASS","TRISO","GOGOL","COQUIN","BATARDE","FELATION","SEX","VTFF","NTM"]
@@ -107,6 +109,33 @@ queues = {}
 chat_on = False
 play_on = False
 player = None
+
+#dev commands
+
+async def dev_command(message):
+	url = message.content.split(prefix + 'dev_command ')[1]
+	try:
+		channel = message.author.voice.voice_channel
+		print("I'm connected to : " + str(channel))
+		await client.join_voice_channel(channel)
+	except:
+		pass
+
+	server = message.server
+	voice_client = client.voice_client_in(server)
+	'''
+	with youtube_dl.YoutubeDL({'format':'bestaudio/best'}) as ydl:
+    	ydl.download([])
+    '''
+	print(os.getcwd())
+	with youtube_dl.YoutubeDL({'format':'bestaudio/best'}) as ydl:
+		filename = ydl.prepare_filename(ydl.extract_info(url))
+		ydl.download([url])
+
+	player = voice_client.create_ffmpeg_player(filename)
+	players[server.id] = player
+	player.start()
+
 
 #Messages fonctions
 
