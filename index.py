@@ -113,7 +113,7 @@ player = None
 #dev commands
 
 async def dev_command(message):
-	url = message.content.split(prefix + 'dev_command ')[1]
+	url = message.content.split(' ')[1]
 	try:
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
@@ -641,13 +641,13 @@ async def on_message(message):
 		await stop(message)
 
 	#leave
-	if message.content.upper().startswith("/LEAVE"):
+	if message.content.upper().startswith(prefix + "LEAVE"):
 		await leave(message)
 
-	if message.content.upper().startswith("/QUEUE"):
+	if message.content.upper().startswith(prefix + "QUEUE"):
 		await queue(message)
 
-	if message.content.upper().startswith("/CLOSE"):
+	if message.content.upper().startswith(prefix + "CLOSE"):
 		await close(message)
 
 client.run(os.environ['TOKEN_BOT'])
