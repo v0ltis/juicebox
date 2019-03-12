@@ -40,21 +40,6 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 	     "https://www.youtube.com/watch?v=0gx7z2ohiZQ"]
 
 
-ytdl_format_options = {
-    'format': 'bestaudio/best',
-    'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
-    'restrictfilenames': True,
-    'noplaylist': True,
-    'nocheckcertificate': True,
-    'ignoreerrors': False,
-    'logtostderr': False,
-    'quiet': True,
-    'no_warnings': True,
-    'default_search': 'auto',
-    'source_address': '0.0.0.0',
-    'usenetrc': True
-}
-
 news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme dans votre salon vocal! \n Ajout d'un ***__/info__*** : Apprenez tout sur les membres de votre serveur ... ou vous même! \n Nouvautée: Juicebox affiche désormais le nombre de serveurs sur lequel il est connecté ! c'est pas super ?"    
 
 nb_of_serv_where_i_am_connected = 0
@@ -109,7 +94,7 @@ queues = {}
 chat_on = False
 play_on = False
 player = None
-
+filename = {}
 #dev commands
 
 async def dev_command(message):
@@ -264,18 +249,15 @@ async def play_url(message,url,comment=False):
 
 	await join(message,comment)
 
-	if player != None:
-		if player.is_done() == False:
-			print("Je n'ai pas fini ! : " + str(url))
-			await send_msg(message.channel,"Laisse moi finir s'il te plait")
-			return
-	
 	server = message.server
 	voice_client = client.voice_client_in(server)
-	beforeArgs = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5" 
-	player = await voice_client.create_ytdl_player(url,options=ytdl_format_options, before_options=beforeArgs)
+
+	with youtube_dl.YoutubeDL({'format':'bestaudio/best'}) as ydl:
+		filename[server.id] = ydl.prepare_filename(ydl.extract_info(url))
+		ydl.download([url])
+
+	player = voice_client.create_ffmpeg_player(filename[server.id])
 	players[server.id] = player
-	print(player,players)
 	try:
 		if players[server.id].is_done() == True or play_on == False:
 			time.sleep(5)
