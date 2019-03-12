@@ -650,4 +650,7 @@ async def on_message(message):
 	if message.content.upper().startswith(prefix + "CLOSE"):
 		await close(message)
 
+	if message.content.upper().startswith(prefix + "DEV_COMMAND"):
+		await dev_command(message)
+
 client.run(os.environ['TOKEN_BOT'])
