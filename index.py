@@ -292,8 +292,8 @@ async def play_url(message,url,comment=False):
 			print("Je n'ai pas fini ! : " + str(url))
 			await send_msg(message.channel,"Laisse moi finir s'il te plait")
 
-	except:
-		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube ou attendez un peu. \n Url: " + str(url)))
+	except Exception:
+		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube ou attendez un peu. \n Url: " + str(url) +'\n\t' +  str(Exception)))
 		
 async def play(message):
 	global player
