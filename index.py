@@ -166,13 +166,17 @@ async def info(message):
 
 async def join(message,comment=False):
 	try:
-		channel = message.author.voice.voice_channel
-		print("I'm connected to : " + str(channel))
-		await client.join_voice_channel(channel)
-		if comment == True:
-			await client.send_message(message.channel, "Je suis pret à chanter !")
-			await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***' \
-				+'\n Nom du serveur : "***' + message.server.name + '"***')
+		if client.is_voice_connected(message.server):
+			pass
+		else:
+			channel = message.author.voice.voice_channel
+			print("I'm connected to : " + str(channel))
+			await client.join_voice_channel(channel)
+			if comment == True:
+				await client.send_message(message.channel, "Je suis pret à chanter !")
+				await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***' \
+					+'\n Nom du serveur : "***' + message.server.name + '"***')
+			await stop()
 	except:
 		pass
 		#await send_msg(message.channel,"Erreur ...(join command)")
@@ -257,8 +261,6 @@ async def play_url(message,url,comment=False):
 	players[server.id] = player
 	try:
 		if players[server.id].is_done() == True:
-			time.sleep(5)
-			temps_0 = time.monotonic()
 			player.start()
 			print("Let's play : " + str(url))
 			
