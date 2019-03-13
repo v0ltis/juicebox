@@ -94,6 +94,15 @@ queues = {}
 chat_on = False
 player = None
 filename = {}
+'''
+forme du type:
+{
+	message.server.id : nomdufichier à jouer
+}
+
+'''
+play_on = {}#True si le player et en train de jouer et False s'il ne joue pas | forme : message.server.id : True/False
+
 #dev commands
 
 async def dev_command(message):
@@ -165,6 +174,7 @@ async def info(message):
 #Music fonctions
 
 async def join(message,comment=False):
+	global play_on
 	try:
 		if client.is_voice_connected(message.server):
 			pass
@@ -177,6 +187,8 @@ async def join(message,comment=False):
 				await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***' \
 					+'\n Nom du serveur : "***' + message.server.name + '"***')
 			await stop()
+			play_on[message.server.id] = False
+
 	except:
 		pass
 		#await send_msg(message.channel,"Erreur ...(join command)")
@@ -260,12 +272,21 @@ async def play_url(message,url,comment=False):
 	player = voice_client.create_ffmpeg_player(filename[server.id])
 	players[server.id] = player
 	try:
-		if players[server.id].is_done() == True:
+		#verifier que le bot ne joue pas déjà une musique pour empecher un crash
+		if players[server.id].is_done() == True or play_on[server.id] == False:
+			play_on[server.id] = True
 			player.start()
 			print("Let's play : " + str(url))
 			
 			if comment != False:
 				await send_msg(message.channel,("C'est parti pour : " + str(url)))
+			
+			#action à la fin de lecture
+			while not players[server.id].is_done():
+				pass
+			play_on[server.id] = False
+			time.sleep(1)
+			await leave(message)
 
 		else:
 			print("Je n'ai pas fini ! : " + str(url))
