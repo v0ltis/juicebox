@@ -92,7 +92,6 @@ async def on_ready():
 players = {}
 queues = {}
 chat_on = False
-play_on = False
 player = None
 filename = {}
 #dev commands
@@ -166,8 +165,6 @@ async def info(message):
 #Music fonctions
 
 async def join(message,comment=False):
-	global play_on
-	play_on = False
 	try:
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
@@ -245,7 +242,7 @@ async def verifie_url(message):
 			return False
 
 async def play_url(message,url,comment=False):
-	global player,play_on,ytdl_format_options
+	global player,ytdl_format_options
 
 	await join(message,comment)
 
@@ -259,7 +256,7 @@ async def play_url(message,url,comment=False):
 	player = voice_client.create_ffmpeg_player(filename[server.id])
 	players[server.id] = player
 	try:
-		if players[server.id].is_done() == True or play_on == False:
+		if players[server.id].is_done() == True:
 			time.sleep(5)
 			temps_0 = time.monotonic()
 			player.start()
@@ -267,8 +264,6 @@ async def play_url(message,url,comment=False):
 			
 			if comment != False:
 				await send_msg(message.channel,("C'est parti pour : " + str(url)))
-
-			play_on = True
 
 		else:
 			print("Je n'ai pas fini ! : " + str(url))
@@ -278,7 +273,7 @@ async def play_url(message,url,comment=False):
 		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube ou attendez un peu. \n Url: " + str(url)))
 		
 async def play(message):
-	global play_on,player
+	global player
 	
 	message_url = message.content
 	url = message_url.split(" ")[1]
