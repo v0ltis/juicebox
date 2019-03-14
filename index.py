@@ -40,6 +40,21 @@ memeaudio = ["https://www.youtube.com/watch?v=ma7TL8jJT0A",
 	     "https://www.youtube.com/watch?v=0gx7z2ohiZQ"]
 
 
+ytdl_format_options = {
+    'format': 'bestaudio/best',
+    'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
+    'restrictfilenames': True,
+    'noplaylist': True,
+    'nocheckcertificate': True,
+    'ignoreerrors': False,
+    'logtostderr': False,
+    'quiet': True,
+    'no_warnings': True,
+    'default_search': 'auto',
+    'source_address': '0.0.0.0',
+    'usenetrc': True
+}
+
 news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme dans votre salon vocal! \n Ajout d'un ***__/info__*** : Apprenez tout sur les membres de votre serveur ... ou vous même! \n Nouvautée: Juicebox affiche désormais le nombre de serveurs sur lequel il est connecté ! c'est pas super ?"    
 
 nb_of_serv_where_i_am_connected = 0
@@ -92,21 +107,13 @@ async def on_ready():
 players = {}
 queues = {}
 chat_on = False
+play_on = False
 player = None
-filename = {}
-'''
-forme du type:
-{
-	message.server.id : nomdufichier à jouer
-}
-
-'''
-play_on = {}#True si le player et en train de jouer et False s'il ne joue pas | forme : message.server.id : True/False
 
 #dev commands
 
 async def dev_command(message):
-	url = message.content.split(' ')[1]
+	url = message.content.split(prefix + 'dev_command ')[1]
 	try:
 		channel = message.author.voice.voice_channel
 		print("I'm connected to : " + str(channel))
@@ -175,20 +182,15 @@ async def info(message):
 
 async def join(message,comment=False):
 	global play_on
+	play_on = False
 	try:
-		if client.is_voice_connected(message.server):
-			pass
-		else:
-			channel = message.author.voice.voice_channel
-			print("I'm connected to : " + str(channel))
-			await client.join_voice_channel(channel)
-			if comment == True:
-				await client.send_message(message.channel, "Je suis pret à chanter !")
-				await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***' \
-					+'\n Nom du serveur : "***' + message.server.name + '"***')
-			await stop()
-			play_on[message.server.id] = False
-
+		channel = message.author.voice.voice_channel
+		print("I'm connected to : " + str(channel))
+		await client.join_voice_channel(channel)
+		if comment == True:
+			await client.send_message(message.channel, "Je suis pret à chanter !")
+			await client.send_message(discord.Object(id='543490625773895681'), 'Je me suis connecté  à \n ID:' + channel.id +'\n Nom du channel : "***' + channel.name + '"***' \
+				+'\n Nom du serveur : "***' + message.server.name + '"***')
 	except:
 		pass
 		#await send_msg(message.channel,"Erreur ...(join command)")
@@ -258,45 +260,54 @@ async def verifie_url(message):
 			return False
 
 async def play_url(message,url,comment=False):
-	global player,ytdl_format_options
+	global player,play_on,ytdl_format_options
 
 	await join(message,comment)
 
+	if player != None:
+		if player.is_done() == False:
+			print("Je n'ai pas fini ! : " + str(url))
+			await send_msg(message.channel,"Laisse moi finir s'il te plait")
+			return
+	
 	server = message.server
 	voice_client = client.voice_client_in(server)
-
-	with youtube_dl.YoutubeDL({'format':'bestaudio/best'}) as ydl:
-		filename[server.id] = ydl.prepare_filename(ydl.extract_info(url))
-		ydl.download([url])
-
-	player = voice_client.create_ffmpeg_player(filename[server.id])
+	beforeArgs = "-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5" 
+	player = await voice_client.create_ytdl_player(url,options=ytdl_format_options, before_options=beforeArgs)
 	players[server.id] = player
+	print(player,players)
 	try:
-		#verifier que le bot ne joue pas déjà une musique pour empecher un crash
-		if players[server.id].is_done() == True or play_on[server.id] == False:
-			play_on[server.id] = True
+		if players[server.id].is_done() == True or play_on == False:
+			time.sleep(5)
+			temps_0 = time.monotonic()
 			player.start()
 			print("Let's play : " + str(url))
 			
 			if comment != False:
 				await send_msg(message.channel,("C'est parti pour : " + str(url)))
 			
-			#action à la fin de lecture
+			time_end = time.monotonic() - temps_0
+			
 			while not players[server.id].is_done():
-				pass
-			play_on[server.id] = False
-			time.sleep(1)
-			await leave(message)
+				time.sleep(1)
+			
+			min_time_end = 0
+			
+			while time_end >= 60:
+				time_end -= 60
+				min_time_end += 1
+			await send_msg(message.channel,(str(min_time_end),str(time_end)))
+			play_on = True
 
 		else:
 			print("Je n'ai pas fini ! : " + str(url))
 			await send_msg(message.channel,"Laisse moi finir s'il te plait")
 
-	except ExceptionType, Argument:
-		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube ou attendez un peu. \n Url: " + str(url) +'\n\t```{} : ```'.format(str(ExceptionType),str(Argument))))
+	except:
+		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube ou attendez un peu. \n Url: " + str(url)))
 		
 async def play(message):
-	global player
+	global play_on,player
 	
 	message_url = message.content
 	url = message_url.split(" ")[1]
@@ -622,13 +633,12 @@ async def on_message(message):
 		await pause(message)
 	
 	#resume
-	if message.content.upper().startswith("/RESUME"):
+	if message.content.upper().startswith(prefix + "RESUME"):
 		await resume(message)
 
 	#STOP
-	if message.content.upper().startswith("/STOP"):
+	if message.content.upper().startswith(prefix + "STOP"):
 		await stop(message)
-
 	#leave
 	if message.content.upper().startswith(prefix + "LEAVE"):
 		await leave(message)
@@ -638,8 +648,5 @@ async def on_message(message):
 
 	if message.content.upper().startswith(prefix + "CLOSE"):
 		await close(message)
-
-	if message.content.upper().startswith(prefix + "DEV_COMMAND"):
-		await dev_command(message)
 
 client.run(os.environ['TOKEN_BOT'])
