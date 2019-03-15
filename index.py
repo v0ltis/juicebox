@@ -55,6 +55,12 @@ async def boucle():
 	await client.change_presence(game=discord.Game(name="juicebot.github.io"))
 	time.sleep(15)
 
+	for x in client.servers:
+		nb_of_serv_where_i_am_connected += 1
+		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
+	
+	await client.change_presence(game=discord.Game(name=("/help "+serv_co)))
+
 @client.event
 async def on_ready():
 	global nb_of_serv_where_i_am_connected
