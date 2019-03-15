@@ -661,6 +661,7 @@ async def on_message(message):
 		await boucle()
 		print("Boucle activée")
 	else:
+		time.sleep(5)
 		temps_zero = time.time()
 		print("Boucle canceled")
 
