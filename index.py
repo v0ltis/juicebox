@@ -46,8 +46,12 @@ nb_of_serv_where_i_am_connected = 0
 
 admin = ['TheLicheIsBack','v0ltis']
 
+boucle = False
+
 async def boucle():
+	global boucle
 	global nb_of_serv_where_i_am_connected
+	boucle == True
 	await client.change_presence(game=discord.Game(name=serv_co))
 	time.sleep(15)
 	await client.change_presence(game=discord.Game(name="/help"))
@@ -60,6 +64,8 @@ async def boucle():
 		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
 
 	await client.change_presence(game=discord.Game(name=("/help "+serv_co)))
+
+	boucle = False
 
 @client.event
 async def on_ready():
@@ -418,7 +424,7 @@ async def close(message):
 
 @client.event
 async def on_message(message):
-	global chat_on,temps_zero
+	global chat_on,temps_zero,boucle
 	if message.author.id in ban_user:
 			return
 	if message.author == client.user:
@@ -651,7 +657,7 @@ async def on_message(message):
 	if message.content.upper().startswith(prefix + "DEV_COMMAND"):
 		await dev_command(message)
 
-	if temps_zero - time.time() >= 5:
+	if temps_zero - time.time() >= 5 and boucle == False:
 		await boucle()
 	else:
 		temps_zero == time.time()
