@@ -657,7 +657,7 @@ async def on_message(message):
 	if message.content.upper().startswith(prefix + "DEV_COMMAND"):
 		await dev_command(message)
 
-	if temps_zero - time.time() >= 5 and boucle == False:
+	if time.time() - temps_zero >= 5 and boucle == False:
 		await boucle()
 		print("Boucle activée")
 	else:
