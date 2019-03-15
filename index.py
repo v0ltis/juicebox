@@ -409,7 +409,7 @@ async def close(message):
 
 @client.event
 async def on_message(message):
-	global chat_on,prefix
+	global chat_on
 	if message.author.id in ban_user:
 			return
 	if message.author == client.user:
@@ -630,7 +630,7 @@ async def on_message(message):
 		await stop(message)
 
 	#leave
-	if message.content.upper().startswith("/LEAVE"):
+	if message.content.upper().startswith(prefix + "LEAVE"):
 		await leave(message)
 
 	if message.content.upper().startswith(prefix + "QUEUE"):
