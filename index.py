@@ -283,7 +283,7 @@ async def play_url(message,url,comment=False):
 	player = voice_client.create_ffmpeg_player(filename[server.id])
 	players[server.id] = player
 #try:
-	if play_on[server.id].get(server.id) == None:
+	if play_on.get(server.id) == None:
 		play_on[server.id] == False
 
 	#verifier que le bot ne joue pas déjà une musique pour empecher un crash
