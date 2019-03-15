@@ -659,7 +659,9 @@ async def on_message(message):
 
 	if temps_zero - time.time() >= 5 and boucle == False:
 		await boucle()
+		print("Boucle activée")
 	else:
 		temps_zero == time.time()
+		print("Boucle canceled")
 
 client.run(os.environ['TOKEN_BOT'])
