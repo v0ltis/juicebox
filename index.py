@@ -271,30 +271,31 @@ async def play_url(message,url,comment=False):
 
 	player = voice_client.create_ffmpeg_player(filename[server.id])
 	players[server.id] = player
-	try:
-		#verifier que le bot ne joue pas déjà une musique pour empecher un crash
-		if players[server.id].is_done() == True or play_on[server.id] == False:
-			play_on[server.id] = True
-			player.start()
-			print("Let's play : " + str(url))
-			
-			if comment != False:
-				await send_msg(message.channel,("C'est parti pour : " + str(url)))
-			
-			#action à la fin de lecture
-			while not players[server.id].is_done():
-				pass
-			play_on[server.id] = False
-			time.sleep(1)
-			await leave(message)
+#try:
+	#verifier que le bot ne joue pas déjà une musique pour empecher un crash
+	if players[server.id].is_done() == True or play_on[server.id] == False:
+		play_on[server.id] = True
+		player.start()
+		print("Let's play : " + str(url))
+		
+		if comment != False:
+			await send_msg(message.channel,("C'est parti pour : " + str(url)))
+		
+		#action à la fin de lecture
+		while not players[server.id].is_done():
+			pass
+		play_on[server.id] = False
+		time.sleep(1)
+		await leave(message)
 
-		else:
-			print("Je n'ai pas fini ! : " + str(url))
-			await send_msg(message.channel,"Laisse moi finir s'il te plait")
-
+	else:
+		print("Je n'ai pas fini ! : " + str(url))
+		await send_msg(message.channel,"Laisse moi finir s'il te plait")
+'''
 	except ExceptionType, Argument:
 		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube ou attendez un peu. \n Url: " + str(url) +'\n\t```{} : ```'.format(str(ExceptionType),str(Argument))))
-		
+'''	
+
 async def play(message):
 	global player
 	
