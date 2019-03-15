@@ -284,7 +284,7 @@ async def play_url(message,url,comment=False):
 	players[server.id] = player
 #try:
 	if play_on.get(server.id) == None:
-		play_on[server.id] == False
+		play_on[server.id] = False
 
 	#verifier que le bot ne joue pas déjà une musique pour empecher un crash
 	if players[server.id].is_done() == True or play_on[server.id] == False:
