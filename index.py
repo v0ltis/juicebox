@@ -45,18 +45,16 @@ news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme da
 nb_of_serv_where_i_am_connected = 0
 
 admin = ['TheLicheIsBack','v0ltis']
-''' BUG
+
 async def boucle():
 	global nb_of_serv_where_i_am_connected
-	
-	while True:
-		await client.change_presence(game=discord.Game(name=serv_co))
-		time.sleep(15)
-		await client.change_presence(game=discord.Game(name="/help"))
-		time.sleep(15)
-		await client.change_presence(game=discord.Game(name="juicebot.github.io"))
-		time.sleep(15)
-'''
+	await client.change_presence(game=discord.Game(name=serv_co))
+	time.sleep(15)
+	await client.change_presence(game=discord.Game(name="/help"))
+	time.sleep(15)
+	await client.change_presence(game=discord.Game(name="juicebot.github.io"))
+	time.sleep(15)
+
 @client.event
 async def on_ready():
 	global nb_of_serv_where_i_am_connected
@@ -94,6 +92,7 @@ queues = {}
 chat_on = False
 player = None
 filename = {}
+temps_zero = 0
 '''
 forme du type:
 {
@@ -272,6 +271,9 @@ async def play_url(message,url,comment=False):
 	player = voice_client.create_ffmpeg_player(filename[server.id])
 	players[server.id] = player
 #try:
+	if play_on[server.id].get() == None:
+		play_on[server.id] == False
+
 	#verifier que le bot ne joue pas déjà une musique pour empecher un crash
 	if players[server.id].is_done() == True or play_on[server.id] == False:
 		play_on[server.id] = True
@@ -410,7 +412,7 @@ async def close(message):
 
 @client.event
 async def on_message(message):
-	global chat_on
+	global chat_on,temps_zero
 	if message.author.id in ban_user:
 			return
 	if message.author == client.user:
@@ -642,5 +644,10 @@ async def on_message(message):
 
 	if message.content.upper().startswith(prefix + "DEV_COMMAND"):
 		await dev_command(message)
+
+	if temps_zero - time.time() >= 5:
+		await boucle()
+	else:
+		temps_zero == time.time()
 
 client.run(os.environ['TOKEN_BOT'])
