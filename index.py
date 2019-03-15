@@ -51,7 +51,7 @@ boucle = False
 async def boucle():
 	global boucle
 	global nb_of_serv_where_i_am_connected
-	boucle == True
+	boucle = True
 	await client.change_presence(game=discord.Game(name=serv_co))
 	time.sleep(15)
 	await client.change_presence(game=discord.Game(name="/help"))
@@ -661,7 +661,7 @@ async def on_message(message):
 		await boucle()
 		print("Boucle activée")
 	else:
-		temps_zero == time.time()
+		temps_zero = time.time()
 		print("Boucle canceled")
 
 client.run(os.environ['TOKEN_BOT'])
