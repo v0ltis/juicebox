@@ -114,32 +114,40 @@ forme du type:
 '''
 play_on = {}#True si le player et en train de jouer et False s'il ne joue pas | forme : message.server.id : True/False
 
+ytdl_options = {
+	'format':'bestaudio/best',
+	'default_search': 'auto'
+}
+
 #dev commands
 
 async def dev_command(message):
+	global filename,ytdl_options
+
 	url = message.content.split(' ')[1]
-	try:
-		channel = message.author.voice.voice_channel
-		print("I'm connected to : " + str(channel))
-		await client.join_voice_channel(channel)
-	except:
-		pass
+	await join(message)
 
 	server = message.server
 	voice_client = client.voice_client_in(server)
-	'''
-	with youtube_dl.YoutubeDL({'format':'bestaudio/best'}) as ydl:
-    	ydl.download([])
-    '''
-	print(os.getcwd())
-	with youtube_dl.YoutubeDL({'format':'bestaudio/best'}) as ydl:
-		filename = ydl.prepare_filename(ydl.extract_info(url))
+
+	if not server.id in filename:
+		filename[server.id] = []
+	elif not players[server.id].is_done():
+		return 'Error...'
+
+	with youtube_dl.YoutubeDL(ytdl_options) as ydl:
+		filename[server.id].append(ydl.prepare_filename(ydl.extract_info(url)))
 		ydl.download([url])
 
-	player = voice_client.create_ffmpeg_player(filename)
+	player = voice_client.create_ffmpeg_player(filename[server.id][0])
 	players[server.id] = player
 	player.start()
-
+	while not player.is_done():
+		pass
+	time.sleep(1)
+	await lave(ctx.message)
+	filename[ctx.message.server.id].pop(0)
+	#await play_done(ctx,url,player)
 
 #Messages fonctions
 
