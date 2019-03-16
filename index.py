@@ -137,6 +137,7 @@ async def dev_command(message):
 
 	with youtube_dl.YoutubeDL(ytdl_options) as ydl:
 		filename[server.id].append(ydl.prepare_filename(ydl.extract_info(url)))
+		print(filename[server.id])
 		ydl.download([url])
 
 	player = voice_client.create_ffmpeg_player(filename[server.id][0])
@@ -145,7 +146,7 @@ async def dev_command(message):
 	while not player.is_done():
 		pass
 	time.sleep(1)
-	await lave(ctx.message)
+	await leave(ctx.message)
 	filename[ctx.message.server.id].pop(0)
 	#await play_done(ctx,url,player)
 
