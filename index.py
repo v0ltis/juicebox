@@ -656,7 +656,7 @@ async def on_message(message):
 
 	if message.content.upper().startswith(prefix + "DEV_COMMAND"):
 		await dev_command(message)
-
+	'''
 	if time.time() - temps_zero >= 5 and boucle == False:
 		await boucle()
 		print("Boucle activée")
@@ -666,5 +666,5 @@ async def on_message(message):
 		temps_zero = time.time()
 		print(temps_zero)
 		print("Boucle canceled")
-
+	'''
 client.run(os.environ['TOKEN_BOT'])
