@@ -48,7 +48,6 @@ for x in client.servers:
 		nb_of_serv_where_i_am_connected += 1
 		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
 
-	await client.change_presence(game=discord.Game(name=("/help "+serv_co)))
 
 
 admin = ['TheLicheIsBack','v0ltis']
