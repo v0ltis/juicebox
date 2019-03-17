@@ -513,7 +513,9 @@ async def on_message(message):
 		
 		message_content = message.content.split(' ')[1]
 		print(message_content)
-
+	
+		
+	
 	if message.content.upper().startswith("/HELP"):
 		help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
 		help.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
@@ -609,6 +611,15 @@ async def on_message(message):
 	for word in contents:
 		if word.upper() in merde:
 			await client.add_reaction(message,emoji='💩')
+			
+	if message.content.upper().startswith("/react"):
+		args = message.content.split(" ")
+			msg = args[1]
+			emoji = args[2]
+			await client.add_reaction(msg,emoji=emoji)
+				 
+				 
+		
 							
 						
 	if message.content.upper().startswith("YO"):
