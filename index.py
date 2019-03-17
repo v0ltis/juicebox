@@ -618,7 +618,7 @@ async def on_message(message):
 		try:
 			await client.add_reaction(emoji=emoji_arg)
 		except:
-			await client.send_message(message.channel,"Je n'ai pas trouvé d'emoji ``" + str(emoji) +"`` . Ou aors vous ne savez pas ce qu'est un emoji ...")
+			await client.send_message(message.channel,"Je n'ai pas trouvé d'emoji ``" + str(emoji_arg) +"`` . Ou aors vous ne savez pas ce qu'est un emoji ...")
 				 
 		
 							
