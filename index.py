@@ -44,6 +44,13 @@ news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme da
 
 nb_of_serv_where_i_am_connected = 0
 
+for x in client.servers:
+		nb_of_serv_where_i_am_connected += 1
+		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
+
+	await client.change_presence(game=discord.Game(name=("/help "+serv_co)))
+
+
 admin = ['TheLicheIsBack','v0ltis']
 
 boucle = False
@@ -59,13 +66,6 @@ async def boucle():
 	await client.change_presence(game=discord.Game(name="juicebot.github.io"))
 	time.sleep(15)
 
-	for x in client.servers:
-		nb_of_serv_where_i_am_connected += 1
-		serv_co = str(nb_of_serv_where_i_am_connected) + 'serveurs'
-
-	await client.change_presence(game=discord.Game(name=("/help "+serv_co)))
-
-	boucle = False
 
 @client.event
 async def on_ready():
@@ -84,8 +84,13 @@ async def on_ready():
 		serv_co = str(nb_of_serv_where_i_am_connected) + ' serveurs'
 
 	await client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
-	
-	await client.change_presence(game=discord.Game(name=("/help "+serv_co)))
+	while True:
+		await client.change_presence(game=discord.Game(name=serv_co))
+		await asyncio.sleep(15)
+		await client.change_presence(game=discord.Game(name="/help"))
+		await asyncio.sleep(15)
+		await client.change_presence(game=discord.Game(name="juicebot.github.io"))
+		await asyncio.sleep(15)
 
 	#upload l'emoji juicebot sur tout les serveurs
 	juiceboxemoji = False
