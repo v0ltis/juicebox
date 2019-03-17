@@ -614,8 +614,8 @@ async def on_message(message):
 			
 	if message.content.upper().startswith("/react"):
 		args = message.content.split(" ")
-			msg = args[1]
-			emoji = args[2]
+		msg = args[1]
+		emoji = args[2]
 			await client.add_reaction(msg,emoji=emoji)
 				 
 				 
