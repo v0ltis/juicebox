@@ -612,7 +612,7 @@ async def on_message(message):
 		if word.upper() in merde:
 			await client.add_reaction(message,emoji='💩')
 			
-	if message.content.upper().startswith("/react"):
+	if message.content.upper().startswith("/REACT"):
 		args = message.content.split(" ")
 		msg = args[1]
 		emoji = args[2]
