@@ -608,7 +608,7 @@ async def on_message(message):
 
 	for word in contents:
 		if word.upper() in merde:
-			await client.add_reaction(message.channel,emoji='💩')
+			await client.add_reaction(message,emoji='💩')
 							
 						
 	if message.content.upper().startswith("YO"):
