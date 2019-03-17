@@ -616,7 +616,7 @@ async def on_message(message):
 		args = message.content.split(" ")
 		msg = args[1]
 		emoji = args[2]
-		await client.add_reaction(message.id=msg,emoji=emoji)
+		await client.add_reaction(message=msg,emoji=emoji)
 				 
 				 
 		
