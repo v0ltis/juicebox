@@ -133,7 +133,7 @@ async def dev_command(message):
 	elif not players[server.id].is_done():
 		return 'Error...'
 
-	with youtube_dl.YoutubeDL(ytdl_options) as ydl:
+	async with youtube_dl.YoutubeDL(ytdl_options) as ydl:
 		filename[server.id].append(ydl.prepare_filename(ydl.extract_info(url)))
 		print(filename[server.id])
 		ydl.download([url])
@@ -141,6 +141,7 @@ async def dev_command(message):
 	player = voice_client.create_ffmpeg_player(filename[server.id][0])
 	players[server.id] = player
 	player.start()
+
 	while not player.is_done():
 		pass
 	time.sleep(1)
@@ -306,7 +307,7 @@ async def play_url(message,url,comment=False):
 		while not players[server.id].is_done():
 			pass
 		play_on[server.id] = False
-		time.sleep(1)
+		await asyncio.sleep(1)
 		await leave(message)
 
 	else:
