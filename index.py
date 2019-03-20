@@ -274,7 +274,7 @@ async def verifie_url(message):
 		else:
 			return False
 
-async def playlist_loop(message):
+async def playlist_loop(message,comment):
 	server = message.server
 	voice_client = client.voice_client_in(server)
 	print(filename[server.id])
@@ -319,7 +319,7 @@ async def play_url(message,url,comment=False):
 	for x in range(len(output)):
 		filename[server.id].append((output[x],duration[x],url_list[x]))
 
-	await playlist_loop(message)
+	await playlist_loop(message,comment)
 
 '''
 		print("Je n'ai pas fini ! : " + str(url))
