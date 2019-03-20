@@ -293,7 +293,7 @@ async def playlist_loop(message):
 	print("Sleep over !")
 	print(filename[server.id])
 	filename[server.id].pop(0)
-	return True
+	await leave(message)
 
 async def play_url(message,url,comment=False):
 	global player,ytdl_format_options
@@ -319,10 +319,7 @@ async def play_url(message,url,comment=False):
 	for x in range(len(output)):
 		filename[server.id].append((output[x],duration[x],url_list[x]))
 
-	#verifier que le bot ne joue pas déjà une musique pour empecher un crash
 	await playlist_loop(message)
-
-	await leave(message)
 
 '''
 		print("Je n'ai pas fini ! : " + str(url))
