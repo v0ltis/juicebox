@@ -318,14 +318,14 @@ async def play_url(message,url,comment=False):
 		filename[server.id].append((output[x],duration[x]))
 
 	#verifier que le bot ne joue pas déjà une musique pour empecher un crash
-	if players[server.id][0][0].is_done() == True:
-		await playlist_loop(message)
+	await playlist_loop(message)
 
-		await leave(message)
+	await leave(message)
 
-	else:
+'''
 		print("Je n'ai pas fini ! : " + str(url))
 		await send_msg(message.channel,"Laisse moi finir s'il te plait")
+'''
 '''
 	except ExceptionType, Argument:
 		await send_msg(message.channel,("Buuuuuuuuuuug ... ça ne viens pas forcement de moi , essayez avec un autre URL YouTube ou attendez un peu. \n Url: " + str(url) +'\n\t```{} : ```'.format(str(ExceptionType),str(Argument))))
