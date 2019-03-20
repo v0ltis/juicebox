@@ -318,7 +318,7 @@ async def play_url(message,url,comment=False):
 		filename[server.id].append((output[x],duration[x]))
 
 	#verifier que le bot ne joue pas déjà une musique pour empecher un crash
-	if players[server.id].is_done() == True or play_on[server.id] == False:
+	if players[server.id][0][0].is_done() == True:
 		await playlist_loop(message)
 
 		await leave(message)
