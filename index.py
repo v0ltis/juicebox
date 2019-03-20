@@ -288,8 +288,8 @@ async def playlist_loop(message,comment):
 		await send_msg(message.channel,("C'est parti pour : " + str(filename[server.id][0][2])))
 	
 	#leave after playing
-	print('duration = ' + str(filename[server.id][0][1]+1))
-	await asyncio.sleep(filename[server.id][0][1]+1)
+	print('duration = ' + str(filename[server.id][0][1]))
+	await asyncio.sleep(filename[server.id][0][1]+3)
 	print("Sleep over !")
 	print(filename[server.id])
 	filename[server.id].pop(0)
