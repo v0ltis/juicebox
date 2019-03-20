@@ -553,7 +553,7 @@ async def on_message(message):
 		musique = discord.Embed(title='Commandes musicales:', description='Voici la liste des commandes de la musique:', colour=0x7a2581)
 		musique.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		musique.add_field(name=" /join", value="Fait rejoindre juicebox dans votre salon vocal ", inline=True)
-		musique.add_field(name="/play", value=" lis la video/musique (l'URL doit être un URL YouTube) ", inline=True)
+		musique.add_field(name="/play + url/recherche", value=" lis la video/musique (l'URL doit être un URL YouTube) (la recherche sera effectué sur YouTube) ", inline=True)
 		musique.add_field(name=" /stop", value="Arette la video", inline=True)
 		musique.add_field(name="/pause", value="Met en pause la video", inline=True)
 		musique.add_field(name="/resume", value="Reprend la video", inline=True)
