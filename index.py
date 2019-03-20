@@ -282,10 +282,10 @@ async def playlist_loop(message):
 	players[server.id] = player
 	player.start()
 
-	print("Let's play : " + str(url))
+	print("Let's play : " + str(filename[server.id][0][2]))
 		
 	if comment != False:
-		await send_msg(message.channel,("C'est parti pour : " + str(url)))
+		await send_msg(message.channel,("C'est parti pour : " + str(filename[server.id][0][2])))
 	
 	#leave after playing
 	print('duration = ' + str(filename[server.id][0][1]+1))
@@ -308,14 +308,16 @@ async def play_url(message,url,comment=False):
 
 	output = []
 	duration = []
+	url_list = []
 	#setting output with filename,duration,and dowload the file
 	with youtube_dl.YoutubeDL(ytdl_options) as ydl:
 		output.append(ydl.prepare_filename(ydl.extract_info(url)))
 		duration.append(ydl.extract_info(url).get("duration"))
 		ydl.download([url])
+		url_list.append(url)
 
 	for x in range(len(output)):
-		filename[server.id].append((output[x],duration[x]))
+		filename[server.id].append((output[x],duration[x],url_list[x]))
 
 	#verifier que le bot ne joue pas déjà une musique pour empecher un crash
 	await playlist_loop(message)
