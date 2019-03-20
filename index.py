@@ -8,8 +8,6 @@ import time
 import os
 import random
 
-import scrapy
-
 import my_directory
 import text_to_url
 
@@ -276,6 +274,27 @@ async def verifie_url(message):
 		else:
 			return False
 
+async def playlist_loop(message):
+	server = message.server
+	voice_client = client.voice_client_in(server)
+	print(filename[server.id])
+	player = voice_client.create_ffmpeg_player(filename[server.id][0][0])
+	players[server.id] = player
+	player.start()
+
+	print("Let's play : " + str(url))
+		
+	if comment != False:
+		await send_msg(message.channel,("C'est parti pour : " + str(url)))
+	
+	#leave after playing
+	print('duration = ' + str(filename[server.id][0][1]+1))
+	await asyncio.sleep(filename[server.id][0][1]+1)
+	print("Sleep over !")
+	print(filename[server.id])
+	filename[server.id].pop(0)
+	return True
+
 async def play_url(message,url,comment=False):
 	global player,ytdl_format_options
 
@@ -284,30 +303,24 @@ async def play_url(message,url,comment=False):
 	server = message.server
 	voice_client = client.voice_client_in(server)
 
-	with youtube_dl.YoutubeDL({'format':'bestaudio/best'}) as ydl:
-		filename[server.id] = ydl.prepare_filename(ydl.extract_info(url))
+	#if not server.id in filename:
+	filename[server.id] = []
+
+	output = []
+	duration = []
+	#setting output with filename,duration,and dowload the file
+	with youtube_dl.YoutubeDL(ytdl_options) as ydl:
+		output.append(ydl.prepare_filename(ydl.extract_info(url)))
+		duration.append(ydl.extract_info(url).get("duration"))
 		ydl.download([url])
 
-	player = voice_client.create_ffmpeg_player(filename[server.id])
-	players[server.id] = player
-#try:
-	if play_on.get(server.id) == None:
-		play_on[server.id] = False
+	for x in range(len(output)):
+		filename[server.id].append((output[x],duration[x]))
 
 	#verifier que le bot ne joue pas déjà une musique pour empecher un crash
 	if players[server.id].is_done() == True or play_on[server.id] == False:
-		play_on[server.id] = True
-		player.start()
-		print("Let's play : " + str(url))
-		
-		if comment != False:
-			await send_msg(message.channel,("C'est parti pour : " + str(url)))
-		
-		#action à la fin de lecture
-		while not players[server.id].is_done():
-			pass
-		play_on[server.id] = False
-		await asyncio.sleep(1)
+		await playlist_loop(message)
+
 		await leave(message)
 
 	else:
