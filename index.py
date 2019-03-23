@@ -624,8 +624,10 @@ async def on_message(message):
 			await client.add_reaction(message,emoji='💩')
 			
 	for word in contents:
-		if word.upper in "-1"
+		if "-1" in word.upper()
 			await client.add_reaction(message,emoji="1️⃣")
+			
+	
 			
 	if message.content.upper().startswith("/REACT"):
 		args = message.content.split(" ")
