@@ -624,7 +624,7 @@ async def on_message(message):
 			await client.add_reaction(message,emoji='💩')
 			
 	for word in contents:
-		if "-1" in word.upper()
+		if "-1" in word.upper():
 			await client.add_reaction(message,emoji="1️⃣")
 			
 	
