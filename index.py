@@ -623,6 +623,10 @@ async def on_message(message):
 		if word.upper() in merde:
 			await client.add_reaction(message,emoji='💩')
 			
+	for word in contents:
+		if word.upper in "-1"
+			await client.add_reaction(message,emoji="1️⃣")
+			
 	if message.content.upper().startswith("/REACT"):
 		args = message.content.split(" ")
 		emoji_arg = args[1]
