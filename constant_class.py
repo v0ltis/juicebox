@@ -1,8 +1,8 @@
 from discord.ext import commands
 class Juice_constants():
 	def __init__(self):
-		self.client = commands.Bot(command_prefix = '..')
-		self.prefix = '..'
+		self.client = commands.Bot(command_prefix = '/')
+		self.prefix = '/'
 
 
 		self.merde = ["MERDE","CHIER","CHIANT","CHIE"]
