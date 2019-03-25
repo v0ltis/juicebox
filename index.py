@@ -192,8 +192,8 @@ async def on_message(message):
 	if message.content.upper().startswith("/MODERATION"):
 		modo = discord.Embed(title="Commandes de modération:", description="Voici la liste des commandes de moderations:", colour=0x7a2581)
 		modo.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
-		modo.add_field(name="/report", value="Signale les méchant utilisateur dans #report ! \n Fonctionement : /report (mention) (raison)", inline=True)
-		modo.add_field(name="Gros-mots", value="Je suprimme automatiquement les insultes !", inline=True)
+		modo.add_field(name="/report", value="Signale les méchants utilisateurs dans #report ! \n Fonctionement : /report (mention) (raison)", inline=True)
+		modo.add_field(name="Gros-mots", value="Je supprime automatiquement les insultes !", inline=True)
 		modo.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=modo)
 		
@@ -212,7 +212,7 @@ async def on_message(message):
 			await client.send_message(channel, embed=report)
 			await client.send_message(message.author, "Votre signalement a bien été envoyé")
 		except:
-			await client.send_message(message.channel, "Erreur ... voici les choses a faire :\nVerifier que le salon report existe bien.\nVerifier que vous avez bien donné une raison au report.\n Ca ne marche toujour pas ? Evoyez nous un ticket !")
+			await client.send_message(message.channel, "Erreur ... voici les choses à faire :\nVerifier que le salon report existe bien.\nVerifier que vous avez bien donné une raison au report.\n Ca ne marche toujour pas ? Evoyez nous un ticket !")
 					
 
 		
@@ -236,7 +236,7 @@ async def on_message(message):
 		await client.send_message(message.channel,":rage:")
 		
 	if message.content.upper().startswith("<@528268989525131274>"):
-		await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voici quelques commandes qui pourait vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique ")      
+		await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voici quelques commandes qui pouraient vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique ")      
 
 	for word in contents:
 		if word.upper() in Const.merde:
@@ -271,7 +271,7 @@ async def on_message(message):
 	if message.content.upper().startswith(Const.prefix + "NEWS"):
 		news=discord.Embed(color=0x700127)
 		news.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
-		news.add_field(name="Dernière nouveautées :", value=news_emb, inline=False)
+		news.add_field(name="Dernières nouveautées :", value=news_emb, inline=False)
 		await client.send_message(message.author, embed=news)
 	
 	if message.content.upper().startswith(Const.prefix + "INFO"):

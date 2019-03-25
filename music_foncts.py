@@ -55,7 +55,7 @@ class Music_bot():
 
 		except:
 			print("Error ...")
-			await self.client.send_message(message.channel,"Buuuuuug... attend un peut ou essaye avec /join'.")
+			await self.client.send_message(message.channel,"Buuuuuug... attend un peu ou essaye avec /join'.")
 
 	async def pause(self,message):
 		id = message.server.id
