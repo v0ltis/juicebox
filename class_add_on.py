@@ -2,7 +2,7 @@ import asyncio
 import discord
 
 async def clear(client,message,amount=1):
-	if await verifie_admin(message) == True:
+	if await verifie_admin(client,message) == True:
 		asyncio.sleep(2)
 		channel = ctx.message.channel
 		message = []
