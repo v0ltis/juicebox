@@ -10,6 +10,7 @@ Const = Juice_constants()
 
 class Music_bot():
 	def __init__(self):
+		Const = Juice_constants()
 		self.client = Const.client
 		self.players = {}
 		self.queues = {}
@@ -29,11 +30,12 @@ class Music_bot():
 			try:
 
 				if self.client.is_voice_connected(message.server):
+					print("Already connected.")
 					break
 				else:
 					channel = message.author.voice.voice_channel
-					print("I'm connected to : " + str(channel))
-					await self.client.join_voice_channel(channel)
+					ch = await self.client.join_voice_channel(channel)
+					print("I'm connected to : " + str(ch))
 
 					if comment == True:
 						await self.client.send_message(message.channel, "Je suis pret à chanter !")
