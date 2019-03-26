@@ -6,7 +6,6 @@ Const = Juice_constants()
 
 class Ready():
 	def __init__(self):
-		Const = Juice_constants()
 		self.client =  Const.client
 	
 	async def boucle(self):
