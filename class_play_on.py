@@ -1,9 +1,12 @@
 import asyncio
 import discord
 
-class ready():
-	def __init__(self,client):
-		self.client = client
+from constant_class import Juice_constants
+Const = Juice_constants()
+
+class Ready():
+	def __init__(self):
+		self.client =  Const.client
 	
 	async def boucle(self):
 		while True:
