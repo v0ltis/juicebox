@@ -57,6 +57,12 @@ class Music_bot():
 			print("Error ...")
 			await self.client.send_message(message.channel,"Buuuuuug... attend un peu ou essaye avec /join'.")
 
+		while True:
+			if server.id in self.filename and queue == False:
+				self.filename[server.id].pop(0)
+			else:
+				break
+
 	async def pause(self,message):
 		id = message.server.id
 		players[id].pause()
@@ -77,6 +83,12 @@ class Music_bot():
 		message_channel = message.channel
 		message_content = "Ok , ok , j'arrete"
 		await self.client.send_message(message_channel,message_content)
+
+		while True:
+			if server.id in self.filename and queue == False:
+				self.filename[server.id].pop(0)
+			else:
+				break
 
 	async def verif_play(self,message):
 		print(message.content)
