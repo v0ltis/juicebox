@@ -91,6 +91,7 @@ async def react_with_numbers(message):
 from class_add_on import plug_in#currently nothing here
 from class_add_on import info#info fonc
 from class_add_on import verifie_admin
+from class_add_on import clear
 
 #Music fonctions
 from music_foncts import Music_bot
@@ -317,5 +318,9 @@ async def on_message(message):
 
 	if message.content.upper().startswith(Const.prefix + "CLOSE"):
 		await close(client,message)
+
+	if message.content.upper().startswith(Const.prefix + "CLEAR"):
+		amount = message.content.split(' ')[1]
+		await clear(client,message,amount=amount)
 
 client.run(os.environ["TOKEN_BOT"])

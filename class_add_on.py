@@ -1,6 +1,17 @@
 import asyncio
 import discord
 
+async def clear(client,message,amount=1):
+	if await verifie_admin(message) == True:
+		asycnio.sleep(2)
+		channel = message.channel
+		
+		for x in range(0,amount+2):
+			delete = await client.logs_from(message.channel,limit=1)
+			await client.delete_messages([delete])
+
+		await client.say('Messages deleted.')
+
 async def info(client,message):
 	info_mention_user = None
 		
