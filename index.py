@@ -78,7 +78,7 @@ async def dev_command(message):
 	filename[ctx.message.server.id].pop(0)
 	#await play_done(ctx,url,player)
 '''
-numbers = ['-1','-2','-3','-4','-6','-7','-8','-9','-10','-0']
+numbers = ['-1','-2','-3','-4','-5','-6','-7','-8','-9','-10','-0']
 
 async def react_with_numbers(message):
 	for x in message.content.split(' '):
