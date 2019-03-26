@@ -8,7 +8,7 @@ async def clear(client,message,amount=1):
 		await asyncio.sleep(2)
 		channel = message.channel
 		
-		async for x in range(0,int(amount)+2):
+		for x in range(0,int(amount)+2):
 			delete = await client.logs_from(message.channel,limit=1)
 			await client.delete_messages([delete])
 
