@@ -78,6 +78,14 @@ async def dev_command(message):
 	filename[ctx.message.server.id].pop(0)
 	#await play_done(ctx,url,player)
 '''
+numbers = ['-1','-2','-3','-4','-6','-7','-8','-9','-10','-0']
+
+async def react_with_numbers(message):
+	for x in message.content.split(' '):
+		for y in range(len(numbers)):
+			if numbers[y] == x:
+				return (True,y)
+	return (False,None)
 
 #Information fonction
 from class_add_on import plug_in#currently nothing here
@@ -241,12 +249,13 @@ async def on_message(message):
 	for word in contents:
 		if word.upper() in Const.merde:
 			await client.add_reaction(message,emoji='💩')
-		
-	for word in contents:
-		if "-1" in word.upper():
-			#test
-			await client.add_reaction(message,emoji=discord.Object(':one:'))
-			#await client.add_reaction(message,emoji=":one:")
+	
+	react_nb = await react_with_numbers(message)
+	if react_nb[0]:
+			nb = react_nb[1]
+			msg_reactions = await client.get_message(discord.Object('545336065955987492'),'560172166046416940')
+			reactions = msg_reactions.reactions
+			await client.add_reaction(message,reactions[nb].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
 
 	if message.content.upper().startswith("/REACT"):
 		args = message.content.split(" ")
