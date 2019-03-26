@@ -1,11 +1,12 @@
 import asyncio
 import discord
+from constant_class import Juice_constants
+Const = Juice_constants()
 
 async def clear(client,message,amount=1):
 	if await verifie_admin(client,message) == True:
 		asyncio.sleep(2)
-		channel = ctx.message.channel
-		message = []
+		channel = message.channel
 
 		async for message in client.logs_from(channel,limit=int(amount) + 2):
 			await client.delete_message(message)

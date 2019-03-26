@@ -25,59 +25,7 @@ async def on_ready():
 
 
 chat_on = False
-'''	
-players = {}
-queues = {}
-chat_on = False
-player = None
-filename = {}
-temps_zero = 0
 
-forme du type:
-{
-	message.server.id : nomdufichier à jouer
-}
-
-
-play_on = {}#True si le player et en train de jouer et False s'il ne joue pas | forme : message.server.id : True/False
-
-ytdl_options = {
-	'format':'bestaudio/best',
-	'default_search': 'auto'
-}
-'''
-#dev commands
-'''
-async def dev_command(message):
-	global filename,ytdl_options
-
-	url = message.content.split(' ')[1]
-	await join(message)
-
-	server = message.server
-	voice_client = client.voice_client_in(server)
-
-	if not server.id in filename:
-		filename[server.id] = []
-	elif not players[server.id].is_done():
-		return 'Error...'
-
-	async with youtube_dl.YoutubeDL(ytdl_options) as ydl:
-		filename[server.id].append(ydl.prepare_filename(ydl.extract_info(url)))
-		print(filename[server.id])
-		ydl.download([url])
-
-	player = voice_client.create_ffmpeg_player(filename[server.id][0])
-	players[server.id] = player
-	player.start()
-
-	while not player.is_done():
-		pass
-	time.sleep(1)
-	await leave(ctx.message)
-	filename[ctx.message.server.id].pop(0)
-	#await play_done(ctx,url,player)
-'''
 numbers = ['-1','-2','-3','-4','-5','-6','-7','-8','-9','-10','-0']
 
 async def react_with_numbers(message):
