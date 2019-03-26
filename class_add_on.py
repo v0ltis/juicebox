@@ -9,7 +9,8 @@ async def clear(client,message,amount=1):
 		channel = message.channel
 		
 		for x in range(0,int(amount)+2):
-			delete = client.logs_from(message.channel,limit=3)
+			delete = await client.logs_from(message.channel,limit=3)
+			print(delete)
 			await client.delete_messages(delete)
 
 		await client.say('Messages deleted.')
