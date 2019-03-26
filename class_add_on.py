@@ -3,8 +3,7 @@ import discord
 from constant_class import Juice_constants
 Const = Juice_constants()
 
-async def clear(message,amount=1):
-	client = Const.client
+async def clear(client,message,amount=1):
 	if await verifie_admin(client,message) == True:
 		asyncio.sleep(2)
 		channel = message.channel
@@ -14,8 +13,7 @@ async def clear(message,amount=1):
 
 		await client.say('Messages deleted.')
 
-async def info(message):
-	client = Const.client
+async def info(client,message):
 	info_mention_user = None
 		
 	if message.mentions != []:
@@ -43,8 +41,8 @@ async def info(message):
 
 	await client.send_message(message.channel, embed=info_mention)
 
-async def verifie_admin(message):
-		client = Const.client
+async def verifie_admin(client,message):
+		
 		for x in Const.admin:
 			if message.author.name == x:
 				await client.send_message(message.channel,'You are {}, proceed ...'.format(message.author.name))
@@ -53,8 +51,7 @@ async def verifie_admin(message):
 		await client.send_message(message.channel,'You are not an admin.')
 		return False
 
-async def close(message):
-	client = Const.client
+async def close(client,message):
 	if await verifie_admin(client,message) == True:
 		await client.close()
 

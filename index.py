@@ -18,11 +18,10 @@ Const = Juice_constants()
 client = Const.client
 prefix = Const.prefix
 
-from class_play_on import Ready
-
+from class_play_on import ready
 @client.event
 async def on_ready():
-	await Ready().ready()
+	await ready(client).ready()
 
 
 chat_on = False
@@ -45,7 +44,7 @@ from class_add_on import clear
 #Music fonctions
 from music_foncts import Music_bot
 
-mBot = Music_bot()	
+mBot = Music_bot(client,Const.memeaudio)	
 
 @client.event
 async def on_message(message):
@@ -236,7 +235,7 @@ async def on_message(message):
 		await client.send_message(message.author, embed=news)
 	
 	if message.content.upper().startswith(Const.prefix + "INFO"):
-		await info(message)
+		await info(client,message)
 	#join
 	if message.content.upper().startswith(Const.prefix + "JOIN"):
 		await mBot.join(message)
@@ -266,10 +265,10 @@ async def on_message(message):
 		await queue(message)
 
 	if message.content.upper().startswith(Const.prefix + "CLOSE"):
-		await close(message)
+		await close(client,message)
 
 	if message.content.upper().startswith(Const.prefix + "CLEAR"):
 		amount = message.content.split(' ')[1]
-		await clear(message,amount=amount)
+		await clear(client,message,amount=amount)
 
 client.run(os.environ["TOKEN_BOT"])

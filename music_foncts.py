@@ -5,12 +5,9 @@ import os
 import youtube_dl
 import random
 
-from constant_class import Juice_constants
-Const = Juice_constants()
-
 class Music_bot():
-	def __init__(self):
-		self.client = Const.client
+	def __init__(self,client,meme_audio_list):
+		self.client = client
 		self.players = {}
 		self.queues = {}
 		self.chat_on = False
@@ -20,7 +17,7 @@ class Music_bot():
 			'format':'bestaudio/best',
 			'default_search': 'auto'
 		}
-		self.meme_audio_list = Const.memeaudio
+		self.meme_audio_list = meme_audio_list
 
 	async def join(self,message,comment=False):
 		print("Joining...")
