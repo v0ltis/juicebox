@@ -245,7 +245,7 @@ async def on_message(message):
 	for word in contents:
 		if "-1" in word.upper():
 			#test
-			await client.add_reaction(message,emoji='1')
+			await client.add_reaction(message,emoji=discord.Object(':one:'))
 			#await client.add_reaction(message,emoji=":one:")
 
 	if message.content.upper().startswith("/REACT"):
