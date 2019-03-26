@@ -1,5 +1,7 @@
 import asyncio
 import discord
+from constant_class import Juice_constants
+Const = Juice_constants()
 
 async def clear(client,message,amount=1):
 	if await verifie_admin(client,message) == True:
@@ -41,8 +43,7 @@ async def info(client,message):
 	await client.send_message(message.channel, embed=info_mention)
 
 async def verifie_admin(client,message):
-		
-		for x in admin:
+		for x in Const.admin:
 			if message.author.name == x:
 				await client.send_message(message.channel,'You are {}, proceed ...'.format(message.author.name))
 				return True
