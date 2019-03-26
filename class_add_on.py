@@ -43,7 +43,7 @@ async def info(client,message):
 
 async def verifie_admin(client,message):
 		
-		for x in admin:
+		for x in Const.admin:
 			if message.author.name == x:
 				await client.send_message(message.channel,'You are {}, proceed ...'.format(message.author.name))
 				return True
