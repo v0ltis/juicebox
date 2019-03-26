@@ -273,7 +273,7 @@ async def on_message(message):
 	if message.content.upper().startswith(Const.prefix + "NEWS"):
 		news=discord.Embed(color=0x700127)
 		news.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
-		news.add_field(name="Dernières nouveautées :", value=news_emb, inline=False)
+		news.add_field(name="Dernières nouveautées :", value=Const.news_emb, inline=False)
 		await client.send_message(message.author, embed=news)
 	
 	if message.content.upper().startswith(Const.prefix + "INFO"):
