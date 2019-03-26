@@ -244,7 +244,9 @@ async def on_message(message):
 		
 	for word in contents:
 		if "-1" in word.upper():
-			await client.add_reaction(message,emoji=":one:")
+			#test
+			await client.add_reaction(message,emoji=discord.Emoji(name="one"))
+			#await client.add_reaction(message,emoji=":one:")
 
 	if message.content.upper().startswith("/REACT"):
 		args = message.content.split(" ")
