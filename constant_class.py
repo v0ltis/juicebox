@@ -26,7 +26,9 @@ class Juice_constants():
 			     "https://www.youtube.com/watch?v=8vgQCArK2sY",
 			     "https://www.youtube.com/watch?v=xAdo9bgToTk",
 			     "https://www.youtube.com/watch?v=Pr8ETbGz35Q",
-			     "https://www.youtube.com/watch?v=0gx7z2ohiZQ"]
+			     "https://www.youtube.com/watch?v=0gx7z2ohiZQ",
+			     "https://www.youtube.com/watch?v=kAmkLHLTeE0",
+			     "https://www.youtube.com/watch?v=QT13kk8HDDo"]
 
 		self.gifs = ["https://giphy.com/gifs/AuIvUrZpzBl04",
 			"https://giphy.com/gifs/hello-hey-big-brother-l0MYBbEvqqi1kfuyA",

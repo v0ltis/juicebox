@@ -275,7 +275,7 @@ async def on_message(message):
 		await client.send_message(message.author, embed=news)
 	
 	if message.content.upper().startswith(Const.prefix + "INFO"):
-		await info(message)
+		await info(client,message)
 	#join
 	if message.content.upper().startswith(Const.prefix + "JOIN"):
 		await mBot.join(message)
