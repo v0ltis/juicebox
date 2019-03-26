@@ -5,10 +5,10 @@ Const = Juice_constants()
 
 async def clear(client,message,amount=1):
 	if await verifie_admin(client,message) == True:
-		asycnio.sleep(2)
+		await asyncio.sleep(2)
 		channel = message.channel
 		
-		for x in range(0,amount+2):
+		async for x in range(0,amount+2):
 			delete = await client.logs_from(message.channel,limit=1)
 			await client.delete_messages([delete])
 
