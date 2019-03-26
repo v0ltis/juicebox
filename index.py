@@ -305,6 +305,6 @@ async def on_message(message):
 		await queue(message)
 
 	if message.content.upper().startswith(Const.prefix + "CLOSE"):
-		await close(message)
+		await close(client,message)
 
 client.run(os.environ["TOKEN_BOT"])

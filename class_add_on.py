@@ -29,7 +29,7 @@ async def info(client,message):
 
 	await client.send_message(message.channel, embed=info_mention)
 
-async def verifie_admin(message):
+async def verifie_admin(client,message):
 		
 		for x in admin:
 			if message.author.name == x:
@@ -39,8 +39,8 @@ async def verifie_admin(message):
 		await client.send_message(message.channel,'You are not an admin.')
 		return False
 
-async def close(message):
-	if await verifie_admin(message) == True:
+async def close(client,message):
+	if await verifie_admin(client,message) == True:
 		await client.close()
 
 class plug_in():
