@@ -161,10 +161,11 @@ class Music_bot():
 
 		voice_client = self.client.voice_client_in(server)
 		
-		if server.id in self.filename and queue == False:
-			await send_msg(message.channel,"Laisse moi finir s'il te plait.")
-			print("Je n'ai pas finit ! (play_url fonction)")
-			return False
+		if server.id in self.filename:
+			if self.filename[server.id] != []:
+				await send_msg(message.channel,"Laisse moi finir s'il te plait.")
+				print("Je n'ai pas finit ! (play_url fonction)")
+				return False
 		else:
 			#if not server.id in filename:
 			self.filename[server.id] = []
