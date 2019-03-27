@@ -59,7 +59,8 @@ class Music_bot():
 
 		while True:
 			if server.id in self.filename:
-				self.filename[server.id].pop(0)
+				if self.filename[server.id] != []:
+					self.filename[server.id].pop(0)
 			else:
 				break
 
@@ -85,7 +86,7 @@ class Music_bot():
 		await self.client.send_message(message_channel,message_content)
 
 		while True:
-			if server.id in self.filename and queue == False:
+			if server.id in self.filename:
 				self.filename[server.id].pop(0)
 			else:
 				break
