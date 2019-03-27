@@ -63,6 +63,8 @@ class Music_bot():
 			if server.id in self.filename:
 				if self.filename[server.id] != []:
 					self.filename[server.id].pop(0)
+				else:
+					break
 			else:
 				break
 
