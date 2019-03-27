@@ -82,18 +82,17 @@ class Music_bot():
 		message_content = "Je recomence"
 		await self.client.send_message(message_channel,message_content)
 	
-	async def stop(self,message):
+	async def stop(self,message,cmd=False):
 		id = message.server.id
 		players[id].stop()
-		message_channel = message.channel
-		message_content = "Ok , ok , j'arrete"
-		await self.client.send_message(message_channel,message_content)
 
-		while True:
-			if server.id in self.filename:
-				self.filename[server.id].pop(0)
-			else:
-				break
+		if cmd == True:
+			await self.client.send_message(message.channel,"Ok , ok , j'arrete")
+
+		if server.id in self.filename:
+			self.filename[server.id].pop(0)
+		else:
+			pass
 
 	async def verif_play(self,message):
 		print(message.content)
@@ -163,6 +162,7 @@ class Music_bot():
 		
 		if server.id in self.filename:
 			if self.filename[server.id] != []:
+				self.stop(message)
 				await self.client.send_message(message.channel,"Laisse moi finir s'il te plait.")
 				print("Je n'ai pas finit ! (Music_bot (play_url))")
 				return False

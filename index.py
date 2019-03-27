@@ -255,7 +255,7 @@ async def on_message(message):
 
 	#STOP
 	if message.content.upper().startswith(Const.prefix + "STOP"):
-		await mBot.stop(message)
+		await mBot.stop(message,True)
 
 	#leave
 	if message.content.upper().startswith(Const.prefix + "LEAVE"):
