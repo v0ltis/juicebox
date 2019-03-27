@@ -112,7 +112,7 @@ class Music_bot():
 		self.players[server.id] = self.player
 		self.player.start()
 		
-		print("Temps d'éxecution : " + str(self.time_begin[server.id]-time.time()) + '(Music_bot(playlist_loop))')
+		print("Temps d'éxecution : " + str(time.time()-self.time_begin[server.id]) + '(Music_bot(playlist_loop))')
 
 		print("Let's play : " + str(self.filename[server.id][0][2]))
 			
@@ -122,7 +122,7 @@ class Music_bot():
 		#leave after playing
 		print('duration = ' + str(self.filename[server.id][0][1]))
 		fmbefore = self.filename[server.id]
-		await asyncio.sleep(self.filename[server.id][0][1]+3)
+		await asyncio.sleep(self.filename[server.id][0][1]+1)
 		
 		if fmbefore == self.filename[server.id]:
 			print("Sleep over !")
@@ -153,7 +153,7 @@ class Music_bot():
 
 	async def play_url(self,message,url,comment=False,auto_leave=True,queue=True):
 		server = message.server
-		
+
 		self.time_begin[server.id] = time.time()
 		await self.join(message,comment)
 
