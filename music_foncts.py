@@ -84,7 +84,7 @@ class Music_bot():
 	
 	async def stop(self,message,cmd=False):
 		id = message.server.id
-		players[id].stop()
+		self.players[id].stop()
 
 		if cmd == True:
 			await self.client.send_message(message.channel,"Ok , ok , j'arrete")
