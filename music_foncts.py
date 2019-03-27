@@ -162,10 +162,13 @@ class Music_bot():
 		
 		if server.id in self.filename:
 			if self.filename[server.id] != []:
-				self.stop(message)
+				await self.stop(message)
+				'''
 				await self.client.send_message(message.channel,"Laisse moi finir s'il te plait.")
 				print("Je n'ai pas finit ! (Music_bot (play_url))")
+
 				return False
+				'''
 		else:
 			#if not server.id in filename:
 			self.filename[server.id] = []
