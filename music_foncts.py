@@ -166,10 +166,9 @@ class Music_bot():
 		url_list = []
 		#setting output with filename,duration,and dowload the file
 		with youtube_dl.YoutubeDL(self.ytdl_options) as ydl:
-			extracted_informations = ydl.extract_info(url,download=False)
+			extracted_informations = ydl.extract_info(url)
 			output.append(ydl.prepare_filename(extracted_informations))
 			duration.append(extracted_informations.get("duration"))
-			ydl.download([url])
 			url_list.append(url)
 
 		for x in range(len(output)):
