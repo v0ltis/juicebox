@@ -12,7 +12,7 @@ class Music_bot():
 		self.queues = {}
 		self.chat_on = False
 		self.player = None
-		self.filename = {}
+		self.filename = {}# {server.id:(fichier, duration, url)}
 		self.ytdl_options = {
 			'format':'bestaudio/best',
 			'default_search': 'auto'
@@ -58,7 +58,7 @@ class Music_bot():
 			await self.client.send_message(message.channel,"Buuuuuug... attend un peu ou essaye avec /join'.")
 
 		while True:
-			if server.id in self.filename and queue == False:
+			if server.id in self.filename:
 				self.filename[server.id].pop(0)
 			else:
 				break
@@ -117,6 +117,7 @@ class Music_bot():
 		#leave after playing
 		print('duration = ' + str(self.filename[server.id][0][1]))
 		await asyncio.sleep(self.filename[server.id][0][1]+3)
+		if filename[server.id]
 		print("Sleep over !")
 		print('Before: ' + str(self.filename[server.id]))
 		self.filename[server.id].pop(0)
