@@ -152,10 +152,11 @@ class Music_bot():
 				return False
 
 	async def play_url(self,message,url,comment=False,auto_leave=True,queue=True):
+		server = message.server
+		
 		self.time_begin[server.id] = time.time()
 		await self.join(message,comment)
 
-		server = message.server
 		voice_client = self.client.voice_client_in(server)
 		
 		if server.id in self.filename and queue == False:
