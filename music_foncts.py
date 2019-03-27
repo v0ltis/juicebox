@@ -163,7 +163,7 @@ class Music_bot():
 		
 		if server.id in self.filename:
 			if self.filename[server.id] != []:
-				await client.send_message(message.channel,"Laisse moi finir s'il te plait.")
+				await self.client.send_message(message.channel,"Laisse moi finir s'il te plait.")
 				print("Je n'ai pas finit ! (Music_bot (play_url))")
 				return False
 		else:
