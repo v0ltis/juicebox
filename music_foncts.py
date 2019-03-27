@@ -116,14 +116,16 @@ class Music_bot():
 		
 		#leave after playing
 		print('duration = ' + str(self.filename[server.id][0][1]))
+		fmbefore = self.filename[server.id]
 		await asyncio.sleep(self.filename[server.id][0][1]+3)
-		if filename[server.id]
-		print("Sleep over !")
-		print('Before: ' + str(self.filename[server.id]))
-		self.filename[server.id].pop(0)
-		print('After: ' + str(self.filename[server.id]))
-		if auto_leave:
-			await self.leave(message)
+		
+		if fmbefore == self.filename[server.id]:
+			print("Sleep over !")
+			print('Before: ' + str(self.filename[server.id]))
+			self.filename[server.id].pop(0)
+			print('After: ' + str(self.filename[server.id]))
+			if auto_leave:
+				await self.leave(message)
 
 	#renvoie True si il s'agit d'un url sinon False
 	async def verifie_url(self,message):
