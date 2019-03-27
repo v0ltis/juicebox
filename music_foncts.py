@@ -89,8 +89,8 @@ class Music_bot():
 		if cmd == True:
 			await self.client.send_message(message.channel,"Ok , ok , j'arrete")
 
-		if server.id in self.filename:
-			self.filename[server.id].pop(0)
+		if id in self.filename:
+			self.filename[id].pop(0)
 		else:
 			pass
 
