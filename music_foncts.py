@@ -4,6 +4,7 @@ import text_to_url
 import os
 import youtube_dl
 import random
+import time
 
 class Music_bot():
 	def __init__(self,client,meme_audio_list):
@@ -18,6 +19,7 @@ class Music_bot():
 			'default_search': 'auto'
 		}
 		self.meme_audio_list = meme_audio_list
+		self.time_begin = {}
 
 	async def join(self,message,comment=False):
 		print("Joining...")
@@ -97,7 +99,7 @@ class Music_bot():
 		url = message_url.split(" ")[1]
 
 		if len(message_url.split(" ")) == 1:
-			await self.client.send_message(message.content,"Je vais avoir besoin d'un url")
+			await self.client.send_message(message.content,"Je vais avoir besoin d'un url.")
 
 		if len(message_url.split(" ")) >= 2:
 			pass
@@ -109,6 +111,8 @@ class Music_bot():
 		self.player = voice_client.create_ffmpeg_player(self.filename[server.id][0][0])
 		self.players[server.id] = self.player
 		self.player.start()
+		
+		print("Temps d'éxecution : " + str(self.time_begin[server.id]-time.time()) + '(Music_bot(playlist_loop))')
 
 		print("Let's play : " + str(self.filename[server.id][0][2]))
 			
@@ -133,7 +137,7 @@ class Music_bot():
 		message_url = message.content
 		url = message_url.split(" ")[1]
 		if len(message_url.split(" ")) == 1:
-			await self.client.send_message(message.content,"Je vais avoir besoin d'un url")
+			await self.client.send_message(message.content,"Je vais avoir besoin d'un url.")
 
 		if len(message_url.split(" ")) >= 2:
 			debug = 0
@@ -148,13 +152,14 @@ class Music_bot():
 				return False
 
 	async def play_url(self,message,url,comment=False,auto_leave=True,queue=True):
+		self.time_begin[server.id] = time.time()
 		await self.join(message,comment)
 
 		server = message.server
 		voice_client = self.client.voice_client_in(server)
 		
 		if server.id in self.filename and queue == False:
-			await send_msg(message.channel,"Laisse moi finir s'il te plait")
+			await send_msg(message.channel,"Laisse moi finir s'il te plait.")
 			print("Je n'ai pas finit ! (play_url fonction)")
 			return False
 		else:
