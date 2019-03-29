@@ -40,7 +40,11 @@ def react_with_numbers(message):
 	if nmbrs != []:
 		for x in range(0,len(nmbrs)):
 			if nmbrs.count(x) > 1:
-				nmbrs.pop(x)
+				a = nmbrs
+				a.reverse()
+				a.remove(nmbrs[x])
+				a.revers()
+				nmbrs = a
 		return (True,nmbrs)
 	return (False,None)
 
