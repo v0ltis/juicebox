@@ -30,16 +30,20 @@ numbers = ['-1','-2','-3','-4','-5','-6','-7','-8','-9','-10','-0']
 ingnored_serv = ["264445053596991498","110373943822540800"]
 def react_with_numbers(message):
 	nmbrs = []
-	print(message.content.split(' '))
+	print("React with numbers fonction" + str(message.content.split(' ')))
 	for x in message.content.split(' '):
+		print(x)
 		for y in range(len(numbers)):
+			print(y)
 			if numbers[y] == x:
+				print("Append {}[{}]={}".format(numbers[y],y,x))
 				nmbrs.append(y)
 	
 	if nmbrs != []:
 		for x in range(len(nmbrs)):
 			if x in nmbrs:
 				if x in nmbrs[x:len(nmbrs)]:
+					print("pop {}".format(x))
 					nmbrs.pop(x)
 		return (True,nmbrs)
 	return (False,None)
