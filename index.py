@@ -210,11 +210,11 @@ async def on_message(message):
 	react_nb = await react_with_numbers(message)
 	if react_nb[0]:
 			if not message.channel.id.upper in ingnored_serv:
-			nb = react_nb[1]
-			msg_reactions = await client.get_message(discord.Object('545336065955987492'),'560172166046416940')
-			reactions = msg_reactions.reactions
-			for x in nb:
-				await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
+				nb = react_nb[1]
+				msg_reactions = await client.get_message(discord.Object('545336065955987492'),'560172166046416940')
+				reactions = msg_reactions.reactions
+				for x in nb:
+					await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
 
 	if message.content.upper().startswith("/REACT"):
 		args = message.content.split(" ")
