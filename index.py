@@ -28,7 +28,7 @@ chat_on = False
 
 numbers = ['-1','-2','-3','-4','-5','-6','-7','-8','-9','-10','-0']
 ingnored_serv = ["264445053596991498","110373943822540800"]
-async def react_with_numbers(message):
+def react_with_numbers(message):
 	nmbrs = []
 	print(message.content.split(' '))
 	for x in message.content.split(' '):
@@ -262,7 +262,7 @@ async def on_message(message):
 		amount = message.content.split(' ')[1]
 		await clear(client,message,amount=amount)
 
-	elif await react_with_numbers(message)[0]:
+	elif react_with_numbers(message)[0]:
 			react_nb = await react_with_numbers(message)
 			if not message.channel.id.upper in ingnored_serv:
 				nb = react_nb[1]
