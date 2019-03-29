@@ -30,6 +30,7 @@ numbers = ['-1','-2','-3','-4','-5','-6','-7','-8','-9','-10','-0']
 ingnored_serv = ["264445053596991498","110373943822540800"]
 async def react_with_numbers(message):
 	nmbrs = []
+	print(message.content.split(' '))
 	for x in message.content.split(' '):
 		for y in range(len(numbers)):
 			if numbers[y] == x:
@@ -59,33 +60,33 @@ async def on_message(message):
 	global chat_on,temps_zero,boucle
 	if message.author.id in Const.ban_user:
 			return
-	if message.author == client.user:
+	elif message.author == client.user:
 			return
 
-	if message.content.upper().startswith("/CHAT ON"):
+	elif message.content.upper().startswith("/CHAT ON"):
 		chat_on = True
-	if message.content.upper().startswith("/CHAT OFF"):
+	elif message.content.upper().startswith("/CHAT OFF"):
 		chat_on = False
 
-	if chat_on == True:
+	elif chat_on == True:
 		chat = "Serveur du message : {}, channel du message : {}, message : {}".format(message.server.name,message.channel.name,message.content)
 		print(chat)
 		await client.send_message(discord.Object(id='547516410343981057'), chat)
 
-	if message.content.upper().startswith("/PING"):
+	elif message.content.upper().startswith("/PING"):
 		timePing = time.monotonic()
 		pinger = await client.send_message(message.channel, ":ping_pong: **Pong !**")
 		ping = "%.2f"%(1000* (time.monotonic() - timePing))
 		await client.edit_message(pinger, ":ping_pong: **Pong !**\n\
 `Ping:" + ping + "`")
 				
-	if message.content.upper().startswith("/SAY"):
+	elif message.content.upper().startswith("/SAY"):
 		args = message.content.split(" ")
 		await client.send_message(message.channel, (" ".join(args[1:])))
 				 
 			
 			
-	if message.content.upper().startswith("/TICKET"):
+	elif message.content.upper().startswith("/TICKET"):
 		args = message.content.split(" ")
 		await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
 		ticket=discord.Embed(color=0x7a2581)
@@ -95,22 +96,15 @@ async def on_message(message):
 		ticket.set_footer(text="ID de l'utilisateur : " + message.author.id) 
 		await client.send_message(discord.Object(id="544830498099298324"), embed=ticket)
 		await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite !")
-				 
-	contents = message.content.split(" ")
-	for word in contents:
-		if word.upper() in Const.chat_filter:
-			if not message.author.id in Const.bypass_list:
-				await client.delete_message(message)
-				await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
 								
-	if message.content.upper().startswith("/GIF"):
+	elif message.content.upper().startswith("/GIF"):
 		await client.send_message(message.channel, random.choice(Const.gifs))
 		
 		message_content = message.content.split(' ')[1]
 		print(message_content)
 		
 	
-	if message.content.upper().startswith("/HELP"):
+	elif message.content.upper().startswith("/HELP"):
 		help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
 		help.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		help.add_field(name="Prefix:", value="/", inline=False)
@@ -123,7 +117,7 @@ async def on_message(message):
 		await client.send_message(message.channel, embed=help)
 		
 		
-	if message.content.upper().startswith("/SUPPORT"):
+	elif message.content.upper().startswith("/SUPPORT"):
 		dev = discord.Embed(title='Commandes de support:', description='Voici la liste des commandes pour vous aider a meiux connaitre Juicy !', colour=0x7a2581)
 		dev.add_field(name="/ticket", value="Envoie un message aux devlopeurs", inline=True)
 		dev.add_field(name="/site", value="Donne le lien de note site: ``https://juicebot.github.io``.", inline=True)
@@ -132,7 +126,7 @@ async def on_message(message):
 		await client.send_message(message.channel, embed=dev)
 	
 	
-	if message.content.upper().startswith("/MUSIQUE"):
+	elif message.content.upper().startswith("/MUSIQUE"):
 		musique = discord.Embed(title='Commandes musicales:', description='Voici la liste des commandes de la musique:', colour=0x7a2581)
 		musique.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		musique.add_field(name=" /join", value="Fait rejoindre juicebox dans votre salon vocal ", inline=True)
@@ -144,7 +138,7 @@ async def on_message(message):
 		musique.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=musique)
 	
-	if message.content.upper().startswith("/FUN"):
+	elif message.content.upper().startswith("/FUN"):
 		fun = discord.Embed(title="Commandes fun", description="Voici les commandes fun:", colour=0x7a2581)
 		fun.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		fun.add_field(name="/say + texte", value="Fait dire au bot le texte", inline=True)
@@ -154,7 +148,7 @@ async def on_message(message):
 		fun.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=fun)
 	
-	if message.content.upper().startswith("/MODERATION"):
+	elif message.content.upper().startswith("/MODERATION"):
 		modo = discord.Embed(title="Commandes de modération:", description="Voici la liste des commandes de moderations:", colour=0x7a2581)
 		modo.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		modo.add_field(name="/report", value="Signale les méchants utilisateurs dans #report ! \n Fonctionement : /report (mention) (raison)", inline=True)
@@ -162,7 +156,7 @@ async def on_message(message):
 		modo.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=modo)
 		
-	if message.content.upper().startswith("/REPORT"):
+	elif message.content.upper().startswith("/REPORT"):
 		args = message.content.split(" ")
 		arg_1 = ("".join(args[1]))
 		arg_2 = (" ".join(args[2:]))
@@ -181,42 +175,33 @@ async def on_message(message):
 					
 
 		
-	if message.content.upper().startswith(Const.prefix + "MEMEAUDIO"):
+	elif message.content.upper().startswith(Const.prefix + "MEMEAUDIO"):
 		print("Memeaudioing.")
 		await mBot.meme_audio(message)
 
-	if message.content.upper().startswith("/DISCORD"):
+	elif message.content.upper().startswith("/DISCORD"):
 		await client.send_message(message.channel,"Venez papoter ici: \n https://discord.gg/Abfvn9y")
 			
-	if message.content.upper().startswith("/SITE"):
+	elif message.content.upper().startswith("/SITE"):
 		await client.send_message(message.channel,"Ma maison c'est ici: \n https://juicebot.github.io/")
 				
 			 
-	if message.content.upper().startswith("XD"):
+	elif message.content.upper().startswith("XD"):
 		await client.send_message(message.channel,random.choice(["lol",
 			" ",
 			" "]))
 
-	if message.content.startswith("🖕"):
+	elif message.content.startswith("🖕"):
 		await client.send_message(message.channel,":rage:")
 		
-	if message.content.upper().startswith("<@528268989525131274>"):
+	elif message.content.upper().startswith("<@528268989525131274>"):
 		await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voici quelques commandes qui pouraient vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique ")      
 
 	for word in contents:
 		if word.upper() in Const.merde:
 			await client.add_reaction(message,emoji='💩')
-	
-	react_nb = await react_with_numbers(message)
-	if react_nb[0]:
-			if not message.channel.id.upper in ingnored_serv:
-				nb = react_nb[1]
-				msg_reactions = await client.get_message(discord.Object('545336065955987492'),'560172166046416940')
-				reactions = msg_reactions.reactions
-				for x in nb:
-					await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
 
-	if message.content.upper().startswith("/REACT"):
+	elif message.content.upper().startswith("/REACT"):
 		args = message.content.split(" ")
 		emoji_arg = args[1]
 		try:
@@ -224,61 +209,79 @@ async def on_message(message):
 		except:
 			await client.send_message(message.channel,"Je n'ai pas trouvé d'emoji ``" + str(emoji_arg) +"`` . Ou aors vous ne savez pas ce qu'est un emoji ...")
 						
-	if message.content.upper().startswith("YO"):
+	elif message.content.upper().startswith("YO"):
 		if not message.content.upper().startswith("YOU"):
 			await client.send_message(message.channel,random.choice(["ga","plait"]))
 
-	if message.content.upper().startswith("BONJOUR"):
+	elif message.content.upper().startswith("BONJOUR"):
 		await client.send_message(message.channel,"Hey!")
 
-	if message.content.upper().startswith("GG"):
+	elif message.content.upper().startswith("GG"):
 		await client.send_message(message.channel,":clap: :clap: :clap:") 
 
-	if message.content.upper().startswith("/BOTADMIN"):
+	elif message.content.upper().startswith("/BOTADMIN"):
 		await client.delete_message(message)
 		await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
 	
-	if message.content.upper().startswith(Const.prefix + "NEWS"):
+	elif message.content.upper().startswith(Const.prefix + "NEWS"):
 		news=discord.Embed(color=0x700127)
 		news.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
 		news.add_field(name="Dernières nouveautées :", value=Const.news_emb, inline=False)
 		await client.send_message(message.author, embed=news)
 	
-	if message.content.upper().startswith(Const.prefix + "INFO"):
+	elif message.content.upper().startswith(Const.prefix + "INFO"):
 		await info(client,message)
 	#join
-	if message.content.upper().startswith(Const.prefix + "JOIN"):
+	elif message.content.upper().startswith(Const.prefix + "JOIN"):
 		await mBot.join(message)
 
 	#play + query
-	if message.content.upper().startswith(Const.prefix + "PLAY"):
+	elif message.content.upper().startswith(Const.prefix + "PLAY"):
 		print("Playing.")
 		await mBot.play(message)
 
 	#pause
-	if message.content.upper().startswith(Const.prefix + "PAUSE"):
+	elif message.content.upper().startswith(Const.prefix + "PAUSE"):
 		await mBot.pause(message)
 	
 	#resume
-	if message.content.upper().startswith(Const.prefix + "RESUME"):
+	elif message.content.upper().startswith(Const.prefix + "RESUME"):
 		await mBot.resume(message)
 
 	#STOP
-	if message.content.upper().startswith(Const.prefix + "STOP"):
+	elif message.content.upper().startswith(Const.prefix + "STOP"):
 		await mBot.stop(message)
 
 	#leave
-	if message.content.upper().startswith(Const.prefix + "LEAVE"):
+	elif message.content.upper().startswith(Const.prefix + "LEAVE"):
 		await mBot.leave(message)
 
-	if message.content.upper().startswith(Const.prefix + "QUEUE"):
+	elif message.content.upper().startswith(Const.prefix + "QUEUE"):
 		await queue(message)
 
-	if message.content.upper().startswith(Const.prefix + "CLOSE"):
+	elif message.content.upper().startswith(Const.prefix + "CLOSE"):
 		await close(client,message)
 
-	if message.content.upper().startswith(Const.prefix + "CLEAR"):
+	elif message.content.upper().startswith(Const.prefix + "CLEAR"):
 		amount = message.content.split(' ')[1]
 		await clear(client,message,amount=amount)
+
+	elif await react_with_numbers(message)[0]:
+			react_nb = await react_with_numbers(message)
+			if not message.channel.id.upper in ingnored_serv:
+				nb = react_nb[1]
+				msg_reactions = await client.get_message(discord.Object('545336065955987492'),'560172166046416940')
+				reactions = msg_reactions.reactions
+				for x in nb:
+					await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
+
+	contents = message.content.split(" ")
+	for word in contents:
+		if word.upper() in Const.chat_filter:
+			if not message.author.id in Const.bypass_list:
+				await client.delete_message(message)
+				await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
+
+
 
 client.run(os.environ["TOKEN_BOT"])
