@@ -31,7 +31,7 @@ ingnored_serv = ["264445053596991498","110373943822540800"]
 
 def react_with_numbers(message):
 	nmbrs = []
-	print("React with numbers fonction" + str(message.content.split(' ')))
+	print("React with numbers fonction : " + str(message.content.split(' ')))
 	for x in message.content.split(' '):
 		if x in numbers:
 			e = numbers.index(x)
@@ -45,6 +45,7 @@ def react_with_numbers(message):
 				a.remove(nmbrs[x])
 				a.reverse()
 				nmbrs = a
+		print("React with numbers fonction 2 : " + str(nmbrs))
 		return (True,nmbrs)
 	return (False,None)
 
