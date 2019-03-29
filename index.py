@@ -43,7 +43,7 @@ def react_with_numbers(message):
 				a = nmbrs
 				a.reverse()
 				a.remove(nmbrs[x])
-				a.revers()
+				a.reverse()
 				nmbrs = a
 		return (True,nmbrs)
 	return (False,None)
