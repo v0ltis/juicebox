@@ -195,11 +195,7 @@ async def on_message(message):
 		await client.send_message(message.channel,":rage:")
 		
 	elif message.content.upper().startswith("<@528268989525131274>"):
-		await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voici quelques commandes qui pouraient vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique ")      
-
-	for word in contents:
-		if word.upper() in Const.merde:
-			await client.add_reaction(message,emoji='💩')
+		await client.send_message(message.channel,"Bonjour , je suis JuiceBox , voici quelques commandes qui pouraient vous aider : \n /help : affiche l'aide \n /musique : affiche les commandes de musique ")
 
 	elif message.content.upper().startswith("/REACT"):
 		args = message.content.split(" ")
@@ -281,7 +277,10 @@ async def on_message(message):
 			if not message.author.id in Const.bypass_list:
 				await client.delete_message(message)
 				await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
-
+	
+	for word in contents:
+		if word.upper() in Const.merde:
+			await client.add_reaction(message,emoji='💩')
 
 
 client.run(os.environ["TOKEN_BOT"])
