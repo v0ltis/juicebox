@@ -29,10 +29,18 @@ chat_on = False
 numbers = ['-1','-2','-3','-4','-5','-6','-7','-8','-9','-10','-0']
 
 async def react_with_numbers(message):
+	nmbrs = []
 	for x in message.content.split(' '):
 		for y in range(len(numbers)):
 			if numbers[y] == x:
-				return (True,y)
+				nmbrs.append(y)
+	
+	if nmbrs != []:
+		for x in range(len(nmbrs)):
+			if x in nmbrs[x]:
+				if x in nmbrs[x:len(nmbrs)]:
+					nmbrs.pop(x)
+		return (True,nmbrs)
 	return (False,None)
 
 #Information fonction
@@ -204,7 +212,8 @@ async def on_message(message):
 			nb = react_nb[1]
 			msg_reactions = await client.get_message(discord.Object('545336065955987492'),'560172166046416940')
 			reactions = msg_reactions.reactions
-			await client.add_reaction(message,reactions[nb].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
+			for x in nb:
+				await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
 
 	if message.content.upper().startswith("/REACT"):
 		args = message.content.split(" ")
