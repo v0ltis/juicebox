@@ -34,7 +34,8 @@ def react_with_numbers(message):
 	print("React with numbers fonction" + str(message.content.split(' ')))
 	for x in message.content.split(' '):
 		if x in numbers:
-			nmbrs.append(x)
+			e = numbers.index(x)
+			nmbrs.append(e)
 
 	if nmbrs != []:
 		for x in range(0,len(nmbrs)):
