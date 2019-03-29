@@ -11,7 +11,7 @@ async def clear(client,message,amount=1):
 		async for message in client.logs_from(channel,limit=int(amount) + 2):
 			await client.delete_message(message)
 
-		await client.say('Messages deleted.')
+		await client.send_message(channel,'Messages deleted.')
 
 async def info(client,message):
 	info_mention_user = None
