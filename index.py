@@ -37,7 +37,7 @@ async def react_with_numbers(message):
 	
 	if nmbrs != []:
 		for x in range(len(nmbrs)):
-			if x in nmbrs[x]:
+			if x in nmbrs:
 				if x in nmbrs[x:len(nmbrs)]:
 					nmbrs.pop(x)
 		return (True,nmbrs)
