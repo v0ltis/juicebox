@@ -209,7 +209,7 @@ async def on_message(message):
 	
 	react_nb = await react_with_numbers(message)
 	if react_nb[0]:
-			if not message.channel.id.upper in ingnored_serv 
+			if not message.channel.id.upper in ingnored_serv:
 			nb = react_nb[1]
 			msg_reactions = await client.get_message(discord.Object('545336065955987492'),'560172166046416940')
 			reactions = msg_reactions.reactions
