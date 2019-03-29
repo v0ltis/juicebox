@@ -12,11 +12,11 @@ class ready():
 				nb_of_serv_where_i_am_connected += 1
 				serv_co = str(nb_of_serv_where_i_am_connected) + ' serveurs'
 
-			await self.client.change_presence(status=discord.Status.dnd,game=discord.Game(name=serv_co,type=1))
+			await self.client.change_presence(status=discord.Status.dnd,game=discord.Game(name=serv_co,type=0))
 			await asyncio.sleep(15)
-			await self.client.change_presence(status=discord.Status.dnd,game=discord.Game(name="/help",type=1))
+			await self.client.change_presence(status=discord.Status.dnd,game=discord.Game(name="/help",type=0))
 			await asyncio.sleep(15)
-			await self.client.change_presence(status=discord.Status.dnd,game=discord.Game(name="juicebot.github.io",type=1))
+			await self.client.change_presence(status=discord.Status.dnd,game=discord.Game(name="juicebot.github.io",type=0))
 			await asyncio.sleep(15)
 	
 	async def upload_juice_emoji(self):
