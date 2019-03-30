@@ -7,6 +7,7 @@ import asyncio
 import time
 import os
 import random
+import has_perms
 
 import my_directory
 import text_to_url
