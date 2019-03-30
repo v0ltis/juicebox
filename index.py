@@ -279,18 +279,18 @@ async def on_message(message):
 				for x in nb:
 					await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
 					
-	author = message.author
+	autho = message.author
 	channel = message.channel
 	contents = message.content.split(" ")
 	for word in contents:
 		if word.upper() in Const.chat_filter :
-			if user.id in Const.bypass_list:
+			if author.id in Const.bypass_list:
 				return
-			elif channel.permissions_for(author).administrator==True:
+			elif channel.permissions_for(autho).administrator==True:
 				return
-			elif channel.permissions_for(author).manage_messages==True:
+			elif channel.permissions_for(autho).manage_messages==True:
 				return
-			elif channel.permissions_for(author).manage_channels==True:
+			elif channel.permissions_for(autho).manage_channels==True:
 				return	
 			else:
 				await client.delete_message(message)
