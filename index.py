@@ -28,6 +28,8 @@ chat_on = False
 
 numbers = ['1-','2-','3-','4-','5-','6-','7-','8-','9-','10-','0-']
 ingnored_serv = ["264445053596991498","110373943822540800"]
+perms_messages = ["administrator","manage_messages","manage_channels"]
+
 
 def react_with_numbers(message):
 	nmbrs = []
@@ -276,12 +278,13 @@ async def on_message(message):
 				reactions = msg_reactions.reactions
 				for x in nb:
 					await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
-
+					
+	perms = channel.permissions_for(message.author)
 	contents = message.content.split(" ")
 	for word in contents:
 		if word.upper() in Const.chat_filter:
 			user = message.author
-			if not user.id in Const.bypass_list or user.has_permissions(administrator=True) or user.has_permissions(manage_messages=True):
+			if not user.id in Const.bypass_list or perms.upper() in perms_messages:
 				await client.delete_message(message)
 				await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
 	
