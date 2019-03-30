@@ -225,7 +225,7 @@ async def on_message(message):
 
 	elif message.content.upper().startswith("/BOTADMIN"):
 		await client.delete_message(message)
-		await client.send_message(message.channel,"Hey Boss , code here: https://github.com/v0ltis/juicebox/edit/master/index.py")
+		await client.send_message(message.channel,"Hey Boss , code: https://github.com/v0ltis/juicebox")
 	
 	elif message.content.upper().startswith(Const.prefix + "NEWS"):
 		news=discord.Embed(color=0x700127)
