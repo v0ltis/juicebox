@@ -287,7 +287,7 @@ async def on_message(message):
 	contents = message.content.split(" ")
 	for word in contents:
 		if word.upper() in Const.chat_filter :
-			if not user.id in Const.bypass_list or mess=False or mess_del=False or mess_chan=False:
+			if not user.id in Const.bypass_list or mess_ad=False or mess_del=False or mess_chan=False:
 				await client.delete_message(message)
 				await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
 	
