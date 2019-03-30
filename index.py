@@ -279,7 +279,9 @@ async def on_message(message):
 				for x in nb:
 					await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
 					
-	perms = channel.permissions_for(message.author)
+	author = ctx.message.author
+	channel = ctx.message.channel
+	print(channel.permissions_for(author).administrator)
 	contents = message.content.split(" ")
 	for word in contents:
 		if word.upper() in Const.chat_filter:
