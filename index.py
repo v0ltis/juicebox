@@ -45,7 +45,7 @@ def react_with_numbers(message):
 				a.remove(nmbrs[x])
 				a.reverse()
 				nmbrs = a
-		print("React with numbers fonction 2 : " + str(nmbrs))
+		#print("React with numbers fonction 2 : " + str(nmbrs))
 		return (True,nmbrs)
 	return (False,None)
 
