@@ -279,8 +279,8 @@ async def on_message(message):
 				for x in nb:
 					await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
 					
-	author = ctx.message.author
-	channel = ctx.message.channel
+	author = message.author
+	channel = message.channel
 	print(channel.permissions_for(author).administrator)
 	contents = message.content.split(" ")
 	for word in contents:
