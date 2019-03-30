@@ -281,13 +281,12 @@ async def on_message(message):
 					
 	author = message.author
 	channel = message.channel
-	mess_ad = channel.permissions_for(author).administrator
-	mess_del = channel.permissions_for(author).manage_messages
-	mess_chan = channel.permissions_for(author).manage_channels
 	contents = message.content.split(" ")
 	for word in contents:
 		if word.upper() in Const.chat_filter :
-			if not user.id in Const.bypass_list or mess_ad=False or mess_del=False or mess_chan=False:
+			if user.id in Const.bypass_list or channel.permissions_for(author).administrator=True channel.permissions_for(author).manage_channels=True or manage_messages=True:
+				return
+			else:
 				await client.delete_message(message)
 				await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
 	
