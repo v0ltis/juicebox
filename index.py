@@ -287,11 +287,11 @@ async def on_message(message):
 			if autho.id in Const.bypass_list:
 				return
 			elif channel.permissions_for(autho).administrator==True:
-				return
+				pass
 			elif channel.permissions_for(autho).manage_messages==True:
-				return
+				pass
 			elif channel.permissions_for(autho).manage_channels==True:
-				return	
+				pass	
 			else:
 				await client.delete_message(message)
 				await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
