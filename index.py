@@ -284,7 +284,7 @@ async def on_message(message):
 	contents = message.content.split(" ")
 	for word in contents:
 		if word.upper() in Const.chat_filter :
-			if author.id in Const.bypass_list:
+			if autho.id in Const.bypass_list:
 				return
 			elif channel.permissions_for(autho).administrator==True:
 				return
