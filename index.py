@@ -93,7 +93,7 @@ async def on_message(message):
 				 
 			
 	elif message.content.upper().startswith(Const.prefix + "8BALL"):
-		await await client.send_message(message.channel, random.choice(Const.ball_rep))
+		await client.send_message(message.channel, random.choice(Const.ball_rep))
 		
 	
 	
