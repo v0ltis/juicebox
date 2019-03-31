@@ -62,6 +62,22 @@ class Juice_constants():
 
 
 		self.news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme dans votre salon vocal! \n Ajout d'un ***__/info__*** : Apprenez tout sur les membres de votre serveur ... ou vous même! \n Nouvautée: Juicebox affiche désormais le nombre de serveurs sur lequel il est connecté ! c'est pas super ?"    
-
+		
+		self.ball_rep = ["Je ne sais pas",
+				 "Je pense que oui",
+				 "Surement !",
+				 "Oui oui et oui !",
+				 "Evidement !",
+				 "Sans doutes . . .",
+				 "Nooooonnnnnnnnnnnn !",
+				 "Pourquois tu pose cette question ?",
+				 "Мен ката коду бар деп ойлойм!",
+				 "Surement pas!",
+				 "Je ne repondrais pas à cette question .",
+				 "Nan !",
+				 "Forcement !",
+				 "Absolument pas",
+				 "Je te rassure , non!"]
+				 
 
 		self.admin = ['TheLicheIsBack','v0ltis']
