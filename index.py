@@ -168,8 +168,8 @@ async def on_message(message):
 	elif message.content.upper().startswith("/REACTIONS"):
 		reac = discord.Embed(title="Réactions ***(Nouveau)***", description="Voici les réactions:", colour=0x7a2581)
 		reac.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
-		reac.add_field(name="/reacts + *reaction*", value="Ajoute a *réaction* à votre message !" inline=True)
-		reac.add_field(name="*nombre*-", value="Ajoutez 0-,1-,2-,3-,4-,5-,6-,7-,8-,9-,10- a votre message pour ajouter ces réactions!\n Parfait pour les concours." inline=True)
+		reac.add_field(name="/reacts + *reaction*", value="Ajoute a *réaction* à votre message !", inline=True)
+		reac.add_field(name="*nombre*-", value="Ajoutez 0-,1-,2-,3-,4-,5-,6-,7-,8-,9-,10- a votre message pour ajouter ces réactions!\n Parfait pour les concours.", inline=True)
 		reac.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=reac)
 	
