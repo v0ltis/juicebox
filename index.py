@@ -93,6 +93,8 @@ async def on_message(message):
 				 
 			
 	elif message.content.upper().startswith(Const.prefix + "8BALL"):
+		await client.send_typing(message.channel, random.choice(Const.ball_rep))
+		time.sleep(3)
 		await client.send_message(message.channel, random.choice(Const.ball_rep))
 		
 	
