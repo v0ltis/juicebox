@@ -57,7 +57,6 @@ from class_add_on import plug_in#currently nothing here
 from class_add_on import info#info fonc
 from class_add_on import verifie_admin
 from class_add_on import clear
-
 #Music fonctions
 from music_foncts import Music_bot
 
@@ -93,7 +92,13 @@ async def on_message(message):
 		await client.send_message(message.channel, (" ".join(args[1:])))
 				 
 			
-			
+	elif message.content.upper().startswith(Const.prefix + "8BALL"):
+		await await client.send_message(message.channel, random.choice(Const.ball_rep))
+		
+	
+	
+	
+	
 	elif message.content.upper().startswith("/TICKET"):
 		args = message.content.split(" ")
 		await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
