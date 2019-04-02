@@ -45,7 +45,7 @@ def react_with_numbers(message):
 				liste.remove(x)
 				liste.reverse()
 				count = liste.count(x)
-		print("Liste : {} (react_with_numbers fonction)")
+		print("Liste : {} (react_with_numbers fonction)".format(liste))
 		return (True,liste)
 	return (False,None)
 
