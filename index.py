@@ -30,27 +30,25 @@ numbers = ['1-','2-','3-','4-','5-','6-','7-','8-','9-','10-','0-']
 ingnored_serv = ["264445053596991498","110373943822540800"]
 perms_messages = ["administrator","manage_messages","manage_channels"]
 
-
 def react_with_numbers(message):
-	nmbrs = []
-	#print("React with numbers fonction : " + str(message.content.split(' ')))
-	for x in message.content.split(' '):
+	liste = []
+
+	for x in message.content.split():
 		if x in numbers:
-			e = numbers.index(x)
-			nmbrs.append(e)
-
-	if nmbrs != []:
-		for x in range(0,len(nmbrs)):
-			if nmbrs.count(x) > 1:
-				a = nmbrs
-				a.reverse()
-				a.remove(nmbrs[x])
-				a.reverse()
-				nmbrs = a
-		#print("React with numbers fonction 2 : " + str(nmbrs))
-		return (True,nmbrs)
+			liste.append(numbers.index(x))
+	
+	if liste != []:
+		for x in liste:
+			print("x =",x)
+			count = liste.count(x)
+			print("count =",count)
+			while count > 1:
+				liste.reverse()
+				liste.remove(x)
+				liste.reverse()
+				count = liste.count(x)
+		return (True,liste)
 	return (False,None)
-
 
 #Information fonction
 from class_add_on import plug_in#currently nothing here
