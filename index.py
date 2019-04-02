@@ -46,7 +46,7 @@ def react_with_numbers(message):
 				liste.reverse()
 				count = liste.count(x)
 		print("Liste : {} (react_with_numbers fonction)".format(liste))
-		#liste.sort()
+		liste.sort()
 		return (True,liste)
 	return (False,None)
 
