@@ -39,14 +39,13 @@ def react_with_numbers(message):
 	
 	if liste != []:
 		for x in liste:
-			print("x =",x)
 			count = liste.count(x)
-			print("count =",count)
 			while count > 1:
 				liste.reverse()
 				liste.remove(x)
 				liste.reverse()
 				count = liste.count(x)
+		print("Liste : {} (react_with_numbers fonction)")
 		return (True,liste)
 	return (False,None)
 
