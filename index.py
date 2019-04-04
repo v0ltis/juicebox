@@ -24,7 +24,7 @@ liste_random = ["Tiens ! <@{}> a rejoins {}  !!! on lui dit pas bonjour :NITRO: 
 @client.event
 async def on_member_join(member):
 	global liste_random
-	channel = member.server.default_channel
+	channel = member.server.channels[0]
 	print(channel)
 	await client.send_message(channel, \
 	random.choice(liste_random).format(member.id,member.server.name))
@@ -32,7 +32,7 @@ async def on_member_join(member):
 @client.event
 async def on_member_join(member):
 	global liste_random
-	channel = member.server.default_channel
+	channel = member.server.channels[0]
 	print(channel)
 	await client.send_message(channel, \
 	random.choice(liste_random).format(member.id,member.server.name))
