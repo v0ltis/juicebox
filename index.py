@@ -25,23 +25,26 @@ liste_random = ["Tiens ! <@{}> a rejoins {}  !!! on lui dit pas bonjour :NITRO: 
 async def on_member_join(member):
 	global liste_random
 	for x in member.server.channels:
-		if x.type == discord.ChannelType.text:
+		if x.type == discord.ChannelType.text and x.name == "Welcome":
 			channel = x
+			print("Cannel type text (on_member_join)")
+			print(channel)
+			await client.send_message(channel, \
+			random.choice(liste_random).format(member.id,member.server.name))
 			break
-	print(channel)
-	await client.send_message(channel, \
-	random.choice(liste_random).format(member.id,member.server.name))
 
 @client.event
 async def on_member_ban(member):
 	global liste_random
 	for x in member.server.channels:
-		if x.type == discord.ChannelType.text:
+		if x.type == discord.ChannelType.text and x.name == "Welcome":
 			channel = x
+			print("Cannel type text (on_member_join)")
+			print(channel)
+			await client.send_message(channel, \
+			random.choice(liste_random).format(member.id,member.server.name))
 			break
-	print(channel)
-	await client.send_message(channel, \
-	random.choice(liste_random).format(member.id,member.server.name))
+
 
 from class_play_on import ready
 @client.event
