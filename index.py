@@ -18,13 +18,14 @@ Const = Juice_constants()
 client = Const.client
 prefix = Const.prefix
 
-liste_random = ["Tien ! <@{}> a rejoins {}  !!! on lui dit pas bonjour :NITRO: ?",
+liste_random = ["Tiens ! <@{}> a rejoins {}  !!! on lui dit pas bonjour :NITRO: ?",
     "<@{}> à rejoins le serveur !"]
 
 @client.event
 async def on_member_join(member):
 	global liste_random
 	channel = member.server.default_channel
+	print(channel)
 	await client.send_message(channel, \
 	random.choice(liste_random).format(member.id,member.server.name))
 
@@ -32,6 +33,7 @@ async def on_member_join(member):
 async def on_member_join(member):
 	global liste_random
 	channel = member.server.default_channel
+	print(channel)
 	await client.send_message(channel, \
 	random.choice(liste_random).format(member.id,member.server.name))
 
