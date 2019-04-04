@@ -18,8 +18,9 @@ Const = Juice_constants()
 client = Const.client
 prefix = Const.prefix
 
+
 liste_random = ["Tiens ! <@{}> a rejoins **{}** !!! On lui dit pas bonjour:NITRO: ?",
-  "<@{}> à rejoins le serveur !"de]
+  "<@{}> à rejoins le serveur !"]
 
 @client.event
 async def on_member_join(member):
