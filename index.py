@@ -10,7 +10,7 @@ import random
 
 import my_directory
 import text_to_url
-
+  
 #Constantes
 from constant_class import Juice_constants
 Const = Juice_constants()
@@ -18,8 +18,9 @@ Const = Juice_constants()
 client = Const.client
 prefix = Const.prefix
 
-liste_random = ["Tiens ! <@{}> a rejoins {}  !!! on lui dit pas bonjour :NITRO: ?",
-    "<@{}> à rejoins le serveur !"]
+
+liste_random = ["Tiens ! <@{}> a rejoins **{}** !!! On lui dit pas bonjour:NITRO: ?",
+  "<@{}> à rejoins le serveur !"]
 
 @client.event
 async def on_member_join(member):
