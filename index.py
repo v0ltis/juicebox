@@ -33,7 +33,7 @@ async def on_member_join(member):
 	random.choice(liste_random).format(member.id,member.server.name))
 
 @client.event
-async def on_member_join(member):
+async def on_member_ban(member):
 	global liste_random
 	for x in member.server.channels:
 		if x.type == discord.ChannelType.text:
