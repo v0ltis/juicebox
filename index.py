@@ -58,28 +58,6 @@ numbers = ['1-','2-','3-','4-','5-','6-','7-','8-','9-','10-','0-']
 ingnored_serv = ["264445053596991498","110373943822540800"]
 perms_messages = ["administrator","manage_messages","manage_channels"]
 
-'''will be removed
-def react_with_numbers(message):
-	liste = []
-
-	for x in message.content.split():
-		if x in numbers:
-			liste.append(numbers.index(x))
-	
-	if liste != []:
-		for x in liste:
-			count = liste.count(x)
-			while count > 1:
-				liste.reverse()
-				liste.remove(x)
-				liste.reverse()
-				count = liste.count(x)
-		liste.sort()
-		print("Liste : {} (react_with_numbers fonction)".format(liste))
-		
-		return (True,liste)
-	return (False,None)
-'''
 #Information fonction
 from class_add_on import plug_in#currently nothing here
 from class_add_on import info#info fonc
