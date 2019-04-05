@@ -84,6 +84,7 @@ from class_add_on import plug_in#currently nothing here
 from class_add_on import info#info fonc
 from class_add_on import verifie_admin
 from class_add_on import clear
+from class_add_on import auto_role
 #Music fonctions
 from music_foncts import Music_bot
 

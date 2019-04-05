@@ -3,6 +3,9 @@ import discord
 from constant_class import Juice_constants
 Const = Juice_constants()
 
+async def auto_role(client,message):
+	pass
+
 async def clear(client,message,amount=1):
 	if await verifie_admin(client,message) == True:
 		asyncio.sleep(2)
