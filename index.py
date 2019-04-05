@@ -95,15 +95,15 @@ mBot = Music_bot(client,Const.memeaudio)
 
 @client.event
 async def on_message(message):
-        if message.channel == discord.Object(id='551323083168940035'):
-                        print(message.content, message.role_mentions)
-                        await client.send_message(message.channel,'Your message : ```{} {}```'.format(message.content, message.role_mentions))
+	if message.channel == discord.Object(id='551323083168940035'):
+ 		print(message.content, message.role_mentions)
+ 		await client.send_message(message.channel,'Your message : ```{} {}```'.format(message.content, message.role_mentions))
  
-        global chat_on,temps_zero,boucle
-        if message.author.id in Const.ban_user:
-			return
-        elif message.author == client.user:
-			return
+	global chat_on,temps_zero,boucle
+	if message.author.id in Const.ban_user:
+		return
+	elif message.author == client.user:
+		return
 
 	elif message.content.upper().startswith("/CHAT ON"):
 		chat_on = True
