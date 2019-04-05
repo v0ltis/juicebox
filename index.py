@@ -17,7 +17,6 @@ Const = Juice_constants()
 
 client = Const.client
 prefix = Const.prefix
-#lll
 
 liste_random = ["Tiens ! <@{}> a rejoins **{}** !!! On lui dit pas bonjour:NITRO: ?",
   "<@{}> à rejoins le serveur !"]
