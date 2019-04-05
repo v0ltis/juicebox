@@ -3,6 +3,27 @@ import discord
 from constant_class import Juice_constants
 Const = Juice_constants()
 
+def react_with_numbers(message,numbers):
+	liste = []
+
+	for x in message.content.split():
+		if x in numbers:
+			liste.append(numbers.index(x))
+		
+	if liste != []:
+		for x in liste:
+			count = liste.count(x)
+			while count > 1:
+				liste.reverse()
+				liste.remove(x)
+				liste.reverse()
+				count = liste.count(x)
+		liste.sort()
+		print("Liste : {} (react_with_numbers fonction)".format(liste))
+			
+		return (True,liste)
+	return (False,None)
+
 async def auto_role(client,message):
 	pass
 

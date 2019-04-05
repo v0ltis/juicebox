@@ -58,6 +58,7 @@ numbers = ['1-','2-','3-','4-','5-','6-','7-','8-','9-','10-','0-']
 ingnored_serv = ["264445053596991498","110373943822540800"]
 perms_messages = ["administrator","manage_messages","manage_channels"]
 
+'''will be removed
 def react_with_numbers(message):
 	liste = []
 
@@ -78,13 +79,13 @@ def react_with_numbers(message):
 		
 		return (True,liste)
 	return (False,None)
-
+'''
 #Information fonction
 from class_add_on import plug_in#currently nothing here
 from class_add_on import info#info fonc
 from class_add_on import verifie_admin
 from class_add_on import clear
-from class_add_on import auto_role
+from class_add_on import react_with_numbers
 #Music fonctions
 from music_foncts import Music_bot
 
@@ -316,7 +317,7 @@ async def on_message(message):
 		amount = message.content.split(' ')[1]
 		await clear(client,message,amount=amount)
 
-	elif react_with_numbers(message)[0]:
+	elif react_with_numbers(message,numbers)[0]:
 			react_nb = react_with_numbers(message)
 			if not message.channel.id.upper in ingnored_serv:
 				nb = react_nb[1]
