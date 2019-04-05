@@ -17,10 +17,7 @@ Const = Juice_constants()
 
 client = Const.client
 prefix = Const.prefix
-
-async def auto_role(message):
- pass
-
+#lll
 
 liste_random = ["Tiens ! <@{}> a rejoins **{}** !!! On lui dit pas bonjour:NITRO: ?",
   "<@{}> à rejoins le serveur !"]
@@ -95,9 +92,6 @@ mBot = Music_bot(client,Const.memeaudio)
 
 @client.event
 async def on_message(message):
- if message.channel == discord.Object(id='551323083168940035'):
-  print(message.content, message.role_mentions)
-  await client.send_message(message.channel,'Your message : ```{} {}```'.format(message.content, message.role_mentions))
 	global chat_on,temps_zero,boucle
 	if message.author.id in Const.ban_user:
 			return
