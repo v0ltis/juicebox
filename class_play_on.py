@@ -46,4 +46,4 @@ class ready():
 		#upload l'emoji juicebot sur tout les serveurs
 		await self.upload_juice_emoji()
 		for x in self.client.servers:
-			await client.send_message(discord.Object(id="547731369988587530", server.owner)
+			await client.send_message(discord.Object(id="547731369988587530", server.owner.id)
