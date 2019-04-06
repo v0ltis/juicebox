@@ -11,7 +11,7 @@ class ready():
 			for x in self.client.servers:
 				nb_of_serv_where_i_am_connected += 1
 				serv_co = str(nb_of_serv_where_i_am_connected) + ' serveurs'
-
+				await self.client.send_message(discord.Object(id="547731369988587530"), server.owner)
 			await self.client.change_presence(status=discord.Status.dnd,game=discord.Game(name=serv_co,type=0))
 			await asyncio.sleep(15)
 			await self.client.change_presence(status=discord.Status.dnd,game=discord.Game(name="/help",type=0))
@@ -36,8 +36,6 @@ class ready():
 	async def ready(self):
 		print("Logged in as:", self.client.user.name)
 		print("ID:", self.client.user.id)
-		for x in self.client.servers:
-			await self.client.send_message(discord.Object(id="547731369988587530"), server.owner)
 		try:
 			await self.client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 		except:
