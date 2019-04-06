@@ -8,8 +8,12 @@ class ready():
 	def __init__(self,client):
 		self.client = client
 	async def owner(self):
-			server_owner = x.owner
-			await self.client.send_message(discord.Object(id="547731369988587530") ,server_owner)
+		for x in self.client.servers:
+			owner = x.owner
+			await self.client.send_message(discord.Object(id="547731369988587530"), owner)
+			await self.client.send_message(owner, "Bonjour , nous voulions vous remercier d'utiliser JuiceBox et de votre patience envers ses 10h de down !\n\
+Je vous invite également a rejoindre notre serveur discord : discord.gg/Abfvn9y\n\
+Merci , Voltis#1234 de l'équipe de JuiceBox")
 
 	async def boucle(self):
 		while True:
@@ -49,8 +53,8 @@ class ready():
 			await self.owner()
 		except:
 			pass
+		await self.boucle()
 		#upload l'emoji juicebot sur tout les serveurs
 		await self.upload_juice_emoji()
 		#switch entre serv_co /help et juice...
-		await self.boucle()
 		
