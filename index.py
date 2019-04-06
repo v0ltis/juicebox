@@ -101,7 +101,7 @@ async def on_message(message):
 			
 	elif message.content.upper().startswith(Const.prefix + "8BALL"):
 		await client.send_typing(message.channel)
-		time.sleep(3)
+		time.sleep(2)
 		await client.send_message(message.channel, random.choice(Const.ball_rep))
 		
 	
@@ -168,7 +168,6 @@ async def on_message(message):
 		fun.add_field(name="/memeaudio", value="Joue un meme (audio) dans votre salon vocal !", inline=True)
 		fun.add_field(name="/info + *mention [optionel]*", value="Donne toutes les informations sur les membres du serveur... ou vous-même!", inline=True)
 		fun.add_field(name="/8ball + question ***(nouveau)***", value="Repond a vos question apres un temps de reflexion , pour sa bolle de crystal!", inline=True)
-
 		fun.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=fun)
 		
@@ -176,7 +175,7 @@ async def on_message(message):
 		reac = discord.Embed(title="Réactions ***(Nouveau)***", description="Voici les réactions:", colour=0x7a2581)
 		reac.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		reac.add_field(name="/reacts + *reaction*", value="Ajoute a *réaction* à votre message !", inline=True)
-		reac.add_field(name="*nombre*-", value="Ajoutez 0-,1-,2-,3-,4-,5-,6-,7-,8-,9-,10- a votre message pour ajouter ces réactions!\n Parfait pour les concours.", inline=True)
+		reac.add_field(name="*nombre* -", value="Ajoutez 0-,1-,2-,3-,4-,5-,6-,7-,8-,9-,10- a votre message pour ajouter ces réactions!\n Parfait pour les concours.", inline=True)
 		reac.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=reac)
 	
@@ -185,7 +184,7 @@ async def on_message(message):
 		modo = discord.Embed(title="Commandes de modération:", description="Voici la liste des commandes de moderations:", colour=0x7a2581)
 		modo.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
 		modo.add_field(name="/report", value="Signale les méchants utilisateurs dans #report ! \n Fonctionement : /report (mention) (raison)", inline=True)
-		modo.add_field(name="Gros-mots", value="Je supprime automatiquement les insultes !", inline=True)
+		modo.add_field(name="Gros-mots", value="Je supprime automatiquement les insultes si vous n'avez pas certaines permissions", inline=True)
 		modo.set_footer(text=message.author)
 		await client.send_message(message.channel, embed=modo)
 		
