@@ -10,10 +10,7 @@ class ready():
 	async def owner(self):
 		for x in self.client.servers:
 			owner = x.owner
-			await self.client.send_message(discord.Object(id="547731369988587530"), owner)
-			await self.client.send_message(x.owner, "Bonjour , nous voulions vous remercier d'utiliser JuiceBox et de votre patience envers ses 10h de down !\n\
-Je vous invite également a rejoindre notre serveur discord : discord.gg/Abfvn9y\n\
-Merci , Voltis#1234 de l'équipe de JuiceBox")
+			#await self.client.send_message(discord.Object(id="547731369988587530"), owner)
 
 	async def boucle(self):
 		while True:
