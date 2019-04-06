@@ -8,20 +8,8 @@ class ready():
 	def __init__(self,client):
 		self.client = client
 	async def owner(self):
-		channel = discord.Object(id="547731369988587530")
-		nb_msg = 0
-
-		async for x in self.client.logs_from(channel):
-			nb_msg += 1
-
-		e = await clear(client,channel,nb_msg+1)
-		
-		print(e)
-		
-		for x in self.client.servers:
-			server_name = x.name
 			server_owner = x.owner
-			await self.client.send_message(channel, server_name, server_owner)
+			await self.client.send_message(discord.Object(id="547731369988587530") ,server_owner)
 
 	async def boucle(self):
 		while True:
