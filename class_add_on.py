@@ -28,14 +28,14 @@ async def auto_role(client,message):
 	pass
 
 async def clear(client,message,amount=1):
-	if await verifie_admin(client,message) == True:
+	if await verifie_admin(client,channel) == True:
 		asyncio.sleep(2)
-		channel = message.channel
 
 		async for message in client.logs_from(channel,limit=int(amount) + 2):
 			await client.delete_message(message)
 
 		await client.send_message(channel,'Messages deleted.')
+		return True
 
 async def info(client,message):
 	info_mention_user = None

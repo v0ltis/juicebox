@@ -292,7 +292,7 @@ async def on_message(message):
 
 	elif message.content.upper().startswith(Const.prefix + "CLEAR"):
 		amount = message.content.split(' ')[1]
-		await clear(client,message,amount=amount)
+		await clear(client,message.channel,amount=amount)
 
 	elif react_with_numbers(message,numbers)[0]:
 			react_nb = react_with_numbers(message,numbers)

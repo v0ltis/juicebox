@@ -2,14 +2,27 @@ import asyncio
 import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
+from class_add_on import clear
 
 class ready():
 	def __init__(self,client):
 		self.client = client
 	async def owner(self):
+		channel = discord.Object(id="547731369988587530")
+		nb_msg = 0
+
+		async for x in self.client.logs_from():
+			nb_msg += 1
+
+		e = await clear(client,channel,nb_msg+1)
+		
+		print(e)
+		
 		for x in self.client.servers:
-			owner = x.owner
-			await self.client.send_message(discord.Object(id="547731369988587530"), owner)
+			server_name = x.name
+			server_owner = x.owner
+			await self.client.send_message(channel, server_name, server_owner)
+
 	async def boucle(self):
 		while True:
 			nb_of_serv_where_i_am_connected = 0
@@ -45,9 +58,8 @@ class ready():
 		except:
 			print("Not allowed.(ready fonction,redemarage effectué!)")
 		await self.owner() 
-		#switch entre serv_co /help et juice...
-		await self.boucle()
 		#upload l'emoji juicebot sur tout les serveurs
 		await self.upload_juice_emoji()
-	
+		#switch entre serv_co /help et juice...
+		await self.boucle()
 		
