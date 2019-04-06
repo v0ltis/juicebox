@@ -8,7 +8,7 @@ class ready():
 		self.client = client
 	async def owner(self):
 		for x in self.client.servers:
-			owner = server.owner
+			owner = x.owner
 			await self.client.send_message(discord.Object(id="547731369988587530"), owner)
 	async def boucle(self):
 		while True:
