@@ -44,9 +44,9 @@ class ready():
 			await self.client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 		except:
 			print("Not allowed.(ready fonction,redemarage effectué!)")
+		await self.owner() 
 		#switch entre serv_co /help et juice...
 		await self.boucle()
-		await self.owner()
 		#upload l'emoji juicebot sur tout les serveurs
 		await self.upload_juice_emoji()
 	
