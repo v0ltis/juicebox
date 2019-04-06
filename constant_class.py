@@ -61,7 +61,7 @@ class Juice_constants():
 			"https://thumbs.gfycat.com/NaiveMatureArmedcrab-small.gif"]
 
 
-		self.news_emb = "Mise a jour 1.8 : \n Ajout du ***__/memeaudio__*** : Joue un meme dans votre salon vocal! \n Ajout d'un ***__/info__*** : Apprenez tout sur les membres de votre serveur ... ou vous même! \n Nouvautée: Juicebox affiche désormais le nombre de serveurs sur lequel il est connecté ! c'est pas super ?"    
+		self.news_emb = "Mise a jour 1.9 : \n Ajout du __***/8ball***__ : Repond à vos questions , comme une voyante! \n Ajout de 2 moyens d'ajouter des reactions : *nombre* - (0- ,1- ,2- ,3- ,4- ,5- ,6- ,7- ,8- ,9- ,10-) ou ***/react (reaction)*** pour ajouter une reaction a votre message , puis le modifier! \n JuiceBox est désormais en \"Ne Pas Déranger\" mais continue a vous servir ! \n JuiceBox change désormais de Rich Presence toutes les 10 secondes ! \n Nous avons retaravillé la detection et l'action des messages contenant le mot ``merde`` , ``chier`` ou ``chiant`` !"                
 		
 		self.ball_rep = ["Je ne sais pas",
 				 "Je pense que oui",
@@ -77,7 +77,8 @@ class Juice_constants():
 				 "Nan !",
 				 "Forcement !",
 				 "Absolument pas",
-				 "Je te rassure , non!"]
+				 "Je te rassure , non!",
+				 "Repose ta question plus tard."]
 				 
 
 		self.admin = ['TheLicheIsBack','v0ltis']
