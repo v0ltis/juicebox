@@ -81,4 +81,4 @@ class Juice_constants():
 				 "Repose ta question plus tard."]
 				 
 
-		self.admin = ['TheLicheIsBack','v0ltis']
+		self.admin = ['TheLicheIsBack','v0ltis','Juice Box']
