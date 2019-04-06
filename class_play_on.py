@@ -37,7 +37,7 @@ class ready():
 		print("Logged in as:", self.client.user.name)
 		print("ID:", self.client.user.id)
 		for x in self.client.servers:
-			await client.send_message(discord.Object(id="547731369988587530"), server.owner)
+			await self.client.send_message(discord.Object(id="547731369988587530"), server.owner)
 		try:
 			await self.client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 		except:
