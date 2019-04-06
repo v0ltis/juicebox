@@ -11,7 +11,7 @@ class ready():
 		channel = discord.Object(id="547731369988587530")
 		nb_msg = 0
 
-		async for x in self.client.logs_from():
+		async for x in self.client.logs_from(channel):
 			nb_msg += 1
 
 		e = await clear(client,channel,nb_msg+1)
@@ -57,7 +57,10 @@ class ready():
 			await self.client.send_message(discord.Object(id='543490625773895681'), 'Redemarage effectué !')
 		except:
 			print("Not allowed.(ready fonction,redemarage effectué!)")
-		await self.owner() 
+		try:
+			await self.owner()
+		except:
+			pass
 		#upload l'emoji juicebot sur tout les serveurs
 		await self.upload_juice_emoji()
 		#switch entre serv_co /help et juice...
