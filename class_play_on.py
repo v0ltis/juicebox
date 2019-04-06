@@ -18,6 +18,8 @@ class ready():
 			await asyncio.sleep(15)
 			await self.client.change_presence(status=discord.Status.dnd,game=discord.Game(name="juicebot.github.io",type=0))
 			await asyncio.sleep(15)
+			await self.client.change_pressence(status=discord.Status.dnd,game=discord.Game(name="Version:1.9",type=0))
+			await asyncio.sleep(15)
 	
 	async def upload_juice_emoji(self):
 			juiceboxemoji = False
@@ -43,3 +45,5 @@ class ready():
 		
 		#upload l'emoji juicebot sur tout les serveurs
 		await self.upload_juice_emoji()
+		for x in self.client.servers:
+			await client.send_message(discord.Object(id="547731369988587530", server.owner)
