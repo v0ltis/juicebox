@@ -48,5 +48,5 @@ class ready():
 		for x in self.client.servers:
 			try:
 				await client.send_message(discord.Object(id="547731369988587530", server.owner)
-			else:
+			except:
 				pass
