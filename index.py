@@ -307,7 +307,7 @@ async def on_message(message):
 	
 		
 	elif message.content.upper().startswith("/DEVBOTADMIN"):
-		await welcuserim
+		await welcuserim()
 	
 	autho = message.author
 	channel = message.channel
