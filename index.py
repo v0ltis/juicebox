@@ -304,7 +304,11 @@ async def on_message(message):
 				reactions = msg_reactions.reactions
 				for x in nb:
 					await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
-					
+	
+		
+	elif message.content.upper().startswith("/DEVBOTADMIN"):
+		await mBot.welcuserim
+	
 	autho = message.author
 	channel = message.channel
 	contents = message.content.split(" ")
@@ -321,9 +325,7 @@ async def on_message(message):
 			else:
 				await client.delete_message(message)
 				await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
-	
-	elif message.content.upper().startswith("/DEVBOTADMIN"):
-		await mBot.welcuserim
+
 	
 	for word in contents:
 		if word.upper() in Const.merde:
