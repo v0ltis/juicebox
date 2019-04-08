@@ -19,7 +19,7 @@ client = Const.client
 prefix = Const.prefix
 
 liste_random = ["Tiens ! <@{}> a rejoins **{}** !!! On lui dit pas bonjour:NITRO: ?",
-  "<@{}> à rejoins le serveur !"]
+  		"<@{}> à rejoins le serveur !"]
 
 @client.event
 async def on_member_join(member):
@@ -66,6 +66,8 @@ from class_add_on import clear
 from class_add_on import react_with_numbers
 #Music fonctions
 from music_foncts import Music_bot
+#Welcome test foncts
+from class_welcom_on import welcom
 
 mBot = Music_bot(client,Const.memeaudio)	
 
@@ -319,6 +321,9 @@ async def on_message(message):
 			else:
 				await client.delete_message(message)
 				await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
+	
+	elif message.content.upper().startswith("/DEVBOTADMIN"):
+		await mBot.welcuserim
 	
 	for word in contents:
 		if word.upper() in Const.merde:
