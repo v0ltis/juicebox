@@ -98,16 +98,15 @@ async def on_message(message):
 				
 	elif message.content.upper().startswith("/SAY"):
 		args = message.content.split(" ")
+		message.author.id = auth
+		if auth.upper() in Const.bypass_list or channel.permissions_for(auth).upper() in perms_messages:
 		await client.send_message(message.channel, (" ".join(args[1:])))
 				 
 			
 	elif message.content.upper().startswith(Const.prefix + "8BALL"):
 		await client.send_typing(message.channel)
 		time.sleep(2)
-		await client.send_message(message.channel, random.choice(Const.ball_rep))
-		
-	
-	
+		await client.send_message(message.channel, random.choice(Const.ball_rep))		
 	
 	
 	elif message.content.upper().startswith("/TICKET"):
@@ -193,8 +192,7 @@ async def on_message(message):
 	elif message.content.upper().startswith("/REPORT"):
 		args = message.content.split(" ")
 		arg_1 = ("".join(args[1]))
-		arg_2 = (" ".join(args[2:]))
-				
+		arg_2 = (" ".join(args[2:]))		
 		report=discord.Embed(color=0x700127)
 		report.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
 		report.add_field(name="Utilisateur signalé:", value=arg_1, inline=False)
