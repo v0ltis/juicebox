@@ -100,7 +100,7 @@ async def on_message(message):
 		args = message.content.split(" ")
 		auth = message.author
 		channel = message.channel
-		if not auth.id.upper() in Const.bypass_list or not channel.permissions_for(auth).upper() in perms_messages:
+		if not auth.id.upper() in Const.bypass_list or channel.permissions_for(auth).administrator==False or channel.permissions_for(auth).manage_messages==False or channel.permissions_for(auth).manage_channels==False: 
 			await client.send_message(message.channel, auth)
 			print(auth)	
 		await client.send_message(message.channel, (" ".join(args[1:])))
