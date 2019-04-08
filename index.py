@@ -98,7 +98,7 @@ async def on_message(message):
 				
 	elif message.content.upper().startswith("/SAY"):
 		args = message.content.split(" ")
-		message.author.id = auth
+		auth = message.author.id
 		if auth.upper() in Const.bypass_list or channel.permissions_for(auth).upper() in perms_messages:
 			await client.send_message(message.channel, (" ".join(args[1:])))
 				 
