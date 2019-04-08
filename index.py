@@ -100,7 +100,7 @@ async def on_message(message):
 		args = message.content.split(" ")
 		message.author.id = auth
 		if auth.upper() in Const.bypass_list or channel.permissions_for(auth).upper() in perms_messages:
-		await client.send_message(message.channel, (" ".join(args[1:])))
+			await client.send_message(message.channel, (" ".join(args[1:])))
 				 
 			
 	elif message.content.upper().startswith(Const.prefix + "8BALL"):
