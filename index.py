@@ -97,16 +97,12 @@ async def on_message(message):
 		elif channel.permissions_for(auth).manage_channels==True:
 			pass
 		else:
-			await client.delete_message(message)
+			
 			await client.send_message(message.channel, '<@{}>'.format(auth.id))
 			print(auth)
 
-		msg = ''
-		for x in message.content.split()[1:len(message.content.split())-1]:
-			msg = msg + x + ' '
-		msg = msg + message.content.split()[len(message.content.split())-1]
-
-		await client.send_message(channel,"{}".format(msg))
+		await client.delete_message(message)
+		await client.send_message(message.channel,(" ".join(args[1:]))
 		
 	elif message.content.upper().startswith(Const.prefix + "8BALL"):
 		await client.send_typing(message.channel)
