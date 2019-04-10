@@ -28,24 +28,11 @@ async def on_member_join(member):
 		print(x.name)
 		if x.type == discord.ChannelType.text and x.name == "welcome" or x.name == "bienvenue":
 			channel = x
-			print("Cannel type text (on_member_join)")
+			print("Channel type text (on_member_join)")
 			print(channel)
 			await client.send_message(channel, \
 			random.choice(liste_random).format(member.id,member.server.name))
 			break
-
-@client.event
-async def on_member_ban(member):
-	global liste_random
-	for x in member.server.channels:
-		if x.type == discord.ChannelType.text and x.name == "welcome":
-			channel = x
-			print("Cannel type text (on_member_join)")
-			print(channel)
-			await client.send_message(channel, \
-			random.choice(liste_random).format(member.id,member.server.name))
-			break
-
 
 from class_play_on import ready
 @client.event
