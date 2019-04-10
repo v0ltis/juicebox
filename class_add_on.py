@@ -28,13 +28,13 @@ async def auto_role(client,message):
 	pass
 
 async def clear(client,message,amount=1):
-	if await verifie_admin(client,channel) == True:
+	if await verifie_admin(client,message) == True:
 		asyncio.sleep(2)
 
-		async for message in client.logs_from(channel,limit=int(amount) + 2):
+		async for message in client.logs_from(message.channel,limit=int(amount) + 2):
 			await client.delete_message(message)
 
-		await client.send_message(channel,'Messages deleted.')
+		await client.send_message(message.channel,'Messages deleted.')
 		return True
 
 async def info(client,message):
@@ -66,7 +66,6 @@ async def info(client,message):
 	await client.send_message(message.channel, embed=info_mention)
 
 async def verifie_admin(client,message):
-		
 		for x in Const.admin:
 			if message.author.name == x:
 				await client.send_message(message.channel,'You are {}, proceed ...'.format(message.author.name))
