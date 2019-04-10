@@ -25,6 +25,7 @@ liste_random = ["Tiens ! <@{}> a rejoins **{}** !!! On lui dit pas bonjour ?",
 async def on_member_join(member):
 	global liste_random
 	for x in member.server.channels:
+		print(x.name)
 		if x.type == discord.ChannelType.text and x.name == "welcome" or x.name == "bienvenue":
 			channel = x
 			print("Cannel type text (on_member_join)")
