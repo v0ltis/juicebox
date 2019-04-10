@@ -83,25 +83,7 @@ async def on_message(message):
 		await client.edit_message(pinger, ":ping_pong: **Pong !**\n\
 `Ping:" + ping + "`")
 				
-	elif message.content.upper().startswith("/SAY"):
-		args = message.content.split(" ")
-		auth = message.author
-		channel = message.channel
-		
-		if auth.id.upper() in Const.bypass_list:
-			pass
-		elif channel.permissions_for(auth).administrator==True:
-			pass
-		elif channel.permissions_for(auth).manage_messages==True:
-			pass
-		elif channel.permissions_for(auth).manage_channels==True:
-			pass
-		else:
-			await client.send_message(message.channel, '<@{}>'.format(auth.id))
-			print(auth)
-
-		await client.delete_message(message)
-		await client.send_message(message.channel,(" ".join(args[1:]))
+	
 		
 	elif message.content.upper().startswith(Const.prefix + "8BALL"):
 		await client.send_typing(message.channel)
@@ -304,8 +286,25 @@ async def on_message(message):
 					await client.add_reaction(message,reactions[x].emoji)#r[0] = :one: , r[1] = :two: , r[9] = 10, r[10] = 0
 	
 		
-	elif message.content.upper().startswith("/DEVBOTADMIN"):
-		await welcuserim()
+	elif message.content.upper().startswith("/SAY"):
+		args = message.content.split(" ")
+		auth = message.author
+		channel = message.channel
+		
+		if auth.id.upper() in Const.bypass_list:
+			pass
+		elif channel.permissions_for(auth).administrator==True:
+			pass
+		elif channel.permissions_for(auth).manage_messages==True:
+			pass
+		elif channel.permissions_for(auth).manage_channels==True:
+			pass
+		else:
+			await client.send_message(message.channel, '<@{}>'.format(auth.id))
+			print(auth)
+
+		await client.delete_message(message)
+		await client.send_message(message.channel,(" ".join(args[1:]))
 	
 	autho = message.author
 	channel = message.channel
