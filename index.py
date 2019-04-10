@@ -88,7 +88,15 @@ async def on_message(message):
 		auth = message.author
 		channel = message.channel
 		
-		if not auth.id.upper() in Const.bypass_list or channel.permissions_for(auth).administrator==False or channel.permissions_for(auth).manage_messages==False or channel.permissions_for(auth).manage_channels==False: 
+		if auth.id.upper() in Const.bypass_list:
+			pass
+		elif channel.permissions_for(auth).administrator==True:
+			pass
+		elif channel.permissions_for(auth).manage_messages==True:
+			pass
+		elif channel.permissions_for(auth).manage_channels==True:
+			pass
+		else:
 			await client.delete_message(message)
 			await client.send_message(message.channel, '<@{}>'.format(auth.id))
 			print(auth)
