@@ -114,7 +114,7 @@ async def on_message(message):
 		args = message.content.split(" ")
 		await client.send_message(message.channel, "Votre ticket a bien été envoyé au staff , merci !")
 		ticket=discord.Embed(color=0x7a2581)
-		ticket.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
+		ticket.set_author(name="JuiceBox", icon_url="https://cdn.discordapp.com/attachments/547720445063856128/565483833483329566/Logo_JuciBox_v3.4.png")
 		ticket.add_field(name="Utilisateur", value=message.author, inline=False)
 		ticket.add_field(name="Tiket :", value=(" ".join(args[1:])), inline=False)
 		ticket.set_footer(text="ID de l'utilisateur : " + message.author.id) 
@@ -130,7 +130,7 @@ async def on_message(message):
 	
 	elif message.content.upper().startswith("/HELP"):
 		help = discord.Embed(title='Commandes:', description='Voici la liste des commandes', colour=0x7a2581)
-		help.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+		help.set_author(name='Juicebox', icon_url="https://cdn.discordapp.com/attachments/547720445063856128/565483833483329566/Logo_JuciBox_v3.4.png")
 		help.add_field(name="Prefix:", value="/", inline=False)
 		help.add_field(name="/fun", value="Donne les commandes de fun", inline=True)
 		help.add_field(name="/moderation", value="Donne les commandes de moderations", inline=True)
@@ -152,7 +152,7 @@ async def on_message(message):
 	
 	elif message.content.upper().startswith("/MUSIQUE"):
 		musique = discord.Embed(title='Commandes musicales:', description='Voici la liste des commandes de la musique:', colour=0x7a2581)
-		musique.set_author(name='Juicebox', icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+		musique.set_author(name='Juicebox', icon_url="https://cdn.discordapp.com/attachments/547720445063856128/565483833483329566/Logo_JuciBox_v3.4.png")
 		musique.add_field(name=" /join", value="Fait rejoindre juicebox dans votre salon vocal ", inline=True)
 		musique.add_field(name="/play + url/recherche", value=" lis la video/musique (l'URL doit être un URL YouTube) (si il ne s'agit pas d'un url, la recherche sera automatiquement effectuée sur YouTube) ", inline=True)
 		musique.add_field(name=" /stop", value="Arette la video", inline=True)
@@ -164,7 +164,7 @@ async def on_message(message):
 	
 	elif message.content.upper().startswith("/FUN"):
 		fun = discord.Embed(title="Commandes fun", description="Voici les commandes fun:", colour=0x7a2581)
-		fun.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+		fun.set_author(name="JuiceBox", icon_url="https://cdn.discordapp.com/attachments/547720445063856128/565483833483329566/Logo_JuciBox_v3.4.png")
 		fun.add_field(name="/say + texte", value="Fait dire au bot le texte", inline=True)
 		fun.add_field(name="/gif", value="Donne un gif aléatoire", inline=True)
 		fun.add_field(name="/memeaudio", value="Joue un meme (audio) dans votre salon vocal !", inline=True)
@@ -175,7 +175,7 @@ async def on_message(message):
 		
 	elif message.content.upper().startswith("/REACTIONS"):
 		reac = discord.Embed(title="Réactions ***(Nouveau)***", description="Voici les réactions:", colour=0x7a2581)
-		reac.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+		reac.set_author(name="JuiceBox", icon_url="https://cdn.discordapp.com/attachments/547720445063856128/565483833483329566/Logo_JuciBox_v3.4.png")
 		reac.add_field(name="/reacts + *reaction*", value="Ajoute a *réaction* à votre message !", inline=True)
 		reac.add_field(name="*nombre* -", value="Ajoutez 0-,1-,2-,3-,4-,5-,6-,7-,8-,9-,10- a votre message pour ajouter ces réactions!\n Parfait pour les concours.", inline=True)
 		reac.set_footer(text=message.author)
@@ -184,7 +184,7 @@ async def on_message(message):
 	
 	elif message.content.upper().startswith("/MODERATION"):
 		modo = discord.Embed(title="Commandes de modération:", description="Voici la liste des commandes de moderations:", colour=0x7a2581)
-		modo.set_author(name="JuiceBox", icon_url="https://discordemoji.com/assets/emoji/JuiceBox.png")
+		modo.set_author(name="JuiceBox", icon_url="https://cdn.discordapp.com/attachments/547720445063856128/565483833483329566/Logo_JuciBox_v3.4.png")
 		modo.add_field(name="/report", value="Signale les méchants utilisateurs dans #report ! \n Fonctionement : /report (mention) (raison)", inline=True)
 		modo.add_field(name="Gros-mots", value="Je supprime automatiquement les insultes si vous n'avez pas certaines permissions", inline=True)
 		modo.set_footer(text=message.author)
@@ -195,7 +195,7 @@ async def on_message(message):
 		arg_1 = ("".join(args[1]))
 		arg_2 = (" ".join(args[2:]))		
 		report=discord.Embed(color=0x700127)
-		report.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
+		report.set_author(name="JuiceBox", icon_url="https://cdn.discordapp.com/attachments/547720445063856128/565483833483329566/Logo_JuciBox_v3.4.png")
 		report.add_field(name="Utilisateur signalé:", value=arg_1, inline=False)
 		report.add_field(name="Signalé par", value=message.author, inline=False)
 		report.add_field(name="Signalé pour la raison suivante :", value=arg_2, inline=False)
@@ -254,7 +254,7 @@ async def on_message(message):
 	
 	elif message.content.upper().startswith(Const.prefix + "NEWS"):
 		news=discord.Embed(color=0x700127)
-		news.set_author(name="JuiceBox", icon_url="https://juicebot.github.io/assets/images/juicebox-112x112.png")
+		news.set_author(name="JuiceBox", icon_url="https://cdn.discordapp.com/attachments/547720445063856128/565483833483329566/Logo_JuciBox_v3.4.png")
 		news.add_field(name="Dernières nouveautées :", value=Const.news_emb, inline=False)
 		await client.send_message(message.author, embed=news)
 	
