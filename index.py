@@ -98,7 +98,7 @@ async def on_message(message):
 			msg = msg + x + ' '
 		msg = msg + message.content.split()[len(message.content.split())-1]
 
-		await client.send_message(channel,"```{}```".format(msg))
+		await client.send_message(channel,"{}".format(msg))
 		
 	elif message.content.upper().startswith(Const.prefix + "8BALL"):
 		await client.send_typing(message.channel)
