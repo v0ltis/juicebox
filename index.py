@@ -97,7 +97,6 @@ async def on_message(message):
 		elif channel.permissions_for(auth).manage_channels==True:
 			pass
 		else:
-			
 			await client.send_message(message.channel, '<@{}>'.format(auth.id))
 			print(auth)
 
