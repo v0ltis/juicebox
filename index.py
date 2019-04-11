@@ -1,4 +1,3 @@
-ON VA TOUT FAIRE CRASH #Ne pas suprimmer S V P
 import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
