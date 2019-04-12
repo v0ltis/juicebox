@@ -13,6 +13,8 @@ async def gifsearch(message):
 	mess = "".join(arg[5:])
 	lien = str(linkstart) + str(mess) + str(linkmiddle) + str(GIPHY_KEY) + str(linkend)
 	
+	data = json.loads(urllib.urlopen(lien).read())
+	
 	gif = json.dumps(data, sort_keys=True, indent=4)
 
 	await client.send_message(message.channel, gif)
