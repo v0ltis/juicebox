@@ -10,7 +10,7 @@ import random
 
 import my_directory
 import text_to_url
-  
+import urllib,json  
 #Constantes
 from constant_class import Juice_constants
 Const = Juice_constants()
@@ -21,6 +21,8 @@ prefix = Const.prefix
 liste_random = ["Tiens ! <@{}> a rejoins **{}** !!! On lui dit pas bonjour ?",
   		"<@{}> à rejoins le serveur !"]
 
+
+GIPHY_KEY = os.environ["TOKEN_GIPHY"]
 @client.event
 async def on_member_join(member):
 	global liste_random
@@ -53,6 +55,7 @@ from class_add_on import react_with_numbers
 from music_foncts import Music_bot
 #Welcome test foncts
 from class_welcom_on import welcom
+from class_gif_on import gifapi
 
 mBot = Music_bot(client,Const.memeaudio)	
 
@@ -116,7 +119,7 @@ async def on_message(message):
 		await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite !")
 								
 	elif message.content.upper().startswith("/GIF"):
-		await client.send_message(message.channel, random.choice(Const.gifs))
+		await gifsearch(message)
 		
 		message_content = message.content.split(' ')[1]
 		print(message_content)
