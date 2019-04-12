@@ -119,7 +119,7 @@ async def on_message(message):
 		await client.send_message(message.author, "Merci de nous avoir contacté, un membre du staff va vous repondre au plus vite !")
 								
 	elif message.content.upper().startswith("/GIF"):
-		await gifsearch(message)
+		await gifsearch(client,message)
 		
 		message_content = message.content.split(' ')[1]
 		print(message_content)
