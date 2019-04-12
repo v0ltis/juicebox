@@ -319,9 +319,11 @@ async def on_message(message):
 			elif channel.permissions_for(autho).manage_channels==True:
 				pass	
 			else:
-				await client.delete_message(message)
-				await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
-
+				try:
+					await client.delete_message(message)
+					await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
+				except:
+					return
 	
 	for word in contents:
 		if word.upper() in Const.merde:
