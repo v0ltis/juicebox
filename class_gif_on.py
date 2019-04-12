@@ -6,7 +6,7 @@ import urllib,json
 
 GIPHY_KEY = os.environ["TOKEN_GIPHY"]
 
-def gifsearch(message):
+async def gifsearch(message):
 	linkstart = "http://api.giphy.com/v1/gifs/search?q="
 	linkmiddle = "&api_key="
 	linkend = "&limit=1"
@@ -14,8 +14,7 @@ def gifsearch(message):
 	mess = "".join(arg[5:])
 	lien = str(linkstart) + str(mess) + str(linkmiddle) + str(GIPHY_KEY) + str(linkend)
 	
-	data = json.loads(urllib.urlopen(lien).read())
-	
+	async with session.get(lien) as data:
 	gif = json.dumps(data, sort_keys=True, indent=4)
 
 	await client.send_message(message.channel, gif)
