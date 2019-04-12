@@ -15,7 +15,7 @@ async def gifsearch(message):
 	lien = str(linkstart) + str(mess) + str(linkmiddle) + str(GIPHY_KEY) + str(linkend)
 	
 	async with session.get(lien) as data:
-	gif = json.dumps(data, sort_keys=True, indent=4)
+		gif = json.dumps(data, sort_keys=True, indent=4)
 
 	await client.send_message(message.channel, gif)
 	
