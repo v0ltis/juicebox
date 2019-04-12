@@ -2,6 +2,7 @@ import discord
 import asyncio
 import os
 from constant_class import Juice_constants
+import urllib,json
 
 GIPHY_KEY = os.environ["TOKEN_GIPHY"]
 
