@@ -55,7 +55,7 @@ from class_add_on import react_with_numbers
 from music_foncts import Music_bot
 #Welcome test foncts
 from class_welcom_on import welcom
-from class_gif_on import gifapi
+from class_gif_on import gifsearch
 
 mBot = Music_bot(client,Const.memeaudio)	
 
