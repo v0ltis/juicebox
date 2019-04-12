@@ -10,7 +10,7 @@ GIPHY_KEY = os.environ["TOKEN_GIPHY"]
 async def gifsearch(client,message):
 	linkstart = "http://api.giphy.com/v1/gifs/search?q="
 	linkmiddle = "&api_key="
-	linkend = "&limit=1"
+	linkend = "&limit=5"
 	arg = "message.content"
 	mess = "".join(arg[5:])
 	lien = str(linkstart) + str(mess) + str(linkmiddle) + str(GIPHY_KEY) + str(linkend)
