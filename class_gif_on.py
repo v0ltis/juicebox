@@ -6,7 +6,7 @@ import urllib,json
 
 GIPHY_KEY = os.environ["TOKEN_GIPHY"]
 
-async def gifsearch(message):
+def gifsearch(message):
 	linkstart = "http://api.giphy.com/v1/gifs/search?q="
 	linkmiddle = "&api_key="
 	linkend = "&limit=1"
