@@ -5,8 +5,6 @@ from constant_class import Juice_constants
 import json
 import aiohttp
 
-client.
-
 GIPHY_KEY = os.environ["TOKEN_GIPHY"]
 
 async def gifsearch(client,message):
