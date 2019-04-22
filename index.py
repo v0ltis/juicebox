@@ -1,4 +1,3 @@
-Et le bot est crash !
 import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
@@ -88,7 +87,7 @@ async def on_message(message):
 	elif message.content.upper().startswith("/SAY"):
 		args = message.content.split(" ")
 		auth = message.author
-		channel = message.channel
+		channel = message.server
 		
 		if not auth.id.upper() in Const.bypass_list or channel.permissions_for(auth).administrator==False or channel.permissions_for(auth).manage_messages==False or channel.permissions_for(auth).manage_channels==False: 
 			await client.delete_message(message)
@@ -307,7 +306,7 @@ async def on_message(message):
 		await welcuserim()
 	
 	autho = message.author
-	channel = message.channel
+	channel = message.server
 	contents = message.content.split(" ")
 	for word in contents:
 		if word.upper() in Const.chat_filter :
