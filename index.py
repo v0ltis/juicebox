@@ -204,7 +204,13 @@ async def on_message(message):
 			await client.send_message(message.channel, "Erreur ... voici les choses à faire :\nVerifier que le salon report existe bien.\nVerifier que vous avez bien donné une raison au report.\n Ca ne marche toujour pas ? Evoyez nous un ticket !")
 					
 
+	elif message.content.upper().startswith(Const.prefix + "CALC"):
+		randnum = randint(-50000, 50000)
+		await client.send_message(message.channel, random.choice(Const.calc))
 		
+	
+	
+	
 	elif message.content.upper().startswith(Const.prefix + "MEMEAUDIO"):
 		print("Memeaudioing.")
 		await mBot.meme_audio(message)
