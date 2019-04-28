@@ -84,12 +84,12 @@ class Juice_constants():
 		self.admin = ['TheLicheIsBack','v0ltis','Juice Box']
 		
 		
-		self.calc = ["Je pense que c'est " + str(randnum) + " . . .",
-			     "C'est " + str(randnum) + "j'en suis sur!",
-			     "A peut près" + str(randnum) + " !",
-			     "Papa voltis dit que ça fait " + str(randnum),
-			     "Environ " + str(randnum),
-			     "Surement " + str(randnum)]
+		#self.calc = ["Je pense que c'est " + str(randnum) + " . . .",
+			     #"C'est " + str(randnum) + "j'en suis sur!",
+			     #"A peut près" + str(randnum) + " !",
+			     #"Papa voltis dit que ça fait " + str(randnum),
+			     #"Environ " + str(randnum),
+			     #"Surement " + str(randnum)]
 		
 		
 		
