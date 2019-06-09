@@ -331,8 +331,8 @@ async def on_message(message):
 					await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
 				except:
 					return
-		elif word.upper() in ["QUOI"]:
-			await client.send_message(message.channel,"feur")
+		#elif word.upper() in ["QUOI"]:
+			#await client.send_message(message.channel,"feur")
 	
 	for word in contents:
 		if word.upper() in Const.merde:
