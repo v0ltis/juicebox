@@ -221,10 +221,7 @@ async def on_message(message):
 			
 	elif message.content.upper().startswith("/SITE"):
 		await client.send_message(message.channel,"Ma maison c'est ici: \n https://juicebot.github.io/")
-				
-	for word in contents:			
-		if word.upper() in ["QUOI"]:
-			await client.send_message(message.channel,"feur")
+						
 			
 	elif message.content.upper().startswith("XD"):
 		await client.send_message(message.channel,random.choice(["lol",
@@ -334,6 +331,8 @@ async def on_message(message):
 					await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
 				except:
 					return
+		elif word.upper() in ["QUOI"]:
+			await client.send_message(message.channel,"feur")
 	
 	for word in contents:
 		if word.upper() in Const.merde:
