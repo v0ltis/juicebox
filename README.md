@@ -10,8 +10,8 @@ JuiceBox is a free french bot with :
 #### Why us ?
 
 
-JuiceBox is free , always connected and there is no lag !
-    we will NEVER pay JuiceBox
+JuiceBox is a free , always connected and no lag bot!
+    we will free forever
     We want to spend a lot of time developing our bot to give you the best bot
     
 [Test it now](https://discordapp.com/oauth2/authorize?client_id=528268989525131274&scope=bot&permissions=2146958847)
