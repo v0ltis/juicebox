@@ -21,7 +21,7 @@ prefix = Const.prefix
 liste_random = ["Tiens ! <@{}> a rejoins **{}** !!! On lui dit pas bonjour ?",
   		"<@{}> à rejoins le serveur !"]
 
-contents = message.content.split(" ")
+
 GIPHY_KEY = os.environ["TOKEN_GIPHY"]
 @client.event
 async def on_member_join(member):
@@ -83,8 +83,7 @@ async def on_message(message):
 		ping = "%.2f"%(1000* (time.monotonic() - timePing))
 		await client.edit_message(pinger, ":ping_pong: **Pong !**\n\
 `Ping:" + ping + "`")
-	
-	
+				
 	elif message.content.upper().startswith("/SAY"):
 		args = message.content.split(" ")
 		auth = message.author
@@ -221,8 +220,8 @@ async def on_message(message):
 			
 	elif message.content.upper().startswith("/SITE"):
 		await client.send_message(message.channel,"Ma maison c'est ici: \n https://juicebot.github.io/")
-						
-			
+				
+			 
 	elif message.content.upper().startswith("XD"):
 		await client.send_message(message.channel,random.choice(["lol",
 			" ",
@@ -331,8 +330,6 @@ async def on_message(message):
 					await client.send_message(message.channel, "**Hey!** un peut de respect!!!")
 				except:
 					return
-		#elif word.upper() in ["QUOI"]:
-			#await client.send_message(message.channel,"feur")
 	
 	for word in contents:
 		if word.upper() in Const.merde:
