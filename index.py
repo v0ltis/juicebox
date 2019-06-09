@@ -221,7 +221,8 @@ async def on_message(message):
 	elif message.content.upper().startswith("/SITE"):
 		await client.send_message(message.channel,"Ma maison c'est ici: \n https://juicebot.github.io/")
 				
-			 
+	elif word.upper() in ["QUOI"]:
+		await client.send_message(message.channel,"feur")
 	elif message.content.upper().startswith("XD"):
 		await client.send_message(message.channel,random.choice(["lol",
 			" ",
