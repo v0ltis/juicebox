@@ -63,10 +63,11 @@ mBot = Music_bot(client,Const.memeaudio)
 async def on_message(message):
 	global chat_on,temps_zero,boucle
 	if message.author.id in Const.ban_user:
-			return
+		return
 	elif message.author == client.user:
-			return
-
+		return
+	elif message.server.id in ingnored_serv:
+		return
 	elif message.content.upper().startswith("/CHAT ON"):
 		chat_on = True
 	elif message.content.upper().startswith("/CHAT OFF"):
