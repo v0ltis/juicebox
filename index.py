@@ -42,7 +42,7 @@ async def on_ready():
 chat_on = False
 
 numbers = ['1-','2-','3-','4-','5-','6-','7-','8-','9-','10-','0-']
-ingnored_serv = ["264445053596991498","110373943822540800"]
+ingnored_serv = ["264445053596991498","110373943822540800","580335718975406100"]
 perms_messages = ["administrator","manage_messages","manage_channels"]
 
 #Information fonction
