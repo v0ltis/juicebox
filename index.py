@@ -88,7 +88,7 @@ async def on_message(message):
 	elif message.content.upper().startswith("/SAY"):
 		args = message.content.split(" ")
 		auth = message.author
-		channel = message.channel
+		channel = message.server
 		
 		if not auth.id.upper() in Const.bypass_list or channel.permissions_for(auth).administrator==False or channel.permissions_for(auth).manage_messages==False or channel.permissions_for(auth).manage_channels==False: 
 			await client.delete_message(message)
