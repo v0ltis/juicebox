@@ -1,6 +1,6 @@
 # JuiceBox
 
-## ***This is not [the last version of Juicy](https://github.com/v0ltis/JuiceBot3.7) !***
+## __**This is not [the last version of Juicy](https://github.com/v0ltis/JuiceBot3.7) !**__
 
 JuiceBox is a free french bot with :
 
