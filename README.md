@@ -1,5 +1,7 @@
 # JuiceBox
 
+## ___This is not [the last version of Juicy](https://github.com/v0ltis/JuiceBot3.7) !___
+
 JuiceBox is a free french bot with :
 
   - Moderation
